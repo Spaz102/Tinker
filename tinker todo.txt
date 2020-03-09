@@ -1,0 +1,88 @@
+Gameplay:
+	- Control times tool can be drawn (Empty board)
+	- Initial clutter
+	- Save system (No load/export)
+	- Stick in gear recipe?
+	- Some way to destroy storage? Auto-sort on gameover?
+
+Animations:
+	- Test rat bump animation
+	- Convert all animations to lerp (confirm done)
+	- Dust mote polish (initial position)
+	- Misc decorations
+	- tile unveiling (Can use grow-fade - Pings new tiles and/or codex itself)
+	- Finish spritesheet
+
+Options:
+	- Mute button
+	- Credits button
+		- Reset button
+
+Interface
+	- Cursor position sanity
+	- mouseover highlighting on clickable buttons
+	- hand (holding arbitrary tile)
+	- no hand in menus
+	- more menu backgrounds
+	- Codex mouseover to show clickable
+	- Meaningful item texts (Unseen item texts?)
+
+Sounds:
+	- Remove combo sound system
+	- Random placement merge sounds
+	- Sounds per resource? (With random pitch/tempo?)
+	- Page turn codex sounds
+	- Clock themed soundscape
+
+Refine dust poof use cases
+	- Tile placement
+		- Not on taken space
+	- Rat pooping
+	- Inert click
+	- Floating dust
+		- Floaters should rotate
+	- ???
+
+Mobile:
+	- disable board during menus
+	- show hand on screen (codex link)
+	- Standard android resolutions (540x960, 720x1280, 1080x1920)
+
+Popups:
+	- Win with deaths (animated?)
+	- Win without deaths (animated?)
+	- Board cleanup (gameover empty threat)
+	- Main benchmarks
+	- Rat breeding ("Uh oh! You're a slob!")
+
+Tutorial:
+	- Sometimes match-4
+	- Complex crafting
+	- Handrat/mover
+
+Eventually:
+	- Kong api
+	- Direct comment submission?
+	- Watch ad for next n pieces prediction
+	- Pay for 1-shot tool/handrat
+
+
+Notes~
+- Sounds suck (too loud?)
+- Also some sounds stolen
+- Needs ambiance
+- Animated codex opening
+- Codex unlock in-hand as well as on-board
+- Initial clutter
+- Finish placeholder graphics
+- Needs clearer gameboard edges
+- Codex as default bottom panel? (Override with options or mobile mode)
+- Codex background too contrasting (Use options background instead?)
+- More fitting/professional font needed
+- More dust on tile placement
+- Fix tiles doubling on rat spread
+- Mouseover highlight boxes overlap
+- Wtf ratbump->trash ghost rat?
+- Handrat -> newrat recipe bugs
+- Rat -> pin to easy gear?
+- Rats forced wandering before hungry? (Harder to deal with if not contained)

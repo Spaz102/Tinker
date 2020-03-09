@@ -13,7 +13,7 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 		newunderlay.GetComponent<Ghost>().lifespan = -1;
 		this.gameObject.GetComponent<Tile>().underlay = newunderlay.GetComponent<Tile>();
 		this.gameObject.GetComponent<Tile>().ShowSprite("Empty");
-		this.gameObject.GetComponent<Tile>().underlay.ShowSprite("Storage"); //TODO use a special storage sprite
+		this.gameObject.GetComponent<Tile>().underlay.ShowSprite("Storage"); //TODO: Use a special storage sprite
 	}
 
 	public void OnMouseUpAsButton() { // Super naive implementation - just swaps hand and stored
@@ -31,7 +31,7 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 	public void OnMouseEnter() { // Seems to work via raytracing, so no need to worry about layers or z-fighting if it isn't happening visually
 		this.gameObject.GetComponent<Tile>().underlay.ShowSprite("Mouseover");
 	}
-	public void OnMouseExit() { //TODO add check for if program focus lost/regained? (Add a pause screen)
+	public void OnMouseExit() { //TODO: Add check for if program focus lost/regained? (Add a pause screen)
 		this.gameObject.GetComponent<Tile>().underlay.ShowSprite("Storage");
 	}
 
@@ -39,6 +39,5 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 		if (this.gameObject.GetComponent<Tile>().underlay != null) {
 			GameObject.Destroy(this.gameObject.GetComponent<Tile>().underlay.gameObject);
 		}
-		//GameObject.Destroy(this);
 	}
 }

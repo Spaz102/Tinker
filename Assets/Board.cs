@@ -13,7 +13,6 @@ public class Board : MonoBehaviour {
 	public AudioSource audiosrc;
 
 	public Tile[,] tile; // Implicitly a ref
-	//public Tile[,] underlay;
 	public string[,] state;
 	public List<Storage> storagelist;
 	public List<Dependency> dependencies;
@@ -21,7 +20,6 @@ public class Board : MonoBehaviour {
 	public void Start() {
 		Game.Awake();
 		tile = new Tile[boardWidth, boardHeight];
-		//underlay = new Tile[boardWidth, boardHeight];
 		state = new string[boardWidth, boardHeight];
 		dependencies = new List<Dependency>();
 		CreateBoard();
@@ -30,8 +28,6 @@ public class Board : MonoBehaviour {
 
 	public void Update() {
 		Game.Update();
-		//Vector3 mouse = Input.mousePosition;
-		//textbox.text = (mouse.x + ", " + mouse.y);
 	}
 
 	public void CreateBoard() { // Warning, only run once! (Or fix to clear old tiles)
@@ -49,10 +45,8 @@ public class Board : MonoBehaviour {
 				GameObject newunderlay = UnityEngine.Object.Instantiate(Data.ghosttemplate, new Vector3(), new Quaternion()) as GameObject;
 				newunderlay.GetComponent<Tile>().transform.SetParent(newtile.transform);
 				newunderlay.GetComponent<RectTransform>().transform.localPosition = new Vector3(0,0,0);
-				//newunderlay.GetComponent<RectTransform>().anchoredPosition = new Vector2(-12 + 4*x,-12 + 4*y);
 				newunderlay.GetComponent<RectTransform>().sizeDelta = new Vector2(0,0);
 				newunderlay.GetComponent<Ghost>().lifespan = -1;
-				//underlay[x, y] = newunderlay.GetComponent<Tile>();
 				tile[x,y].underlay = newunderlay.GetComponent<Tile>();
 
 				newunderlay.GetComponent<Tile>().ShowSprite("Empty");
@@ -64,13 +58,6 @@ public class Board : MonoBehaviour {
 	public void Set(Coord target, string setto) {
 		if (state[target.x,target.y] == setto) { // Not strictly necessary to throw away redundant calls, but saves on redrawing
 			return;
-//		} else if (setto == "Rat") {
-//			if (!Data.playerseen["Rat"]) {
-//				Data.playerseen["Rat"] = true;
-//				Game.blueprints.Recalc();
-//			}
-//			this.state[target.x,target.y] = "NewRat";
-//			this.tile[target.x,target.y].ShowSprite("Rat");
 		} else {
 			this.state[target.x,target.y] = setto;
 			this.tile[target.x,target.y].ShowSprite(setto);
@@ -84,7 +71,7 @@ public class Board : MonoBehaviour {
 
 		foreach (Dependency checkme in dependencies) {
 			if (target.x == checkme.dependson.x && target.y == checkme.dependson.y) {
-				GameObject.Destroy(checkme.target); //TODO spawn and animate ghost to show destruction
+				GameObject.Destroy(checkme.target); //TODO: Spawn and animate ghost to show destruction
 			}
 		}
 		dependencies.RemoveAll(dep => dep.target == null);
@@ -111,7 +98,7 @@ public class Board : MonoBehaviour {
 		}
 	}
 
-	public bool CheckGameOver() { //TODO change to void; interpret from here instead of main loop
+	public bool CheckGameOver() { //TODO: Change to void; interpret from here instead of main loop
 		bool haskey = false;
 		bool hasbox = false;
 		bool playerlost = true;
@@ -160,7 +147,7 @@ public class Board : MonoBehaviour {
 		return (playerlost || (haskey && hasbox));
 	}
 
-	public void CleanUp() {
+	public void CleanUp() { // TODO: Push storage to corner
 		List<string> shuffleme = new List<string>();
 		List<Coord> empties = new List<Coord>();
 
@@ -263,7 +250,7 @@ public class Board : MonoBehaviour {
 						resolved++;
 					}
 					break;
-				case "Static": //TODO check for patterns partially out of bounds (pin/cylinder)
+				case "Static": //TODO: Check for patterns partially out of bounds (pin/cylinder)?
 					List<Coord> staticresults = CheckStatic(Data.patterns[n].value, currenttarget, newboard);
 					if (staticresults.Count == 0) { // No patterns found
 						break;
@@ -277,13 +264,12 @@ public class Board : MonoBehaviour {
 
 						for (int y = 0; y < Data.patterns[n].value.GetLength(1); y++) {
 							for (int x = 0; x < Data.patterns[n].value.GetLength(0); x++) {
-								if (Data.patterns[n].value[x,y] != "") { //TODO add check for other patterns that don't need an animation?
+								if (Data.patterns[n].value[x,y] != "") { //TODO: Add check for other patterns that don't need an animation?
 									newboard[staticresults[random].x + x, staticresults[random].y + Data.patterns[n].value.GetLength(1) - 1 - y] = "Empty";
 									if (test) {
 										Highlight(staticresults[random].x + x, staticresults[random].y + Data.patterns[n].value.GetLength(1) - 1 - y, "Highlight");
 									} else {
 										Animate(new Coord(staticresults[random].x + x, staticresults[random].y + Data.patterns[n].value.GetLength(1) - 1 - y), new Coord(staticresults[random].x + 1, staticresults[random].y + 1), resolved, Data.patterns[n].value[x,y], "Slide");
-										//Set(new Coord(staticresults[random].x + x, staticresults[random].y + Data.patterns[n].value.GetLength(1) - 1 - y), "Empty");
 									}
 								}
 							}
@@ -338,7 +324,7 @@ public class Board : MonoBehaviour {
 					} else {
 						int random = Game.rng.Next(results.Count);
 						foreach (Coord spot in results[random]) {
-							Animate(spot, currenttarget, resolved, newboard[spot.x, spot.y], "Slide"); //TODO different animation type?
+							Animate(spot, currenttarget, resolved, newboard[spot.x, spot.y], "Slide"); //TODO: Different animation type(s)?
 							newboard[spot.x, spot.y] = "Empty";
 						}
 						tile[currenttarget.x, currenttarget.y].Hide((resolved+1)*animationLength);
@@ -444,7 +430,7 @@ public class Board : MonoBehaviour {
 		}
 	}
 
-	public void MoveRats() { //TODO Randomize order, make simultaneous to avoid repeat motion
+	public void MoveRats() { //TODO: Randomize order, make simultaneous to avoid repeat motion
 		List<Coord> rats = new List<Coord>(); // Avoids double-moving rats
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
@@ -460,7 +446,7 @@ public class Board : MonoBehaviour {
 		}
 	}
 
-	private void MoveRat(Coord rat) { //TODO upgrade ai as needed for difficulty
+	private void MoveRat(Coord rat) { //TODO: Upgrade ai as needed for difficulty (Period of time before they start eating)
 		Coord target = rat.Neighbors()[Game.rng.Next(rat.Neighbors().Count)]; // Rats never bump board walls - is this good?
 
 		if (this.state[target.x,target.y] == "Empty") {
@@ -488,7 +474,7 @@ public class Board : MonoBehaviour {
 		}
 	}
 
-	public void Animate(Coord start, Coord finish, int delay, string sprite, string type) { //TODO implement other animation types
+	public void Animate(Coord start, Coord finish, int delay, string sprite, string type) { //TODO: Implement other animation types
 		if (sprite == "Empty") {
 			return;
 		}
@@ -521,7 +507,6 @@ public class Board : MonoBehaviour {
 		newghost.GetComponent<UnityEngine.UI.Image>().color = new Color(1,1,1,1);
 
 		newghost.GetComponent<Ghost>().Spawn("Poof", tile[target.x,target.y].gameObject.transform.position, 0, false);
-		//newghost.GetComponent<Tile>().Hide(tile[start.x,start.y].hidden);
 	}
 
 	public void ClearHighlights() {
@@ -539,7 +524,7 @@ public class Board : MonoBehaviour {
 		}
 	}
 
-	public void CreateStorage(Coord bottomleft) { // Assumes 2x2 pattern for dependencies //TODO modify panel appearance when used in storage
+	public void CreateStorage(Coord bottomleft) { // Assumes 2x2 pattern for dependencies //TODO: Modify panel appearance when used in storage
 		GameObject newstorage = UnityEngine.Object.Instantiate(Data.storagetemplate, new Vector3(), new Quaternion()) as GameObject;
 		
 		newstorage.GetComponent<Tile>().transform.SetParent(parentboard.transform);

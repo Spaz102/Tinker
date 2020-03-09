@@ -9,7 +9,7 @@ public class Blueprint_Page : MonoBehaviour {
 	public Text titleText;
 	public Text descText;
 	public Text arrowText;
-	public bool showgrid; // Far static blueprints to show geometric significance
+	public bool showgrid; // For static blueprints to show geometric significance
 
 	void Start () {
 		showing = new string[10];
@@ -46,7 +46,7 @@ public class Blueprint_Page : MonoBehaviour {
 			showing[4] = "Junk1";
 			showing[5] = "Junk2";
 			showing[6] = "Junk3";
-		} else if (showing[0] == "Rat" || showing[0] == "NewRat") { //Special case: rat
+		} else if (showing[0] == "Rat" || showing[0] == "NewRat") { // Special case: rat
 			arrowText.text = ">>>";
 			showing[0] = "Rat";
 			showing[1] = "Junk1";
@@ -72,7 +72,6 @@ public class Blueprint_Page : MonoBehaviour {
 
 			switch (Data.patternresults[showing[0]].type) {
 			case "3Cont":
-				//displayTiles[1].ShowSprite("Empty");
 				for (int n = 1; n <= 3; n++) {
 					showing[n] = (Data.patternresults[showing[0]].value[0,0]);
 				}

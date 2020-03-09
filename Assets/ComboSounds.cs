@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ComboSounds : MonoBehaviour {
+public class ComboSounds : MonoBehaviour { // TODO: Rework sound system
 	private int framecount;
 	private int targetcount;
 	public AudioSource src;

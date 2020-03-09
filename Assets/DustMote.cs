@@ -6,9 +6,8 @@ public class DustMote : MonoBehaviour {
 	int counter;
 	float min;
 
-	void Start() {
-		//Set random position
-		this.GetComponent<UnityEngine.SpriteRenderer>().sprite = Data.dustsprites[Random.Range(0, 3)]; // Warning: depends of spritesheet size
+	void Start() { // Random starting position, momentum
+		this.GetComponent<UnityEngine.SpriteRenderer>().sprite = Data.dustsprites[Random.Range(0, 3)]; // Warning: Depends of spritesheet size
 		this.transform.rotation = Quaternion.Euler(0,0,Random.Range(0,360));
 		counter = Random.Range(2, 5); // Delay between next random angle change
 		min = Random.Range(0.01f, 0.05f);
@@ -34,7 +33,6 @@ public class DustMote : MonoBehaviour {
 			temp.z = 0;
 			temp.Normalize();
 			temp = Quaternion.Euler(0,0,Random.Range(-15,15)) * temp;
-			//momentum += temp * -0.001f;
 		}
 
 		if (GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(this.transform.position + momentum).x < -10 || GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(this.transform.position + momentum).x > 490) {

@@ -18,7 +18,7 @@ public class Blueprints : MonoBehaviour {
 
 	void Start () {
 		buttons = this.gameObject.GetComponentsInChildren<Tile>();
-		fullList = new string[] {"Seed","Stick","Wood","Plank","Panel","Dirt","Rock","Metal","Pin","Cylinder","Gear","Spring","Comb","Drum","Motor","MusicBox","Key","Storage","Special","Junk1","Rat"}; // Missing: gameover conditions
+		fullList = new string[] {"Seed","Stick","Wood","Plank","Panel","Dirt","Rock","Metal","Pin","Cylinder","Gear","Spring","Comb","Drum","Motor","MusicBox","Key","Storage","Special","Junk1","Rat"}; // Missing: Win conditions
 		butts = fullList;
 		this.gameObject.transform.localPosition = new Vector3(0f, -15f, 0f);
 		Recalc();
@@ -38,10 +38,6 @@ public class Blueprints : MonoBehaviour {
 				buttons[n].SmartShow("Empty");
 			}
 		}
-		//statBlueprint.Recalc();
-		//setBlueprint.Recalc();
-		//specBlueprint.Recalc();
-
 	}
 
 	public void Click(int index) {
@@ -52,7 +48,7 @@ public class Blueprints : MonoBehaviour {
 		}
 	}
 
-	public void Show(string showme) { // Show entries for uncraftable tiles (Eg: Dirt)
+	public void Show(string showme) { // Also show entries for uncraftable tiles (Eg: Dirt)
 		if (showme == "Storage") {
 			statBlueprint.gameObject.SetActive(false);
 			specBlueprint.gameObject.SetActive(true);

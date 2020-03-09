@@ -21,7 +21,7 @@ public static class Game {
 	public static ComboSounds combosounds;
 
 	public static System.Random rng;
-	private static int handPoolSize;
+	private static int handPoolSize; //TODO: Move to Data and calculate on Awake()
 
 	static Game () {
 		Data.Awake();
@@ -42,7 +42,6 @@ public static class Game {
 		Idle();
 		MoveHand();
 		if (board.CheckGameOver()) {
-			//board.SetBoard("Empty");
 			board.CleanUp();
 			SetHand("Random");
 		}
@@ -53,18 +52,19 @@ public static class Game {
 		}
 	}
 
-	public static void MoveHand() { //TODO mouseover snap for storage tiles, also use a more direct method of defining cursor position, for resolution flexibility
+	public static void MoveHand() { //TODO: Mouseover snap for storage tiles, also use a more direct method of defining cursor position, for resolution flexibility
 		Vector3 mouse = Input.mousePosition;
 		if ((mouseover != null) && (CanClick(board.state[mouseover.x,mouseover.y]) != board.state[mouseover.x,mouseover.y])) {
 			cursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(board.tile[mouseover.x,mouseover.y].transform.position.x * 1 + 0, board.tile[mouseover.x,mouseover.y].transform.position.y * 1 + 0); // Cursor snaps to valid position
 		} else {
-			cursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(mouse.x*30/480 - 15, mouse.y*50/800 - 25); // Otherwise cursor is freeform
+			cursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(mouse.x*30/480 - 15, mouse.y*50/800 - 25); // Otherwise cursor is freeform //TODO: Fix this garbage
 		}
 	}
 
 	public static void Mouseover() { // Updates interface reactions, and highlights potential changes on click
 		board.ClearHighlights();
-		if ((mouseover == null) || (CanClick(board.state[mouseover.x,mouseover.y]) == board.state[mouseover.x,mouseover.y]) || hand == "Rat") { // Go no further if clicking won't cause changes on the board
+		if ((mouseover == null) || (CanClick(board.state[mouseover.x,mouseover.y]) == board.state[mouseover.x,mouseover.y])) { // Go no further if clicking won't cause changes on the board
+		//if ((mouseover == null) || (CanClick(board.state[mouseover.x,mouseover.y]) == board.state[mouseover.x,mouseover.y]) || hand == "Rat") { // Go no further if clicking won't cause changes on the board
 			return;
 		}
 
@@ -74,7 +74,7 @@ public static class Game {
 		board.tile[mouseover.x,mouseover.y].underlay.ShowSprite("Mouseover"); // Override any pattern highlighting with mouseover indicator
 	}
 
-	public static string CanClick(string targetState) { // For mouseover snap and game-over checking; returns new value //TODO: clean up, change to bool?
+	public static string CanClick(string targetState) { // For mouseover snap and game-over checking; returns new value of the board tile (Returning its current state implies an invalid move)
 		if (targetState == "Storage") {
 			return "StoreHand";
 		} else if (hand == "Rat") {
@@ -83,10 +83,8 @@ public static class Game {
 			} else { // Drop rat
 				return "NewRat";
 			}
-		} else if (hand == "Special") { // Anything that must be clicked on a resource
-			if (targetState != "Empty") { // Or a part of a construct?
-				return "Empty";
-			}
+		} else if (hand == "Special" && targetState != "Empty") { // Must be clicked on a resource
+			return "Empty";
 		} else { // Ordinary tile
 			if (targetState == "Empty") { // Or storage tile
 				return hand;
@@ -128,7 +126,7 @@ public static class Game {
 				board.Set(queuedClick, result);
 			}
 				
-			if (result != "Rat") { // Otherwise hand rats merge with placed junk
+			if (result != "Rat" && result != "NewRat") { // Otherwise hand rats merge with placed junk
 				board.ResolvePatterns(queuedClick, ref board.state, false);
 			}
 
@@ -140,7 +138,7 @@ public static class Game {
 		queuedClick = null;
 	}
 
-	public static void SetHand(string setto) { //TODO make less memory efficient but easier to work with? (list of strings with repetition, pull random entry from list)
+	public static void SetHand(string setto) {
 		if (setto == "Random" || setto == "Empty" || setto == "" ) {
 			hand = GetRandom();
 			if (hand == "Error") {
@@ -151,7 +149,6 @@ public static class Game {
 		}
 		cursor.ShowSprite(hand);
 		cursor.Fade(0.75f);
-		//board.ShowText(hand);
 	}
 
 	private static void CalcHandPoolSize() { // Run once on startup
@@ -175,16 +172,16 @@ public static class Game {
 		board.GetComponent<AudioSource>().PlayOneShot(Data.audiofiles[name]);
 	}
 
-	public static void Idle() { //TODO rat breathing
+	public static void Idle() {
 		idletime++;
-		if (idletime > 255) { // Pulse random tile?
+		if (idletime > 255) { //TODO: Ping suggested move?
 			idletime = 0;
 		}
 		//board.ShowText(idletime.ToString());
 	}
 }
 
-public class Coord { // Warning~ Cannot yet be compared directly (Needs to override Equals())
+public class Coord {
 	public int x;
 	public int y;
 
@@ -217,6 +214,10 @@ public class Coord { // Warning~ Cannot yet be compared directly (Needs to overr
 
 	public bool InBounds() {
 		return (this.x >=0 && this.y >= 0 && this.x < Game.board.boardWidth && this.y < Game.board.boardHeight);
+	}
+
+	public bool Equals(Coord other) {
+		return (this.x == other.x && this.y == other.y);
 	}
 }
 

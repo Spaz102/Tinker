@@ -1,67 +1,168 @@
 fileFormatVersion: 2
 guid: 5cd05f01e0de5be4fa7fd730bda479a6
-timeCreated: 1474724743
-licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Tinkerer 1_0
-    21300002: Tinkerer 1_1
-    21300004: Tinkerer 1_2
-    21300006: Tinkerer 1_3
-    21300008: Tinkerer 1_4
-    21300010: Tinkerer 1_5
-    21300012: Tinkerer 1_6
-    21300014: Tinkerer 1_7
-    21300016: Tinkerer 1_8
-    21300018: Tinkerer 1_9
-    21300020: Tinkerer 1_10
-    21300022: Tinkerer 1_11
-    21300024: Tinkerer 1_12
-    21300026: Tinkerer 1_13
-    21300028: Tinkerer 1_14
-    21300030: Tinkerer 1_15
-    21300032: Tinkerer 1_16
-    21300034: Tinkerer 1_17
-    21300036: Tinkerer 1_18
-    21300038: Tinkerer 1_19
-    21300040: Tinkerer 1_20
-    21300042: Tinkerer 1_21
-    21300044: Tinkerer 1_22
-    21300046: Tinkerer 1_23
-    21300048: Tinkerer 1_24
-    21300050: Tinkerer_0
-    21300052: Tinkerer_1
-    21300054: Tinkerer_2
-    21300056: Tinkerer_3
-    21300058: Tinkerer_4
-    21300060: Tinkerer_5
-    21300062: Tinkerer_6
-    21300064: Tinkerer_7
-    21300066: Tinkerer_8
-    21300068: Tinkerer_9
-    21300070: Tinkerer_10
-    21300072: Tinkerer_11
-    21300074: Tinkerer_12
-    21300076: Tinkerer_13
-    21300078: Tinkerer_14
-    21300080: Tinkerer_15
-    21300082: Tinkerer_16
-    21300084: Tinkerer_17
-    21300086: Tinkerer_18
-    21300088: Tinkerer_19
-    21300090: Tinkerer_20
-    21300092: Tinkerer_21
-    21300094: Tinkerer_22
-    21300096: Tinkerer_23
-    21300098: Tinkerer_24
-  serializedVersion: 2
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Tinkerer 1_0
+  - first:
+      213: 21300002
+    second: Tinkerer 1_1
+  - first:
+      213: 21300004
+    second: Tinkerer 1_2
+  - first:
+      213: 21300006
+    second: Tinkerer 1_3
+  - first:
+      213: 21300008
+    second: Tinkerer 1_4
+  - first:
+      213: 21300010
+    second: Tinkerer 1_5
+  - first:
+      213: 21300012
+    second: Tinkerer 1_6
+  - first:
+      213: 21300014
+    second: Tinkerer 1_7
+  - first:
+      213: 21300016
+    second: Tinkerer 1_8
+  - first:
+      213: 21300018
+    second: Tinkerer 1_9
+  - first:
+      213: 21300020
+    second: Tinkerer 1_10
+  - first:
+      213: 21300022
+    second: Tinkerer 1_11
+  - first:
+      213: 21300024
+    second: Tinkerer 1_12
+  - first:
+      213: 21300026
+    second: Tinkerer 1_13
+  - first:
+      213: 21300028
+    second: Tinkerer 1_14
+  - first:
+      213: 21300030
+    second: Tinkerer 1_15
+  - first:
+      213: 21300032
+    second: Tinkerer 1_16
+  - first:
+      213: 21300034
+    second: Tinkerer 1_17
+  - first:
+      213: 21300036
+    second: Tinkerer 1_18
+  - first:
+      213: 21300038
+    second: Tinkerer 1_19
+  - first:
+      213: 21300040
+    second: Tinkerer 1_20
+  - first:
+      213: 21300042
+    second: Tinkerer 1_21
+  - first:
+      213: 21300044
+    second: Tinkerer 1_22
+  - first:
+      213: 21300046
+    second: Tinkerer 1_23
+  - first:
+      213: 21300048
+    second: Tinkerer 1_24
+  - first:
+      213: 21300050
+    second: Tinkerer_0
+  - first:
+      213: 21300052
+    second: Tinkerer_1
+  - first:
+      213: 21300054
+    second: Tinkerer_2
+  - first:
+      213: 21300056
+    second: Tinkerer_3
+  - first:
+      213: 21300058
+    second: Tinkerer_4
+  - first:
+      213: 21300060
+    second: Tinkerer_5
+  - first:
+      213: 21300062
+    second: Tinkerer_6
+  - first:
+      213: 21300064
+    second: Tinkerer_7
+  - first:
+      213: 21300066
+    second: Tinkerer_8
+  - first:
+      213: 21300068
+    second: Tinkerer_9
+  - first:
+      213: 21300070
+    second: Tinkerer_10
+  - first:
+      213: 21300072
+    second: Tinkerer_11
+  - first:
+      213: 21300074
+    second: Tinkerer_12
+  - first:
+      213: 21300076
+    second: Tinkerer_13
+  - first:
+      213: 21300078
+    second: Tinkerer_14
+  - first:
+      213: 21300080
+    second: Tinkerer_15
+  - first:
+      213: 21300082
+    second: Tinkerer_16
+  - first:
+      213: 21300084
+    second: Tinkerer_17
+  - first:
+      213: 21300086
+    second: Tinkerer_18
+  - first:
+      213: 21300088
+    second: Tinkerer_19
+  - first:
+      213: 21300090
+    second: Tinkerer_20
+  - first:
+      213: 21300092
+    second: Tinkerer_21
+  - first:
+      213: 21300094
+    second: Tinkerer_22
+  - first:
+      213: 21300096
+    second: Tinkerer_23
+  - first:
+      213: 21300098
+    second: Tinkerer_24
+  externalObjects: {}
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -70,35 +171,55 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
+    serializedVersion: 2
     filterMode: -1
     aniso: 16
-    mipBias: -1
-    wrapMode: 1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -114,7 +235,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 25305410000000000800000000000000
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_1
       rect:
@@ -127,7 +256,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 45305410000000000800000000000000
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_2
       rect:
@@ -140,7 +277,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 65305410000000000800000000000000
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_3
       rect:
@@ -153,7 +298,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 85305410000000000800000000000000
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_4
       rect:
@@ -166,7 +319,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a5305410000000000800000000000000
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_5
       rect:
@@ -179,7 +340,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c5305410000000000800000000000000
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_6
       rect:
@@ -192,7 +361,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e5305410000000000800000000000000
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_7
       rect:
@@ -205,7 +382,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 06305410000000000800000000000000
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_8
       rect:
@@ -218,7 +403,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 26305410000000000800000000000000
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_9
       rect:
@@ -231,7 +424,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 46305410000000000800000000000000
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_10
       rect:
@@ -244,7 +445,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 66305410000000000800000000000000
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_11
       rect:
@@ -257,7 +466,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 86305410000000000800000000000000
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_12
       rect:
@@ -270,7 +487,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a6305410000000000800000000000000
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_13
       rect:
@@ -283,7 +508,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c6305410000000000800000000000000
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_14
       rect:
@@ -296,7 +529,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e6305410000000000800000000000000
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_15
       rect:
@@ -309,7 +550,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 07305410000000000800000000000000
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_16
       rect:
@@ -322,7 +571,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 27305410000000000800000000000000
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_17
       rect:
@@ -335,7 +592,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 47305410000000000800000000000000
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_18
       rect:
@@ -348,7 +613,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 67305410000000000800000000000000
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_19
       rect:
@@ -361,7 +634,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 87305410000000000800000000000000
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_20
       rect:
@@ -374,7 +655,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: a7305410000000000800000000000000
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_21
       rect:
@@ -387,7 +676,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: c7305410000000000800000000000000
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_22
       rect:
@@ -400,7 +697,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: e7305410000000000800000000000000
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_23
       rect:
@@ -413,7 +718,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 08305410000000000800000000000000
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
       name: Tinkerer_24
       rect:
@@ -426,9 +739,28 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
+      bones: []
+      spriteID: 28305410000000000800000000000000
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

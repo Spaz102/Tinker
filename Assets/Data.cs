@@ -65,7 +65,7 @@ public static class Data {
 		tiledefs.Add("Highlight", new TileDef("Highlight", 0, "", rawsprites[23], new Color(0.6f,0.8f,0.8f,0.3f), ""));
 		tiledefs.Add("Mouseover", new TileDef("Mouseover", 0, "", rawsprites[23], new Color(1,1,1,0.1f), ""));
 
-		patterns = new List<Pattern>(); // Warning: patterns checked in order, be careful of conflicts
+		patterns = new List<Pattern>(); // Warning: Patterns checked in order; be careful of conflicts
 
 		patterns.Add(new Pattern("Dirt", "4Cont", "Rock"));
 		patterns.Add(new Pattern("Rock", "4Cont", "Metal"));
@@ -282,7 +282,7 @@ public static class Data {
 		patterns.Add(new Pattern("Junk1", "3Cont", "NewRat"));
 		patterns.Add(new Pattern("Junk2", "3Cont", "NewRat"));
 		patterns.Add(new Pattern("Junk3", "3Cont", "NewRat"));
-		patterns.Add(new Pattern(new string[] {"NewRat", "Junk2", "Junk3"}, "Set", "NewRat"));
+		patterns.Add(new Pattern(new string[] {"NewRat", "Junk2", "Junk3"}, "Set", "NewRat")); // Allow simultaneous 3-match and variety-match to get fewer rats per junk
 		patterns.Add(new Pattern(new string[] {"Junk1", "NewRat", "Junk3"}, "Set", "NewRat"));
 		patterns.Add(new Pattern(new string[] {"Junk1", "Junk2", "NewRat"}, "Set", "NewRat"));
 		Pattern temp = new Pattern(new string[] {"Junk1", "Junk2", "Junk3"}, "Set", "NewRat"); // Done to force blueprints to show rat pattern correctly
@@ -327,8 +327,8 @@ public static class Data {
 public class Pattern {
 	public string type; // "Cont" for contiguous, "Static" for static, etc. Technically unnecessary, as dimensions of types are distinct
 	public string[,] value; // Eg: ("Dirt", "Rock") or an array for static. "" for irrelevant tiles
-	//public string[,] result; // Always a square (1, 4, or 9), same dimensions as value if static pattern // Always a single tile??
-	public string result;
+	//public string[,] result; // Always a square (1, 4, or 9), same dimensions as value if static pattern
+	public string result; // Always a single tile??
 
 	public Pattern(string input, string type, string result) {
 		string[,] newinput = new string[1,1];
@@ -349,7 +349,7 @@ public class Pattern {
 		}
 		for (int y = 0; y < newinput.GetLength(1); y++) {
 			for (int x = 0; x < newinput.GetLength(0); x++) {
-				newinput[x,y] = input[x + newinput.GetLength(0)*y]; // warning, board space has 0,0 at bottom left - pattern has 0,0 at top left
+				newinput[x,y] = input[x + newinput.GetLength(0)*y]; //Warning: Board space has 0,0 at bottom left - pattern has 0,0 at top left
 			}
 		}
 
@@ -370,7 +370,7 @@ public class TileDef {
 	public int chancetodraw; // Sum of all values used to determine actual chances
 	public string edible;
 	public Sprite sprite;
-	public Color color; // Temp
+	public Color color; //TODO: Phase out coloured tiles for actual sprites
 
 	public TileDef(string name, int chance, string edible, Sprite sprite, Color color, string desc) {
 		this.name = name;

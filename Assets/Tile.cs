@@ -4,7 +4,7 @@ using System.Collections;
 public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 	public int hidden; // # of frames before unhiding (For animations/transitions), -1 for indefinite
 	public Tile underlay; // null if already underlay // Is this the best way? If so, another layer for drop shadows? // This makes me super uneasy
-	public bool breathing;
+	public bool breathing; // Rats pulse to show agency
 	public float scale;
 
 	public void Update() {
@@ -26,7 +26,7 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 		}
 	}
 
-	public void Hide(int length) { //TODO delegate to ghosts
+	public void Hide(int length) {
 		Fade(0);
 		this.hidden = length + 1;
 	}
@@ -52,7 +52,7 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 		this.GetComponent<UnityEngine.UI.Image>().color = clr;
 	}
 
-	public void Recolour(float r, float g, float b) { //TODO phase out usage
+	public void Recolour(float r, float g, float b) { //TODO: Phase out usage
 		Color clr = this.GetComponent<UnityEngine.UI.Image>().color;
 		clr.r = r;
 		clr.g = g;

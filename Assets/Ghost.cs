@@ -8,12 +8,11 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 	Vector3 finish;
 	public string animationstyle;
 	public int lifespan;
-	//public List<Vector3> targets; //TODO change to coord, move tile hiding mechanics here (The ghost sets and resets the target's a)
 	int delay;
 
 	public void Spawn(string style, Vector3 target, int delay, bool freezeinputs) {
 		this.animationstyle = style;
-		this.delay = delay; //TODO animation queue
+		this.delay = delay; //TODO: Animation queue
 		this.start = this.gameObject.transform.position;
 
 		if (style == "Slide") {
@@ -36,7 +35,7 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 			return;
 		}
 		lifespan--;
-		if (delay > 0) { //TODO animation queue
+		if (delay > 0) { //TODO: Animation queue
 			delay--;
 			return;
 		}
@@ -79,7 +78,4 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 		}
 	}
 
-	public void HideTile() {
-
-	}
 }
