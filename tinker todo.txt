@@ -6,11 +6,9 @@ Gameplay:
 	- Some way to destroy storage? Auto-sort on gameover?
 
 Animations:
-	- Test rat bump animation
-	- Convert all animations to lerp (confirm done)
 	- Dust mote polish (initial position)
 	- Misc decorations
-	- tile unveiling (Can use grow-fade - Pings new tiles and/or codex itself)
+	- Tile unveiling (Can use grow-fade - Pings new tiles and/or codex itself)
 	- Finish spritesheet
 
 Options:
@@ -20,10 +18,11 @@ Options:
 
 Interface
 	- Cursor position sanity
-	- mouseover highlighting on clickable buttons
-	- hand (holding arbitrary tile)
-	- no hand in menus
-	- more menu backgrounds
+	- Mouseover highlighting on clickable buttons
+	- Hand (holding arbitrary tile)
+		- Scale up for mobile version
+		- No hand in menus
+	- More (Better) menu backgrounds
 	- Codex mouseover to show clickable
 	- Meaningful item texts (Unseen item texts?)
 
@@ -75,14 +74,9 @@ Notes~
 - Codex unlock in-hand as well as on-board
 - Initial clutter
 - Finish placeholder graphics
-- Needs clearer gameboard edges
 - Codex as default bottom panel? (Override with options or mobile mode)
 - Codex background too contrasting (Use options background instead?)
 - More fitting/professional font needed
 - More dust on tile placement
-- Fix tiles doubling on rat spread
 - Mouseover highlight boxes overlap
-- Wtf ratbump->trash ghost rat?
-- Handrat -> newrat recipe bugs
-- Rat -> pin to easy gear?
 - Rats forced wandering before hungry? (Harder to deal with if not contained)

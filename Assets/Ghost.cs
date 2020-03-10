@@ -15,7 +15,7 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 		this.delay = delay; //TODO: Animation queue
 		this.start = this.gameObject.transform.position;
 
-		if (style == "Slide") {
+		if (style == "Slide" || style == "Bump") {
 			this.lifespan = Game.board.animationLength + delay + 1;
 			this.finish = target;
 		} else if (style == "Poof") {
@@ -57,7 +57,7 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 	}
 
 	public void Bump() { // Rats' gnawing
-		this.gameObject.transform.position = Vector3.Lerp(finish, start, Mathf.PingPong((float)lifespan * 2 / (float)Game.board.animationLength, 1)); // Reversed because it lerps from 1 to 0
+		this.gameObject.transform.position = Vector3.Lerp(start, finish, Mathf.PingPong((float)lifespan * 2f / (float)Game.board.animationLength, 1f));
 	}
 
 	public void Grow(float amount) {

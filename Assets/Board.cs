@@ -430,24 +430,26 @@ public class Board : MonoBehaviour {
 		}
 	}
 
-	public void MoveRats() { //TODO: Randomize order, make simultaneous to avoid repeat motion
-		List<Coord> rats = new List<Coord>(); // Avoids double-moving rats
+	public void MoveRats() {
+		List<Coord> rats = new List<Coord>(); // Avoids double-moving rats when moving into an unchecked space
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
-				if (this.state[x,y] == "NewRat") {
+				if (this.state[x,y] == "NewRat") { // Fresh rats don't move
 					this.state[x,y] = "Rat";
 				} else if (this.state[x,y] == "Rat") {
 					rats.Add(new Coord(x,y));
 				}
 			}
 		}
-		foreach (Coord rat in rats) {
-			MoveRat(rat);
+		while (rats.Count > 0) {
+			int pick = Random.Range(0, rats.Count); // Rats move in random order
+			MoveRat(rats[pick]);
+			rats.RemoveAt(pick);
 		}
 	}
 
-	private void MoveRat(Coord rat) { //TODO: Upgrade ai as needed for difficulty (Period of time before they start eating)
-		Coord target = rat.Neighbors()[Game.rng.Next(rat.Neighbors().Count)]; // Rats never bump board walls - is this good?
+	private void MoveRat(Coord rat) { //TODO: Upgrade ai as needed for difficulty (Period of time before they start eating, aim towards high value)
+		Coord target = rat.Neighbors()[Game.rng.Next(rat.Neighbors().Count)]; // Guaranteed to always have at least two options (No board walls), so no worries there
 
 		if (this.state[target.x,target.y] == "Empty") {
 			Set(target, "Rat");
@@ -456,7 +458,7 @@ public class Board : MonoBehaviour {
 			tile[target.x,target.y].Hide(animationLength);
 		} else {
 			string poop = Data.tiledefs[this.state[target.x,target.y]].edible;
-			if (poop != "") {
+			if (poop != "") { // The target is edible
 				Set(rat, "Empty"); // To keep the rat's old position clear, set this after the spread
 				Set(target, "Empty");
 				Game.PlaySound("Rat");
@@ -470,24 +472,26 @@ public class Board : MonoBehaviour {
 				}
 			} else {
 				Animate(rat, target, 0, "Rat", "Bump");
+				tile[rat.x, rat.y].Hide(animationLength);
 			}
 		}
 	}
 
-	public void Animate(Coord start, Coord finish, int delay, string sprite, string type) { //TODO: Implement other animation types
+	public void Animate(Coord start, Coord finish, int delay, string sprite, string type) {
 		if (sprite == "Empty") {
 			return;
 		}
-		GameObject newghost = UnityEngine.Object.Instantiate(Data.ghosttemplate, tile[start.x,start.y].gameObject.transform.position, tile[start.x,start.y].gameObject.transform.rotation) as GameObject;
+		
+		GameObject newghost = Instantiate(Data.ghosttemplate, tile[start.x, start.y].gameObject.transform.position, tile[start.x, start.y].gameObject.transform.rotation) as GameObject;
 
 		newghost.GetComponent<Tile>().transform.SetParent(parentboard.transform);
-		newghost.GetComponent<RectTransform>().sizeDelta = new Vector2(-24,-24);
+		newghost.GetComponent<RectTransform>().sizeDelta = new Vector2(-24, -24);
 
 		newghost.GetComponent<UnityEngine.UI.Image>().sprite = Data.tiledefs[sprite].sprite;
 		newghost.GetComponent<UnityEngine.UI.Image>().color = Data.tiledefs[sprite].color;
 
-		newghost.GetComponent<Ghost>().Spawn(type, tile[finish.x,finish.y].gameObject.transform.position, delay*animationLength, true);
-		newghost.GetComponent<Tile>().Hide(tile[start.x,start.y].hidden);
+		newghost.GetComponent<Ghost>().Spawn(type, tile[finish.x, finish.y].gameObject.transform.position, delay * animationLength, true);
+		newghost.GetComponent<Tile>().Hide(tile[start.x, start.y].hidden); // Delay this animation until after it unhides
 	}
 
 
