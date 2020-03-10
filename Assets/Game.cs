@@ -18,7 +18,6 @@ public static class Game {
 
 	public static Blueprints blueprints;
 	public static Options options;
-	public static ComboSounds combosounds;
 
 	public static System.Random rng;
 	private static int handPoolSize; //TODO: Move to Data and calculate on Awake()
@@ -29,7 +28,6 @@ public static class Game {
 		UnityEngine.Object.Destroy(GameObject.Find("Storage"));
 		board = GameObject.Find("PlayArea").GetComponent<Board>();
 		cursor = GameObject.Find("Hand").GetComponent<Tile>();
-		combosounds = GameObject.Find("Combosounds").GetComponent<ComboSounds>();
 		blueprints = GameObject.Find("BlueprintsMenu").GetComponent<Blueprints>();
 		CalcHandPoolSize();
 		rng = new System.Random();
@@ -83,7 +81,7 @@ public static class Game {
 			} else { // Drop rat
 				return "NewRat";
 			}
-		} else if (hand == "Special" && targetState != "Empty") { // Must be clicked on a resource
+		} else if (hand == "Special") {
 			return "Empty";
 		} else { // Ordinary tile
 			if (targetState == "Empty") { // Or storage tile
@@ -95,7 +93,7 @@ public static class Game {
 
 	public static void QueueClick(Coord target) {
 		queuedClick = target;
-		if (board.state[target.x, target.y] == "Empty") { // Only dustpoof on placed tile
+		if ((board.state[target.x, target.y] == "Empty") != (hand == "Special")) { // Only dustpoof on placed tile
 			board.AnimatePoof(target, 0.75f);
 		}
 	}
@@ -143,11 +141,16 @@ public static class Game {
 	public static void SetHand(string setto) {
 		if (setto == "Random" || setto == "Empty" || setto == "" ) {
 			hand = GetRandom();
-			if (hand == "Error") {
-				Debug.Log("Invalid tile drawn to hand");
-			}
 		} else {
 			hand = setto;
+		}
+		if (!Data.playerseen[hand]) {
+			Data.playerseen[hand] = true;
+			blueprints.Recalc();
+		}
+		if (hand == "NewRat" && !Data.playerseen["Rat"]) {
+			Data.playerseen["Rat"] = true;
+			blueprints.Recalc();
 		}
 		cursor.ShowSprite(hand);
 		cursor.Fade(0.75f);

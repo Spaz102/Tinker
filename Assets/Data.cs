@@ -34,7 +34,7 @@ public static class Data {
 
 		tiledefs.Add("Empty", new TileDef("Empty", 0, "", null, new Color(0,0,0,0), "Hello World"));
 		tiledefs.Add("NewRat", new TileDef("Temporary rat", 0, "", rawsprites[18], new Color(1,1,1,1), ""));
-
+		
 		tiledefs.Add("Seed", new TileDef("Sapling", 96, "Empty", rawsprites[0], new Color(1,1,1,1), "Why does it take three seeds to grow a single stick? Taxes."));
 		tiledefs.Add("Stick", new TileDef("Stick", 28, "Seed", rawsprites[1], new Color(1,1,1,1), "Stick with me, and we'll do great things"));
 		tiledefs.Add("Wood", new TileDef("Raw lumber", 10, "Stick", rawsprites[2], new Color(1,1,1,1), "Shall I compare thee to a summer's day? Thou art more... Uh... Look, it's just some wood, ok?"));
@@ -300,12 +300,7 @@ public static class Data {
 		audiofiles.Add("PlaceTile", Resources.Load<AudioClip>("Audio/Click"));
 		audiofiles.Add("Special", Resources.Load<AudioClip>("Audio/Wrench"));
 		audiofiles.Add("Rat", Resources.Load<AudioClip>("Audio/Rat"));
-		audiofiles.Add("Combo1", Resources.Load<AudioClip>("Audio/Cs"));
-		audiofiles.Add("Combo2", Resources.Load<AudioClip>("Audio/D"));
-		audiofiles.Add("Combo3", Resources.Load<AudioClip>("Audio/Ds"));
-		audiofiles.Add("Combo4", Resources.Load<AudioClip>("Audio/E"));
-		audiofiles.Add("Combo5", Resources.Load<AudioClip>("Audio/F"));
-		audiofiles.Add("Combo6", Resources.Load<AudioClip>("Audio/Fs"));
+		//TODO: One audio file per resource?
 
 		playerseen = new Dictionary<string, bool>();
 		foreach (string defkey in tiledefs.Keys) {

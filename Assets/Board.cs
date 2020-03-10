@@ -99,55 +99,42 @@ public class Board : MonoBehaviour {
 	}
 
 	public bool CheckGameOver() { //TODO: Change to void; interpret from here instead of main loop
-		bool haskey = false;
-		bool hasbox = false;
-		bool playerlost = true;
-
-		if (Game.hand == "Rat" || Game.hand == "Special") {
-			playerlost = false;
-		}
-		for (int y = 0; y < boardHeight; y++) {
-			for (int x = 0; x < boardWidth; x++) {
-				switch (state[x,y]) {
-				case "Empty":
-					playerlost = false;
-					break;
-				case "Key":
-					haskey = true;
-					break;
-				case "MusicBox":
-					hasbox = true;
-					break;
-				default:
-					break;
+		if (Game.hand == "Special") {
+			for (int y = 0; y < boardHeight; y++) {
+				for (int x = 0; x < boardWidth; x++) {
+					if (state[x, y] != "Empty") { //TODO: Also check if part of a storage bin
+						return false;
+					}
+				}
+			}
+			foreach (Storage stored in storagelist) {
+				if (stored.stored != "Special") {
+					return false;
+				}
+			}
+			// Else all spaces empty or storage; all storage filled with tools. The true game over
+		} else if (Game.hand == "Rat") {
+			//TODO: Check if the whole screen is protected storage filled with rats??
+			return false; // Can always either eat or be placed
+		} else {
+			for (int y = 0; y < boardHeight; y++) {
+				for (int x = 0; x < boardWidth; x++) {
+					if (state[x, y] == "Empty") {
+						return false;
+					}
+				}
+			}
+			foreach (Storage stored in storagelist) {
+				if (stored.stored == "Empty" || stored.stored == "Rat" || stored.stored == "Special") {
+					return false;
 				}
 			}
 		}
-		foreach (Storage stored in storagelist) {
-			switch (stored.stored) {
-			case "Empty":
-				playerlost = false;
-			break;
-			case "Key":
-				haskey = true;
-			break;
-			case "MusicBox":
-				hasbox = true;
-			break;
-			default:
-			break;
-			}
-		}
-		if (hasbox && haskey) {
-			Debug.Log("You did the thing.");
-		}
-		if (playerlost) {
-			Debug.Log("You lose. Good day, sir!");
-		}
-		return (playerlost || (haskey && hasbox));
+		Debug.Log("You lose. Good day, sir!");
+		return true;
 	}
 
-	public void CleanUp() { // TODO: Push storage to corner
+	public void CleanUp() { // TODO: Push storage to corner, de-weird method
 		List<string> shuffleme = new List<string>();
 		List<Coord> empties = new List<Coord>();
 
@@ -245,7 +232,7 @@ public class Board : MonoBehaviour {
 						newboard[currenttarget.x,currenttarget.y] = Data.patterns[n].result;
 						if (!test) {
 							tile[currenttarget.x, currenttarget.y].Hide((resolved+1)*animationLength);
-							Game.combosounds.Set(resolved);
+							// Play combination sound
 						}
 						resolved++;
 					}
@@ -278,7 +265,7 @@ public class Board : MonoBehaviour {
 						newtilestocheck.Add(new Coord(staticresults[random].x + 1, staticresults[random].y + 1));
 						if (!test) {
 							tile[staticresults[random].x + 1, staticresults[random].y + 1].Hide((resolved+1)*animationLength);
-							Game.combosounds.Set(resolved);
+							// Play combination sound
 						}
 					}
 					resolved++;
@@ -302,7 +289,7 @@ public class Board : MonoBehaviour {
 							Animate(new Coord(found.x + 1, found.y + 1), new Coord(found.x + 1, found.y + 1), resolved, "Storage", "Slide");
 
 							newstorage.Add(found);
-							Game.combosounds.Set(resolved);
+							// Play combination sound
 						}
 					}
 					break;
@@ -328,7 +315,7 @@ public class Board : MonoBehaviour {
 							newboard[spot.x, spot.y] = "Empty";
 						}
 						tile[currenttarget.x, currenttarget.y].Hide((resolved+1)*animationLength);
-						Game.combosounds.Set(resolved);
+						// Play combination sound
 					}
 					resolved++;
 					newboard[currenttarget.x,currenttarget.y] = Data.patterns[n].result;

@@ -26,7 +26,6 @@ Interface
 	- Meaningful item texts (Unseen item texts?)
 
 Sounds:
-	- Remove combo sound system
 	- Random placement merge sounds
 	- Sounds per resource? (With random pitch/tempo?)
 	- Page turn codex sounds
@@ -37,7 +36,7 @@ Refine dust poof use cases
 	- ???
 
 Mobile:
-	- disable board during menus
+	- disable board during menus?
 	- show hand on screen (codex link)
 	- Standard android resolutions (540x960, 720x1280, 1080x1920)
 
@@ -49,9 +48,10 @@ Popups:
 	- Rat breeding ("Uh oh! You're a slob!")
 
 Tutorial:
-	- Sometimes match-4
+	- Sometimes match-4+
 	- Complex crafting
 	- Handrat/mover
+	- Storage
 
 Eventually:
 	- Kong api
@@ -64,8 +64,6 @@ Notes~
 - Also some sounds stolen
 - Needs ambiance
 - Animated codex opening
-- Codex unlock in-hand as well as on-board
-- Initial clutter
 - Finish placeholder graphics
 - Codex as default bottom panel? (Override with options or mobile mode)
 - Codex background too contrasting (Use options background instead?)

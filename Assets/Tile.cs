@@ -17,11 +17,8 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 		if (breathing) {
 			scale += 0.0025f;
 			this.transform.localScale = new Vector3(0.875f + Mathf.Clamp(Mathf.PingPong(scale, 0.2f), 0.05f, 0.185f), 0.875f + Mathf.Clamp(Mathf.PingPong(scale, 0.2f), 0.05f, 0.185f), 1);
-			//this.transform.localScale.x = 0.5f + Mathf.PingPong(scale, 1.5f);
-			//this.transform.localScale.y = 0.5f + Mathf.PingPong(scale, 1.5f);
 		} else {
 			scale = 0.2f;
-			//this.transform.localScale = new Vector3(1, 1, 1);
 
 		}
 	}
