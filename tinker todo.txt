@@ -6,7 +6,6 @@ Gameplay:
 	- Some way to destroy storage? Auto-sort on gameover?
 
 Animations:
-	- Dust mote polish (initial position)
 	- Misc decorations
 	- Tile unveiling (Can use grow-fade - Pings new tiles and/or codex itself)
 	- Finish spritesheet
