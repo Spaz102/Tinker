@@ -95,7 +95,9 @@ public static class Game {
 
 	public static void QueueClick(Coord target) {
 		queuedClick = target;
-		board.AnimatePoof(target, 0.75f);
+		if (board.state[target.x, target.y] == "Empty") { // Only dustpoof on placed tile
+			board.AnimatePoof(target, 0.75f);
+		}
 	}
 
 	public static void Click() { // Actually applies a valid click

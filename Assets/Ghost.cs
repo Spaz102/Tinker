@@ -12,7 +12,7 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 
 	public void Spawn(string style, Vector3 target, int delay, bool freezeinputs) {
 		this.animationstyle = style;
-		this.delay = delay; //TODO: Animation queue
+		this.delay = delay;
 		this.start = this.gameObject.transform.position;
 
 		if (style == "Slide" || style == "Bump") {
@@ -35,7 +35,7 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 			return;
 		}
 		lifespan--;
-		if (delay > 0) { //TODO: Animation queue
+		if (delay > 0) {
 			delay--;
 			return;
 		}
@@ -45,7 +45,7 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 		} else if (animationstyle == "Bump") {
 			Bump();
 		} else if (animationstyle == "Poof") {
-			Grow(1.09f);
+			Grow(1.08f);
 			Fade(0.8f);
 		} else {
 			//Pulse(1);
@@ -61,7 +61,8 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 	}
 
 	public void Grow(float amount) {
-		this.gameObject.transform.localScale = this.gameObject.transform.localScale * amount;
+		this.gameObject.transform.localScale = (Vector2)this.gameObject.transform.localScale * amount; // Cast to Vector2 to avoid scaling z
+		;
 	}
 
 	public void Fade(float amount) {

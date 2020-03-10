@@ -34,12 +34,7 @@ Sounds:
 	- Clock themed soundscape
 
 Refine dust poof use cases
-	- Tile placement
-		- Not on taken space
 	- Rat pooping
-	- Inert click
-	- Floating dust
-		- Floaters should rotate
 	- ???
 
 Mobile:
@@ -65,7 +60,6 @@ Eventually:
 	- Watch ad for next n pieces prediction
 	- Pay for 1-shot tool/handrat
 
-
 Notes~
 - Sounds suck (too loud?)
 - Also some sounds stolen
@@ -77,6 +71,5 @@ Notes~
 - Codex as default bottom panel? (Override with options or mobile mode)
 - Codex background too contrasting (Use options background instead?)
 - More fitting/professional font needed
-- More dust on tile placement
 - Mouseover highlight boxes overlap
 - Rats forced wandering before hungry? (Harder to deal with if not contained)

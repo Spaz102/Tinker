@@ -21,7 +21,7 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 			//this.transform.localScale.y = 0.5f + Mathf.PingPong(scale, 1.5f);
 		} else {
 			scale = 0.2f;
-			this.transform.localScale = new Vector3(1, 1, 1);
+			//this.transform.localScale = new Vector3(1, 1, 1);
 
 		}
 	}
