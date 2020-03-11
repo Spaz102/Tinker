@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public static class Game {
 	public static void Awake() {}
 
+	public static Canvas mainCanvas;
 	public static Tile cursor;
 	public static string hand;
 	public static Coord mouseover;
@@ -27,6 +29,7 @@ public static class Game {
 		UnityEngine.Object.Destroy(GameObject.Find("Tile"));
 		UnityEngine.Object.Destroy(GameObject.Find("Storage"));
 		board = GameObject.Find("PlayArea").GetComponent<Board>();
+		mainCanvas = GameObject.Find("Main Canvas").GetComponent<Canvas>();
 		cursor = GameObject.Find("Hand").GetComponent<Tile>();
 		blueprints = GameObject.Find("BlueprintsMenu").GetComponent<Blueprints>();
 		CalcHandPoolSize();
@@ -53,9 +56,11 @@ public static class Game {
 	public static void MoveHand() { //TODO: Mouseover snap for storage tiles, also use a more direct method of defining cursor position, for resolution flexibility
 		Vector3 mouse = Input.mousePosition;
 		if ((mouseover != null) && (CanClick(board.state[mouseover.x,mouseover.y]) != board.state[mouseover.x,mouseover.y])) {
-			cursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(board.tile[mouseover.x,mouseover.y].transform.position.x * 1 + 0, board.tile[mouseover.x,mouseover.y].transform.position.y * 1 + 0); // Cursor snaps to valid position
+			cursor.transform.position = board.tile[mouseover.x, mouseover.y].transform.position;
 		} else {
-			cursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(mouse.x*30/480 - 15, mouse.y*50/800 - 25); // Otherwise cursor is freeform //TODO: Fix this garbage
+			Vector2 pos;
+			RectTransformUtility.ScreenPointToLocalPointInRectangle(mainCanvas.transform as RectTransform, mouse, mainCanvas.worldCamera, out pos);
+			cursor.transform.position = mainCanvas.transform.TransformPoint(pos);
 		}
 	}
 
@@ -94,7 +99,7 @@ public static class Game {
 	public static void QueueClick(Coord target) {
 		queuedClick = target;
 		if ((board.state[target.x, target.y] == "Empty") != (hand == "Special")) { // Only dustpoof on placed tile
-			board.AnimatePoof(target, 0.75f);
+			board.AnimatePoof(target, 10.75f);
 		}
 	}
 

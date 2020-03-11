@@ -60,6 +60,7 @@ Eventually:
 	- Pay for 1-shot tool/handrat
 
 Notes~
+- Handrat + junk is getting valid match highlighting
 - Sounds suck (too loud?)
 - Also some sounds stolen
 - Needs ambiance
@@ -70,3 +71,21 @@ Notes~
 - More fitting/professional font needed
 - Mouseover highlight boxes overlap
 - Rats forced wandering before hungry? (Harder to deal with if not contained)
+
+
+
+
+
+
+Jello:
+	UI overhaul
+		- single menu system
+			- codex made vertical, scrolling (a literal scroll)
+				- submenus are popup lightboxes made to look like .... old recipe cards?  More papyrus that fades out on edges?
+			- 3 'menu' buttons - reset (matches, dustbin), mute(gramophone?), options(metal/wood plate)
+			- one 'hand' that holds the current item (for mobile version only)
+		- recipe display redesign
+			- []x4, [][][], animated version where multiple layouts are allowed
+			- Add [x] for dead space like the gear
+	Dev mode flag
+		- clicking a codex item converts item in hand to that item
