@@ -32,8 +32,8 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 		TileDef temp;
 		if (Data.tiledefs.TryGetValue(state, out temp)) {
 			this.GetComponent<UnityEngine.UI.Image>().sprite = temp.sprite;
-			this.GetComponent<UnityEngine.UI.Image>().color = temp.color;
-			Fade(temp.color.a);
+			this.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, temp.opacity);
+			Fade(temp.opacity);
 		} else {
 			Debug.Log("bad tiledef");
 		}

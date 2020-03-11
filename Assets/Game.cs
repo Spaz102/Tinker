@@ -22,7 +22,8 @@ public static class Game {
 	public static Options options;
 
 	public static System.Random rng;
-	private static int handPoolSize; //TODO: Move to Data and calculate on Awake()
+	public static int handPoolSize;
+	public static int startingPoolSize;
 
 	static Game () {
 		Data.Awake();
@@ -34,6 +35,7 @@ public static class Game {
 		blueprints = GameObject.Find("BlueprintsMenu").GetComponent<Blueprints>();
 		CalcHandPoolSize();
 		rng = new System.Random();
+		
 		mouseover = null;
 		SetHand("Random");
 		cursor.transform.localScale = new Vector3(0.75f, 0.75f, 1);
@@ -164,14 +166,16 @@ public static class Game {
 
 	private static void CalcHandPoolSize() { // Run once on startup
 		handPoolSize = 0;
+		startingPoolSize = 0; // Should sum to 100
 		foreach (TileDef def in Data.tiledefs.Values) {
-			handPoolSize += def.chancetodraw;
+			handPoolSize += def.chanceToDraw;
+			startingPoolSize += def.startingChance;
 		}
 	}
 	public static string GetRandom() { // Seed is int from 0-sum of all chancetodraw in tiledefs
 		int remaining = Game.rng.Next(handPoolSize); // Pulls a random tile, with respect to relative chances
 		foreach (string key in Data.tiledefs.Keys) {
-			remaining -= Data.tiledefs[key].chancetodraw;
+			remaining -= Data.tiledefs[key].chanceToDraw;
 			if (remaining < 0) {
 				return key;
 			}

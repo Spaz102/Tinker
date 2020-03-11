@@ -56,6 +56,23 @@ public class Board : MonoBehaviour {
 				Set(new Coord (x,y), "Empty");
 			}
 		}
+		Clutter();
+	}
+
+
+	public void Clutter() {
+		for (int y = 0; y < boardHeight; y++) {
+			for (int x = 0; x < boardWidth; x++) {
+				int remaining = Game.rng.Next(Game.startingPoolSize); // Pulls a random tile, with respect to relative chances
+				foreach (string key in Data.tiledefs.Keys) {
+					remaining -= Data.tiledefs[key].startingChance;
+					if (remaining < 0) {
+						Set(new Coord(x, y), key);
+						break;
+					}
+				}
+			}
+		}
 	}
 
 	public void Set(Coord target, string setto) {
@@ -481,7 +498,7 @@ public class Board : MonoBehaviour {
 		newghost.GetComponent<RectTransform>().localScale = Vector3.one;
 
 		newghost.GetComponent<UnityEngine.UI.Image>().sprite = Data.tiledefs[sprite].sprite;
-		newghost.GetComponent<UnityEngine.UI.Image>().color = Data.tiledefs[sprite].color;
+		newghost.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, Data.tiledefs[sprite].opacity);
 
 		newghost.GetComponent<Ghost>().Spawn(type, tile[finish.x, finish.y].gameObject.transform.position, delay * animationLength, true);
 		newghost.GetComponent<Tile>().Hide(tile[start.x, start.y].hidden); // Delay this animation until after it unhides
