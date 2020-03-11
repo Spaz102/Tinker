@@ -61,8 +61,7 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 	}
 
 	public void Grow(float amount) {
-		this.gameObject.transform.localScale = (Vector2)this.gameObject.transform.localScale * amount; // Cast to Vector2 to avoid scaling z
-		;
+		this.gameObject.transform.localScale = this.gameObject.transform.localScale * amount;
 	}
 
 	public void Fade(float amount) {
