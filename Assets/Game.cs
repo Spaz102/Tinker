@@ -36,6 +36,7 @@ public static class Game {
 		rng = new System.Random();
 		mouseover = null;
 		SetHand("Random");
+		cursor.transform.localScale = new Vector3(0.75f, 0.75f, 1);
 		settings = new Settings();
 	}
 
