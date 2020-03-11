@@ -32,7 +32,7 @@ public class Blueprints : MonoBehaviour {
 			} else if (!Data.patternresults.ContainsKey(butts[n]) || CanMake(butts[n]) || butts[n] == "Rat") { // Uncraftable or have ingredients
 				buttons[n].SmartShow(butts[n]);
 				if (!Data.playerseen[butts[n]]) {
-					buttons[n].Recolour(0, 0, 0);
+					buttons[n].Sillhouette();
 				}
 			} else { // Craftable, but ingredients not seen
 				buttons[n].SmartShow("Empty");

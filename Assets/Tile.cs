@@ -23,13 +23,13 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 		}
 	}
 
-	public void Hide(int length) {
+	public void Hide(int length) { // Make this tile completely transparent, but still active
 		Fade(0);
 		this.hidden = length + 1;
 	}
 
 	public void ShowSprite(string state) { // Try to use only when state changes, or unhiding
-		TileDef temp = null;
+		TileDef temp;
 		if (Data.tiledefs.TryGetValue(state, out temp)) {
 			this.GetComponent<UnityEngine.UI.Image>().sprite = temp.sprite;
 			this.GetComponent<UnityEngine.UI.Image>().color = temp.color;
@@ -49,18 +49,18 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 		this.GetComponent<UnityEngine.UI.Image>().color = clr;
 	}
 
-	public void Recolour(float r, float g, float b) { //TODO: Phase out usage
+	public void Sillhouette() { // Make this tile all black (except transparent pixels) // Keeps alpha
 		Color clr = this.GetComponent<UnityEngine.UI.Image>().color;
-		clr.r = r;
-		clr.g = g;
-		clr.b = b;
+		clr.r = 0;
+		clr.g = 0;
+		clr.b = 0;
 		this.GetComponent<UnityEngine.UI.Image>().color = clr;
 	}
 
 	public void SmartShow(string state) {
 		this.ShowSprite(state);
 		if (!Data.playerseen[state]) {
-			this.Recolour(0,0,0);
+			this.Sillhouette();
 		}
 	}
 }

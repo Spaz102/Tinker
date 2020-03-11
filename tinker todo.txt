@@ -60,7 +60,7 @@ Eventually:
 	- Pay for 1-shot tool/handrat
 
 Notes~
-- Handrat + junk is getting valid match highlighting
+- Junk->rat merge not hiding rat sprite during animation
 - Sounds suck (too loud?)
 - Also some sounds stolen
 - Needs ambiance

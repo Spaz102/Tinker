@@ -240,7 +240,7 @@ public class Board : MonoBehaviour {
 						resolved++;
 					}
 					break;
-				case "Static": //TODO: Check for patterns partially out of bounds (pin/cylinder)?
+				case "Static":
 					List<Coord> staticresults = CheckStatic(Data.patterns[n].value, currenttarget, newboard);
 					if (staticresults.Count == 0) { // No patterns found
 						break;
@@ -305,10 +305,12 @@ public class Board : MonoBehaviour {
 					if (results.Count == 0) {
 						break;
 					} else if (test) {
-						foreach (List<Coord> result in results) {
-							foreach (Coord spot in result) {
-								Highlight(spot.x, spot.y, "Highlight");
-								newboard[spot.x, spot.y] = "Empty";
+						if (newboard[target.x, target.y] != "NewRat") { // Otherwise the special recipes to double-merge junk (set and 3cont) cause handrats to show as ingredients
+							foreach (List<Coord> result in results) {
+								foreach (Coord spot in result) {
+									Highlight(spot.x, spot.y, "Highlight");
+									newboard[spot.x, spot.y] = "Empty";
+								}
 							}
 						}
 					} else {
