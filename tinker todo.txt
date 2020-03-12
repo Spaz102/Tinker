@@ -69,13 +69,27 @@ Notes~
 
 Jello:
 	UI overhaul
-		- single menu system
-			- codex made vertical, scrolling (a literal scroll)
-				- submenus are popup lightboxes made to look like .... old recipe cards?  More papyrus that fades out on edges?
-			- 3 'menu' buttons - reset (matches, dustbin), mute(gramophone?), options(metal/wood plate)
-			- one 'hand' that holds the current item (for mobile version only)
-		- recipe display redesign
-			- []x4, [][][], animated version where multiple layouts are allowed
+		- FIX storage UI stuff ... turns giant
+
+		- CodexScroll menu system
+			- side wheels on scroll to snap up or down (to show the clean desk surface)
+				- movement pushes dust motes
+			- glows when new item added to codex
+			- Scroll contents
+				- 'Menu' buttons 
+					- 3~4: Reset (matches, dustbin), Mute(gramophone?), options(metal/wood plate), credits
+					- near top of scroll
+					- ideal UI hides mute button, shows hand if on mobile
+				- Codex tree
+					- fills in as new items found
+					- new items glow (not blacked out)
+		- 'Recipes'
+			- Popup 'lightboxes'
+				- leave space on sides to click (Clicking outside closes the lightbox)
+			- look like papyrus that fades out on edges?
+			- []x4, [][][], animated version where multiple layouts are allowed (or button to see alternate versions)
 			- Add [x] for dead space like the gear
+		- 'Holding' a hand holding the current item 
+			- mobile version only?
 	Dev mode flag
 		- clicking a codex item converts item in hand to that item
