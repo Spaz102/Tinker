@@ -300,7 +300,7 @@ public static class Data {
 
 		audiofiles.Add("Startup", Resources.Load<AudioClip>("Audio/snd_quest_complete"));
 		foreach(string resource in tiledefs.Keys) {
-			audiofiles.Add(resource, Resources.Load<AudioClip>("Audio/" + tiledefs[resource].audio)); //TODO: One audio file per resource
+			audiofiles.Add(resource, Resources.Load<AudioClip>("Audio/" + tiledefs[resource].audio));
 		}
 
 		playerseen = new Dictionary<string, bool>();

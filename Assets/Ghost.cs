@@ -9,11 +9,13 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 	public string animationstyle;
 	public int lifespan;
 	int delay;
+	string audioEvent; // On complete for slide, on turnaround for bump
 
-	public void Spawn(string style, Vector3 target, int delay, bool freezeinputs) {
+	public void Spawn(string style, Vector3 target, int delay, bool freezeinputs, string audio = null) {
 		this.animationstyle = style;
 		this.delay = delay;
 		this.start = this.gameObject.transform.position;
+		this.audioEvent = audio;
 
 		if (style == "Slide" || style == "Bump") {
 			this.lifespan = Game.board.animationLength + delay + 1;
@@ -31,7 +33,11 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 		if (lifespan == -1) {
 			return; // Underlay; lasts forever
 		} else if (lifespan == 1) {
+			if (!string.IsNullOrEmpty(audioEvent) && animationstyle == "Slide") {
+				Game.PlaySound(audioEvent);
+			}
 			Object.Destroy(this.gameObject);
+			//TODO: Check if it should play an audio file??
 			return;
 		}
 		lifespan--;
@@ -57,6 +63,10 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 	}
 
 	public void Bump() { // Rats' gnawing
+		if (!string.IsNullOrEmpty(audioEvent) && (float)lifespan / Game.board.animationLength > 0.5f) { // Bump at the halfway point?
+			Game.PlaySound(audioEvent);
+			this.audioEvent = null; // Make sure it only plays once
+		}
 		this.gameObject.transform.position = Vector3.Lerp(start, finish, Mathf.PingPong((float)lifespan * 2f / (float)Game.board.animationLength, 1f));
 	}
 

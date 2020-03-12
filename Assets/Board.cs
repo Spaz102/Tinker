@@ -266,6 +266,7 @@ public class Board : MonoBehaviour {
 		int resolved = 0;
 
 		for (int n = 0; n < Data.patterns.Count; n++) {
+			bool soundMade = false; // Sounds are attached to animations, but only one needs to be used instead of all ingredient->results animations
 			foreach (Coord currenttarget in tilestocheck) {
 				switch (Data.patterns[n].type) {
 				case "3Cont":
@@ -273,13 +274,16 @@ public class Board : MonoBehaviour {
 					int counter = 0;
 					string[,] newnewboard = CheckContiguous(Data.patterns[n].value[0,0], currenttarget, ref counter, newboard);
 					if (counter >= int.Parse(""+Data.patterns[n].type[0])) { // string[0] gets the number as a char, ""+char makes it a string, int.Parse converts it to an int. There really should be a better way
+						
 						for (int y = 0; y < boardHeight; y++) {
 							for (int x = 0; x < boardWidth; x++) {
 								if ((newnewboard[x,y] != newboard[x,y]) && (x != currenttarget.x || y != currenttarget.y)) { // Don't animate or highlight the target for compounded patterns
 									if (test) {
 										Highlight(x, y, "Highlight");
 									} else {
-										Animate(new Coord(x,y), currenttarget, resolved, Data.patterns[n].value[0,0], "Slide");
+										string thisSound = (soundMade) ? null : Data.patterns[n].result;
+										soundMade = true;
+										Animate(new Coord(x,y), currenttarget, resolved, Data.patterns[n].value[0,0], "Slide", thisSound);
 									}
 								}
 							}
@@ -288,7 +292,6 @@ public class Board : MonoBehaviour {
 						newboard[currenttarget.x,currenttarget.y] = Data.patterns[n].result;
 						if (!test) {
 							tile[currenttarget.x, currenttarget.y].Hide((resolved+1)*animationLength);
-							// Play combination sound
 						}
 						resolved++;
 					}
@@ -312,7 +315,9 @@ public class Board : MonoBehaviour {
 									if (test) {
 										Highlight(staticresults[random].x + x, staticresults[random].y + Data.patterns[n].value.GetLength(1) - 1 - y, "Highlight");
 									} else {
-										Animate(new Coord(staticresults[random].x + x, staticresults[random].y + Data.patterns[n].value.GetLength(1) - 1 - y), new Coord(staticresults[random].x + 1, staticresults[random].y + 1), resolved, Data.patterns[n].value[x,y], "Slide");
+										string thisSound = (soundMade) ? null : Data.patterns[n].result;
+										soundMade = true;
+										Animate(new Coord(staticresults[random].x + x, staticresults[random].y + Data.patterns[n].value.GetLength(1) - 1 - y), new Coord(staticresults[random].x + 1, staticresults[random].y + 1), resolved, Data.patterns[n].value[x,y], "Slide", thisSound);
 									}
 								}
 							}
@@ -339,13 +344,12 @@ public class Board : MonoBehaviour {
 							Highlight(found.x + 1, found.y + 1, "Highlight");
 
 						} else {
-							Animate(new Coord(found.x, found.y), new Coord(found.x, found.y), resolved, "Storage", "Slide");
+							Animate(new Coord(found.x, found.y), new Coord(found.x, found.y), resolved, "Storage", "Slide", "Storage");
 							Animate(new Coord(found.x + 1, found.y), new Coord(found.x + 1, found.y), resolved, "Storage", "Slide");
 							Animate(new Coord(found.x, found.y + 1), new Coord(found.x, found.y + 1), resolved, "Storage", "Slide");
 							Animate(new Coord(found.x + 1, found.y + 1), new Coord(found.x + 1, found.y + 1), resolved, "Storage", "Slide");
 
 							newstorage.Add(found);
-							// Play combination sound
 						}
 					}
 					break;
@@ -369,11 +373,12 @@ public class Board : MonoBehaviour {
 					} else {
 						int random = Game.rng.Next(results.Count);
 						foreach (Coord spot in results[random]) {
-							Animate(spot, currenttarget, resolved, newboard[spot.x, spot.y], "Slide"); //TODO: Different animation type(s)?
+							string thisSound = (soundMade) ? null : Data.patterns[n].result;
+							soundMade = true;
+							Animate(spot, currenttarget, resolved, newboard[spot.x, spot.y], "Slide", thisSound);
 							newboard[spot.x, spot.y] = "Empty";
 						}
 						tile[currenttarget.x, currenttarget.y].Hide((resolved+1)*animationLength);
-						// Play combination sound
 					}
 					resolved++;
 					newboard[currenttarget.x,currenttarget.y] = Data.patterns[n].result;
@@ -516,13 +521,13 @@ public class Board : MonoBehaviour {
 					}
 				}
 			} else {
-				Animate(rat, target, 0, "Rat", "Bump");
+				Animate(rat, target, 0, "Rat", "Bump", "Rat");
 				tile[rat.x, rat.y].Hide(animationLength);
 			}
 		}
 	}
 
-	public void Animate(Coord start, Coord finish, int delay, string sprite, string type) {
+	public void Animate(Coord start, Coord finish, int delay, string sprite, string type, string audio = null) {
 		if (sprite == "Empty") {
 			return;
 		}
@@ -536,7 +541,7 @@ public class Board : MonoBehaviour {
 		newghost.GetComponent<UnityEngine.UI.Image>().sprite = Data.tiledefs[sprite].sprite;
 		newghost.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, Data.tiledefs[sprite].opacity);
 
-		newghost.GetComponent<Ghost>().Spawn(type, tile[finish.x, finish.y].gameObject.transform.position, delay * animationLength, true);
+		newghost.GetComponent<Ghost>().Spawn(type, tile[finish.x, finish.y].gameObject.transform.position, delay * animationLength, true, audio);
 		newghost.GetComponent<Tile>().Hide(tile[start.x, start.y].hidden); // Delay this animation until after it unhides
 	}
 

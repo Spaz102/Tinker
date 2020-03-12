@@ -1,17 +1,10 @@
 Gameplay:
-	- Stick in gear recipe?
 	- Some way to destroy storage? Auto-sort on gameover?
 
 Animations:
 	- Misc decorations
 	- Tile unveiling (Pings codex entries, and codex itself if minimized)
 	- Finish spritesheet
-
-Options:
-	- Mute button
-	- Credits button
-		- Reset button
-	- One-click mode for mobile
 
 Interface
 	- Mouseover highlighting on clickable buttons
@@ -21,10 +14,14 @@ Interface
 	- More (Better) menu backgrounds
 	- Codex mouseover to show clickable
 	- Meaningful item texts (Unseen item texts?)
+	- Mute button
+	- Credits button
+		- Reset button
+	- Two-click mode for mobile
+		- Toggle button
 
 Sounds:
 	- Random pitch/tempo
-	- Sounds per resource
 	- Clock themed soundscape
 	- Codex/interface sounds
 
@@ -61,11 +58,6 @@ Notes~
 - More fitting/professional font needed
 - Mouseover highlight boxes too small
 - Rats forced wandering before hungry? (Harder to deal with if not contained)
-
-
-
-
-
 
 Jello:
 	UI overhaul
