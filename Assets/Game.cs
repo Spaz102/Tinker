@@ -112,15 +112,14 @@ public static class Game {
 		idletime = 0;
 		string result = CanClick(board.state[queuedClick.x,queuedClick.y]);
 		if (result != board.state[queuedClick.x,queuedClick.y]) { // A click is possible
+			PlaySound(hand);
 			if (hand == "Special") {
 				Data.playerseen["Special"] = true;
-				PlaySound("Special");
 				SetHand(board.state[queuedClick.x,queuedClick.y]);
 				board.Set(queuedClick, "Empty");
 			} else if (hand == "Rat") {
 				Data.playerseen["NewRat"] = true;
 				Data.playerseen["Rat"] = true;
-				PlaySound("Rat");
 				SetHand("Random");
 				if (board.state[queuedClick.x,queuedClick.y] == "Empty") {
 					board.Set(queuedClick, "NewRat");
@@ -128,10 +127,10 @@ public static class Game {
 					board.Set(queuedClick, "Empty");
 				}
 			} else { // Hand is a normal tile
-				PlaySound("PlaceTile");
 				SetHand("Random");
 				board.Set(queuedClick, result);
 			}
+			
 				
 			if (result != "Rat" && result != "NewRat") { // Otherwise hand rats merge with placed junk
 				board.ResolvePatterns(queuedClick, ref board.state, false);
@@ -187,7 +186,7 @@ public static class Game {
 	}
 
 	public static void PlaySound(string name) {
-		if (settings.sound) {
+		if (settings.sound || string.IsNullOrWhiteSpace(name)) {
 			board.GetComponent<AudioSource>().PlayOneShot(Data.audiofiles[name]);
 		}
 	}
