@@ -22,7 +22,15 @@ public class Board : MonoBehaviour {
 		tile = new Tile[boardWidth, boardHeight];
 		state = new string[boardWidth, boardHeight];
 		dependencies = new List<Dependency>();
+		//PlayerPrefs.DeleteAll();
 		CreateBoard();
+		if (PlayerPrefs.HasKey("board")) {
+			SetBoardFromCSV(PlayerPrefs.GetString("board"));
+			Game.SetHand(PlayerPrefs.GetString("hand"));
+		} else {
+			ResetBoard();
+			//SetBoard("Empty");
+		}
 		animationLength = 20;
 	}
 
@@ -56,23 +64,21 @@ public class Board : MonoBehaviour {
 				Set(new Coord (x,y), "Empty");
 			}
 		}
-		Clutter();
 	}
 
+	public void ResetBoard() {
+		SetBoard("Clutter");
+		Game.SetHand("Random");
+		PlayerPrefs.SetString("board", GetBoardAsCSV());
+		PlayerPrefs.SetString("hand", Game.hand);
+		PlayerPrefs.Save();
+	}
 
-	public void Clutter() {
-		for (int y = 0; y < boardHeight; y++) {
-			for (int x = 0; x < boardWidth; x++) {
-				int remaining = Game.rng.Next(Game.startingPoolSize); // Pulls a random tile, with respect to relative chances
-				foreach (string key in Data.tiledefs.Keys) {
-					remaining -= Data.tiledefs[key].startingChance;
-					if (remaining < 0) {
-						Set(new Coord(x, y), key);
-						break;
-					}
-				}
-			}
-		}
+	public void EmptyBoard() {
+		SetBoard("Empty");
+		PlayerPrefs.SetString("board", GetBoardAsCSV());
+		PlayerPrefs.SetString("hand", Game.hand);
+		PlayerPrefs.Save();
 	}
 
 	public void Set(Coord target, string setto) {
@@ -102,20 +108,50 @@ public class Board : MonoBehaviour {
 		}
 	}
 
-	public void SetBoard(string[,] setto) {
+	public void SetBoard(string[,] setTo) {
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
-				Set(new Coord(x,y), setto[x,y]);
+				Set(new Coord(x,y), setTo[x,y]);
 			}
 		}
 	}
 
-	public void SetBoard(string setto) {
+	public void SetBoard(string setTo) {
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
-				Set(new Coord(x,y), setto);
+				if (setTo == "Clutter") {
+					int remaining = Game.rng.Next(Game.startingPoolSize); // Pulls a random tile, with respect to relative chances
+					foreach (string key in Data.tiledefs.Keys) {
+						remaining -= Data.tiledefs[key].startingChance;
+						if (remaining < 0) {
+							Set(new Coord(x, y), key);
+							break;
+						}
+					}
+				} else {
+					Set(new Coord(x, y), setTo);
+				}
 			}
 		}
+	}
+
+	public void SetBoardFromCSV(string setTo) {
+		string[] split = setTo.Split(',');
+		for (int y = 0; y < boardHeight; y++) {
+			for (int x = 0; x < boardWidth; x++) {
+				Set(new Coord(x, y), split[y * boardWidth + x]);
+			}
+		}
+	}
+
+	public string GetBoardAsCSV() {
+		string output = "";
+		for (int y = 0; y < boardHeight; y++) {
+			for (int x = 0; x < boardWidth; x++) {
+				output += state[x, y] + ",";
+			}
+		}
+		return output;
 	}
 
 	public bool CheckGameOver() { //TODO: Change to void; interpret from here instead of main loop

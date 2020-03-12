@@ -1,7 +1,4 @@
 Gameplay:
-	- Control times tool can be drawn (Empty board)
-	- Initial clutter
-	- Save system (No load/export)
 	- Stick in gear recipe?
 	- Some way to destroy storage? Auto-sort on gameover?
 
@@ -14,9 +11,9 @@ Options:
 	- Mute button
 	- Credits button
 		- Reset button
+	- One-click mode for mobile
 
 Interface
-	- Cursor position sanity
 	- Mouseover highlighting on clickable buttons
 	- Hand (holding arbitrary tile)
 		- Scale up for mobile version
@@ -26,14 +23,10 @@ Interface
 	- Meaningful item texts (Unseen item texts?)
 
 Sounds:
-	- Random placement merge sounds
-	- Sounds per resource? (With random pitch/tempo?)
-	- Page turn codex sounds
+	- Random pitch/tempo
+	- Sounds per resource
 	- Clock themed soundscape
-
-Refine dust poof use cases
-	- Rat pooping
-	- ???
+	- Codex/interface sounds
 
 Mobile:
 	- disable board during menus?
@@ -55,21 +48,19 @@ Tutorial:
 
 Eventually:
 	- Kong api
-	- Direct comment submission?
 	- Watch ad for next n pieces prediction
 	- Pay for 1-shot tool/handrat
 
 Notes~
+- Rat poop dust poof
 - Junk->rat merge not hiding rat sprite during animation
 - Sounds suck (too loud?)
 - Also some sounds stolen
 - Needs ambiance
 - Animated codex opening
 - Finish placeholder graphics
-- Codex as default bottom panel? (Override with options or mobile mode)
-- Codex background too contrasting (Use options background instead?)
 - More fitting/professional font needed
-- Mouseover highlight boxes overlap
+- Mouseover highlight boxes too small
 - Rats forced wandering before hungry? (Harder to deal with if not contained)
 
 

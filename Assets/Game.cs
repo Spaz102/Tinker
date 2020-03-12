@@ -35,9 +35,8 @@ public static class Game {
 		blueprints = GameObject.Find("BlueprintsMenu").GetComponent<Blueprints>();
 		CalcHandPoolSize();
 		rng = new System.Random();
-		
+		// Hand is filled on board creation/load
 		mouseover = null;
-		SetHand("Random");
 		cursor.transform.localScale = new Vector3(0.75f, 0.75f, 1);
 		settings = new Settings();
 	}
@@ -142,6 +141,10 @@ public static class Game {
 				board.MoveRats();
 			}
 			Game.Mouseover();
+			string test = board.GetBoardAsCSV();
+			PlayerPrefs.SetString("board",test);
+			PlayerPrefs.SetString("hand", hand);
+			PlayerPrefs.Save();
 		}
 		queuedClick = null;
 	}
