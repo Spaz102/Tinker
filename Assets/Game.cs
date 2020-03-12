@@ -5,31 +5,29 @@ using UnityEngine.UI;
 
 public static class Game {
 	public static void Awake() {}
+	public static System.Random rng;
 
 	public static Canvas mainCanvas;
 	public static Tile cursor;
+	public static Board board;
+	public static Blueprints blueprints;
+	
+	public static int handPoolSize;
+	public static int startingPoolSize;
 	public static string hand;
 	public static Coord mouseover;
-	public static Settings settings;
 
 	public static int animationEnd;
 	public static Coord queuedClick;
 	public static int idletime;
-
-	public static Board board;
-
-	public static Blueprints blueprints;
-	public static Options options; // The options page itself // Points this ref to itself when it loads
-
-	public static System.Random rng;
-	public static int handPoolSize;
-	public static int startingPoolSize;
+	
+	public static Settings settings;
 
 	static Game () {
+		rng = new System.Random();
 		Data.Awake();
 		CalcHandPoolSize();
-		rng = new System.Random();
-
+		
 		UnityEngine.Object.Destroy(GameObject.Find("Tile"));
 		UnityEngine.Object.Destroy(GameObject.Find("Storage"));
 		board = GameObject.Find("PlayArea").GetComponent<Board>();
@@ -247,17 +245,16 @@ public class Settings {
 	public bool dust;
 	public bool sound;
 
-	public Settings() { //TODO: Testing, de-weirding
+	public Settings() {
 		if (PlayerPrefs.HasKey("dust")) {
-			dust = true; // Dust can only be toggled; not set directly //TODO: De-weird the whole options system with get/set/toggle
-			if (PlayerPrefs.GetInt("dust") != 1) {
-				Game.options.ToggleDust();
-			}
+			dust = true;
+			SetDust(PlayerPrefs.GetInt("dust") == 1);
 		} else {
 			dust = true;
 			PlayerPrefs.SetInt("dust", 1);
 			PlayerPrefs.Save();
 		}
+
 		if (PlayerPrefs.HasKey("sound")) {
 			sound = PlayerPrefs.GetInt("sound") == 1;
 		} else {
@@ -265,5 +262,23 @@ public class Settings {
 			PlayerPrefs.SetInt("sound", 1);
 			PlayerPrefs.Save();
 		}
+	}
+
+	public void SetDust(bool setting) { //TODO: Update interface
+		if (setting == dust) return;
+
+		Game.settings.dust = setting;
+		if (setting) {
+			PlayerPrefs.SetInt("dust", 1);
+			foreach (GameObject found in GameObject.FindGameObjectsWithTag("Dust")) {
+				found.SetActive(true);
+			}
+		} else {
+			PlayerPrefs.SetInt("dust", 0);
+			foreach (GameObject found in GameObject.FindGameObjectsWithTag("Dust")) {
+				found.SetActive(false);
+			}
+		}
+		PlayerPrefs.Save();
 	}
 }
