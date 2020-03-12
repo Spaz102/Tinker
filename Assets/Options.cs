@@ -15,7 +15,5 @@ public class Options : MonoBehaviour {
 
 	}
 
-	public void ToggleDust() {
-		Game.settings.SetDust(!Game.settings.dust);
-	}
+	
 }

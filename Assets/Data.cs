@@ -44,12 +44,12 @@ public static class Data {
 		tiledefs.Add("Dirt", new TileDef("Dirt", 127, "Empty", rawsprites[5], 1f, 11, "The humblest of beginnings. Clump together enough... and you'll still be disappointed", "Click"));
 		tiledefs.Add("Rock", new TileDef("Rock", 30, "Dirt", rawsprites[6], 1f, 7, "One day, I'll treat you to my conglomeration of rock puns", "Click"));
 		tiledefs.Add("Metal", new TileDef("Metal", 7, "Rock", rawsprites[7], 1f, 4, "Not included: black nail polish and pointy accessories", "Click"));
-		tiledefs.Add("Gear", new TileDef("Gear", 0, "Metal", rawsprites[8], 1f, 0, "You might be thinking this is just an ordinary gear... Correct!", "Click"));
-		tiledefs.Add("Pin", new TileDef("Metal spike", 0, "Metal", rawsprites[9], 1f, 1, "This handsome stud is looking for love", "Click"));
+		tiledefs.Add("Gear", new TileDef("Gear", 0, "Metal", rawsprites[8], 1f, 0, "You might be thinking this is just an ordinary gear... Correct!", "Drop Metal Thing-SoundBible.com-401640954"));
+		tiledefs.Add("Pin", new TileDef("Metal spike", 0, "Metal", rawsprites[9], 1f, 1, "This handsome stud is looking for love", "Drop Metal Thing-SoundBible.com-401640954"));
 
-		tiledefs.Add("Cylinder", new TileDef("Metal cylinder", 0, "", rawsprites[10], 1f, 0, "Not a very good rolling pin", "Click"));
-		tiledefs.Add("Spring", new TileDef("Coil spring", 0, "", rawsprites[11], 1f, 0, "Use #493 for springs: hilarious facial accessory", "Click"));
-		tiledefs.Add("Key", new TileDef("Tiny key", 0, "Empty", rawsprites[12], 1f, 0, "What kind of key doesn't unlock anything?", "Click"));
+		tiledefs.Add("Cylinder", new TileDef("Metal cylinder", 0, "", rawsprites[10], 1f, 0, "Not a very good rolling pin", "Drop Metal Thing-SoundBible.com-401640954"));
+		tiledefs.Add("Spring", new TileDef("Coil spring", 0, "", rawsprites[11], 1f, 0, "Use #493 for springs: hilarious facial accessory", "Drop Metal Thing-SoundBible.com-401640954"));
+		tiledefs.Add("Key", new TileDef("Tiny key", 0, "Empty", rawsprites[12], 1f, 0, "What kind of key doesn't unlock anything?", "Drop Metal Thing-SoundBible.com-401640954"));
 		tiledefs.Add("Comb", new TileDef("Fine metal comb", 0, "", rawsprites[13], 1f, 0, "What are you doing, checking for lice?", "Click"));
 		tiledefs.Add("Drum", new TileDef("Spiked cylinder", 0, "", rawsprites[14], 1f, 0, "Modern art, perhaps?", "Click"));
 
@@ -57,11 +57,11 @@ public static class Data {
 		tiledefs.Add("MusicBox", new TileDef("Mechanical box", 0, "", rawsprites[16], 1f, 0, "What kind of box needs a key, but isn't locked?", "Click"));
 		tiledefs.Add("Special", new TileDef("Lift-o-matic", 19, "", rawsprites[17], 1f, 0, "You have in your hand, a great tool for picking things up. Also, you're holding something", "Wrench"));
 		tiledefs.Add("Rat", new TileDef("Rattus norvegicus", 10, "Rat", rawsprites[18], 1f, 4, "Ugly, but also cute! Kind of like a pug, except it will eat anything and won't drool. Why do people like pugs?", "Rat"));
-		tiledefs.Add("Storage", new TileDef("Storage space", 0, "", rawsprites[23], 0.3f, 0, "Put things down here, and you can pick them up again! This stackable storage is pretty much a miracle", "Click"));
+		tiledefs.Add("Storage", new TileDef("Storage space", 0, "", rawsprites[23], 0.3f, 0, "Put things down here, and you can pick them up again! This stackable storage is pretty much a miracle", "Pew_Pew-DKnight556-1379997159"));
 
-		tiledefs.Add("Junk1", new TileDef("Junk 'n stuff", 17, "", rawsprites[20], 1f, 3, "Hoarding is a disgusting habit. This is how you get rats", "Click"));
-		tiledefs.Add("Junk2", new TileDef("Scraps 'n stuff", 17, "", rawsprites[21], 1f, 3, "", "Click"));
-		tiledefs.Add("Junk3", new TileDef("Junk 'n scraps", 17, "", rawsprites[22], 1f, 3, "", "Click"));
+		tiledefs.Add("Junk1", new TileDef("Junk 'n stuff", 17, "", rawsprites[20], 1f, 3, "Hoarding is a disgusting habit. This is how you get rats", "Mirror Breaking-SoundBible.com-73239746"));
+		tiledefs.Add("Junk2", new TileDef("Scraps 'n stuff", 17, "", rawsprites[21], 1f, 3, "", "Glass Breaking-SoundBible.com-1765179538"));
+		tiledefs.Add("Junk3", new TileDef("Junk 'n scraps", 17, "", rawsprites[22], 1f, 3, "", "Mirror Breaking-SoundBible.com-73239746"));
 		tiledefs.Add("Highlight", new TileDef("Highlight", 0, "", rawsprites[23], 0.3f, 0, "", ""));
 		tiledefs.Add("Mouseover", new TileDef("Mouseover", 0, "", rawsprites[23], 0.1f, 0, "", ""));
 
@@ -299,6 +299,12 @@ public static class Data {
 		}
 
 		audiofiles.Add("Startup", Resources.Load<AudioClip>("Audio/snd_quest_complete"));
+		audiofiles.Add("Menu", Resources.Load<AudioClip>("Audio/323402__gosfx__sound-2"));
+		audiofiles.Add("Crunch", Resources.Load<AudioClip>("Audio/Crunch"));
+		audiofiles.Add("Codex", Resources.Load<AudioClip>("Audio/Page_Turn-Mark_DiAngelo-1304638748"));
+		audiofiles.Add("Byebye", Resources.Load<AudioClip>("Audio/bye_bye_son-Mike_Koenig-1260922981"));
+		audiofiles.Add("GameOver", Resources.Load<AudioClip>("Audio/Sad_Trombone-Joe_Lamb-665429450"));
+
 		foreach(string resource in tiledefs.Keys) {
 			audiofiles.Add(resource, Resources.Load<AudioClip>("Audio/" + tiledefs[resource].audio));
 		}

@@ -186,7 +186,7 @@ public static class Game {
 	}
 
 	public static void PlaySound(string name) {
-		if (settings.sound || string.IsNullOrWhiteSpace(name)) {
+		if (settings.sound && !string.IsNullOrWhiteSpace(name)) {
 			board.GetComponent<AudioSource>().PlayOneShot(Data.audiofiles[name]);
 		}
 	}
@@ -243,8 +243,11 @@ public class Coord {
 public class Settings {
 	public bool dust;
 	public bool sound;
+	private GameObject[] dustList;
 
 	public Settings() {
+		dustList = GameObject.FindGameObjectsWithTag("Dust");
+
 		if (PlayerPrefs.HasKey("dust")) {
 			dust = true;
 			SetDust(PlayerPrefs.GetInt("dust") == 1);
@@ -266,15 +269,15 @@ public class Settings {
 	public void SetDust(bool setting) { //TODO: Update interface
 		if (setting == dust) return;
 
-		Game.settings.dust = setting;
+		dust = setting;
 		if (setting) {
 			PlayerPrefs.SetInt("dust", 1);
-			foreach (GameObject found in GameObject.FindGameObjectsWithTag("Dust")) {
+			foreach (GameObject found in dustList) {
 				found.SetActive(true);
 			}
 		} else {
 			PlayerPrefs.SetInt("dust", 0);
-			foreach (GameObject found in GameObject.FindGameObjectsWithTag("Dust")) {
+			foreach (GameObject found in dustList) {
 				found.SetActive(false);
 			}
 		}

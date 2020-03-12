@@ -72,6 +72,7 @@ public class Board : MonoBehaviour {
 		PlayerPrefs.SetString("board", GetBoardAsCSV());
 		PlayerPrefs.SetString("hand", Game.hand);
 		PlayerPrefs.Save();
+		Game.PlaySound("Crunch");
 	}
 
 	public void EmptyBoard() {
@@ -79,6 +80,7 @@ public class Board : MonoBehaviour {
 		PlayerPrefs.SetString("board", GetBoardAsCSV());
 		PlayerPrefs.SetString("hand", Game.hand);
 		PlayerPrefs.Save();
+		Game.PlaySound("Byebye");
 	}
 
 	public void Set(Coord target, string setto) {
@@ -186,6 +188,7 @@ public class Board : MonoBehaviour {
 				}
 			}
 		}
+		Game.PlaySound("GameOver");
 		Debug.Log("You lose. Good day, sir!");
 		return true;
 	}
@@ -511,7 +514,7 @@ public class Board : MonoBehaviour {
 			if (poop != "") { // The target is edible
 				Set(rat, "Empty"); // To keep the rat's old position clear, set this after the spread
 				Set(target, "Empty");
-				Game.PlaySound("Rat");
+				Game.PlaySound("Crunch");
 				AnimatePoof(target, 1);
 				foreach (Coord spot in target.Neighbors()) {
 					if (state[spot.x,spot.y] == "Empty") {
@@ -521,7 +524,8 @@ public class Board : MonoBehaviour {
 					}
 				}
 			} else {
-				Animate(rat, target, 0, "Rat", "Bump", "Rat");
+				Animate(rat, target, 0, "Rat", "Bump");
+				//Animate(rat, target, 0, "Rat", "Bump", "Rat"); // Adorable, but too noisy
 				tile[rat.x, rat.y].Hide(animationLength);
 			}
 		}
