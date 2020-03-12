@@ -4,7 +4,7 @@ Gameplay:
 
 Animations:
 	- Misc decorations
-	- Tile unveiling (Can use grow-fade - Pings new tiles and/or codex itself)
+	- Tile unveiling (Pings codex entries, and codex itself if minimized)
 	- Finish spritesheet
 
 Options:
@@ -31,7 +31,6 @@ Sounds:
 Mobile:
 	- disable board during menus?
 	- show hand on screen (codex link)
-	- Standard android resolutions (540x960, 720x1280, 1080x1920)
 
 Popups:
 	- Win with deaths (animated?)

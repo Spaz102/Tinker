@@ -19,7 +19,7 @@ public static class Game {
 	public static Board board;
 
 	public static Blueprints blueprints;
-	public static Options options;
+	public static Options options; // The options page itself // Points this ref to itself when it loads
 
 	public static System.Random rng;
 	public static int handPoolSize;
@@ -27,18 +27,20 @@ public static class Game {
 
 	static Game () {
 		Data.Awake();
+		CalcHandPoolSize();
+		rng = new System.Random();
+
 		UnityEngine.Object.Destroy(GameObject.Find("Tile"));
 		UnityEngine.Object.Destroy(GameObject.Find("Storage"));
 		board = GameObject.Find("PlayArea").GetComponent<Board>();
 		mainCanvas = GameObject.Find("Main Canvas").GetComponent<Canvas>();
 		cursor = GameObject.Find("Hand").GetComponent<Tile>();
 		blueprints = GameObject.Find("BlueprintsMenu").GetComponent<Blueprints>();
-		CalcHandPoolSize();
-		rng = new System.Random();
-		// Hand is filled on board creation/load
+		
 		mouseover = null;
 		cursor.transform.localScale = new Vector3(0.75f, 0.75f, 1);
 		settings = new Settings();
+		PlaySound("Startup");
 	}
 
 	public static void Update () {
@@ -187,7 +189,9 @@ public static class Game {
 	}
 
 	public static void PlaySound(string name) {
-		board.GetComponent<AudioSource>().PlayOneShot(Data.audiofiles[name]);
+		if (settings.sound) {
+			board.GetComponent<AudioSource>().PlayOneShot(Data.audiofiles[name]);
+		}
 	}
 
 	public static void Idle() {
@@ -243,8 +247,23 @@ public class Settings {
 	public bool dust;
 	public bool sound;
 
-	public Settings() {
-		dust = true;
-		sound = true;
+	public Settings() { //TODO: Testing, de-weirding
+		if (PlayerPrefs.HasKey("dust")) {
+			dust = true; // Dust can only be toggled; not set directly //TODO: De-weird the whole options system with get/set/toggle
+			if (PlayerPrefs.GetInt("dust") != 1) {
+				Game.options.ToggleDust();
+			}
+		} else {
+			dust = true;
+			PlayerPrefs.SetInt("dust", 1);
+			PlayerPrefs.Save();
+		}
+		if (PlayerPrefs.HasKey("sound")) {
+			sound = PlayerPrefs.GetInt("sound") == 1;
+		} else {
+			sound = true;
+			PlayerPrefs.SetInt("sound", 1);
+			PlayerPrefs.Save();
+		}
 	}
 }

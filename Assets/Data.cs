@@ -298,6 +298,7 @@ public static class Data {
 			}
 		}
 
+		audiofiles.Add("Startup", Resources.Load<AudioClip>("Audio/snd_quest_complete"));
 		audiofiles.Add("PlaceTile", Resources.Load<AudioClip>("Audio/Click"));
 		audiofiles.Add("Special", Resources.Load<AudioClip>("Audio/Wrench"));
 		audiofiles.Add("Rat", Resources.Load<AudioClip>("Audio/Rat"));
