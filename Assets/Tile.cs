@@ -6,6 +6,7 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 	public Tile underlay; // null if already underlay // Is this the best way? If so, another layer for drop shadows? // This makes me super uneasy
 	public bool breathing; // Rats pulse to show agency
 	public float scale;
+	public string tiletype; // What type of tile (dirt, stick)
 
 	public void Update() {
 		if (hidden == 1) { // Done this way so it only calls once, and preserves -1 as a special value

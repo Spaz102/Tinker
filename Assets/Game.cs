@@ -33,7 +33,7 @@ public static class Game {
 		board = GameObject.Find("PlayArea").GetComponent<Board>();
 		mainCanvas = GameObject.Find("Main Canvas").GetComponent<Canvas>();
 		cursor = GameObject.Find("Hand").GetComponent<Tile>();
-		blueprints = GameObject.Find("BlueprintsMenu").GetComponent<Blueprints>();
+		blueprints = GameObject.Find("CodexContainer").GetComponent<Blueprints>();
 		
 		mouseover = null;
 		cursor.transform.localScale = new Vector3(0.75f, 0.75f, 1);
