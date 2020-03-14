@@ -55,16 +55,25 @@ public static class Game {
 		}
 	}
 
-	public static void MoveHand() { //TODO: Mouseover snap for storage tiles, also use a more direct method of defining cursor position, for resolution flexibility
+	public static void MoveHand() { //TODO: Mouseover snap for storage tiles
 		Vector3 mouse = Input.mousePosition;
-		if ((mouseover != null) && (CanClick(board.state[mouseover.x,mouseover.y]) != board.state[mouseover.x,mouseover.y])) {
+		if (mouseover == null)
+		{ // Mouse is not over the board
+			cursor.gameObject.SetActive(false);
+		}
+		else if (CanClick(board.state[mouseover.x, mouseover.y]) != board.state[mouseover.x, mouseover.y])
+		{ // Mouse is over a legal move
+			cursor.gameObject.SetActive(true);
 			cursor.transform.position = board.tile[mouseover.x, mouseover.y].transform.position;
-		} else {
+		}
+		else
+		{ // Mouse is over the board, but not a legal move
 			Vector2 pos;
 			RectTransformUtility.ScreenPointToLocalPointInRectangle(mainCanvas.transform as RectTransform, mouse, mainCanvas.worldCamera, out pos);
 			cursor.transform.position = mainCanvas.transform.TransformPoint(pos);
+			cursor.gameObject.SetActive(true);
 		}
-	}
+	}	
 
 	public static void Mouseover() { // Updates interface reactions, and highlights potential changes on click
 		board.ClearHighlights();

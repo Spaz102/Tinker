@@ -62,7 +62,6 @@ Notes~
 Jello:
 	UI overhaul
 		- FIX storage UI stuff ... turns giant
-		- normal cursor outside of game board
 		- CodexScroll menu system
 			- side wheels on scroll to snap up or down (to show the clean desk surface)
 				- movement pushes dust motes
