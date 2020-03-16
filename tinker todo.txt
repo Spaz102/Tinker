@@ -1,87 +1,72 @@
 Gameplay:
 	- Some way to destroy storage? Auto-sort on gameover?
+	- Rats forced wandering before hungry? (Harder to deal with if not contained)
+		- let bump walls
+	- win by using key on box (not just adjacent)
 
 Animations:
 	- Misc decorations
-	- Tile unveiling (Pings codex entries, and codex itself if minimized)
-	- Finish spritesheet
+	- Tile unveiling (Pings codex entries, and codex itself if minimized) (maybe just a 'breathing' glow effect)
+	- Rat poop dust poof
+	- Junk->rat merge not hiding rat sprite during animation
 
 Interface
-	- Mouseover highlighting on clickable buttons
-	- Hand (holding arbitrary tile)
-		- Scale up for mobile version
-		- No hand in menus
-	- More (Better) menu backgrounds
-	- Codex mouseover to show clickable
-	- Meaningful item texts (Unseen item texts?)
-	- Mute button
-	- Credits button
-		- Reset button
-	- Two-click mode for mobile
-		- Toggle button
+	- Misc
+		- flesh out all graphical elements (tiles, bgs, buttons)
+		- fonts
+	- Board
+		- fix storage snap mouseovers to show item in hand
+	- Codex
+		- add 'playerread' to go alongside 'playerseen' to flag which items have had their codex clicked (for highlighting)
+		- Opt buttons: Reset (matches, dustbin), Mute(gramophone?), options(metal/wood plate), credits
+		- side wheels on scroll to snap up or down (to show the clean desk surface)
+			- movement pushes dust motes
+		- ClosedScroll glows when unread item in codex (playerread)
+		- Codex items
+			- draw in arrows as items are revealed?
+			- clicking pops up lightbox
+			- new items glow (not blacked out) (playerread)
+			- mouseover to show clickable
+		- Recipe Lightboxes
+			- papyrus bg faded to edges, dim bg over lower area
+			- plot relevant flavour text tinkerer pov ("It seems that you find a rock ever 4th pile of dirt.... how odd")
+			- []x4, [][][], animated version where multiple layouts are allowed (or button to see alternate versions)
+			- Add [x] for dead space like the gear
+	- Menus/Popups/Interfacy things
+		- Win
+		- Player stats
+	- Mobile Version
+		- hand icon on right side 'holding' current item, no cursor
+		- hide mute button?
+		- Two-click mode for mobile		
+
+Events (w/ special animations, sounds, menus etc):
+	- First Load
+	- Later Loads
+	- Win (w/ w/o deaths)
+	- Death
+	- Rat Breeding
 
 Sounds:
 	- Random pitch/tempo
 	- Clock themed soundscape
 	- Codex/interface sounds
+	- fix random volume drops
+	- change intro sound
 
-Mobile:
-	- disable board during menus?
-	- show hand on screen (codex link)
-
-Popups:
-	- Win with deaths (animated?)
-	- Win without deaths (animated?)
-	- Board cleanup (gameover empty threat)
-	- Main benchmarks
-	- Rat breeding ("Uh oh! You're a slob!")
-
-Tutorial:
+Tutorial (necessary? can maybe be handled in):
 	- Sometimes match-4+
 	- Complex crafting
 	- Handrat/mover
 	- Storage
 
+Misc:
+	- Ambiance - ancient tech greek?
+	- save/load storage, playerseen
+	- Dev mode flag - clicking a codex item converts item in hand to that item
+
 Eventually:
 	- Kong api
 	- Watch ad for next n pieces prediction
 	- Pay for 1-shot tool/handrat
-
-Notes~
-- Rat poop dust poof
-- Junk->rat merge not hiding rat sprite during animation
-- Sounds suck (too loud?)
-- Also some sounds stolen
-- Needs ambiance
-- Animated codex opening
-- Finish placeholder graphics
-- More fitting/professional font needed
-- Mouseover highlight boxes too small
-- Rats forced wandering before hungry? (Harder to deal with if not contained)
-
-Jello:
-	UI overhaul
-		- FIX storage UI stuff ... turns giant
-		- CodexScroll menu system
-			- side wheels on scroll to snap up or down (to show the clean desk surface)
-				- movement pushes dust motes
-			- glows when new item added to codex
-			- Scroll contents
-				- 'Menu' buttons 
-					- Graphics: Reset (matches, dustbin), Mute(gramophone?), options(metal/wood plate), credits
-				- Codex tree
-					- clicking pops up lightbox
-					- new items glow (not blacked out)
-		- 'Recipes'
-			- Popup 'lightboxes'
-				- leave space on sides to click (Clicking outside closes the lightbox)
-			- look like papyrus that fades out on edges?
-			- []x4, [][][], animated version where multiple layouts are allowed (or button to see alternate versions)
-			- Add [x] for dead space like the gear
-		- 'Holding' a hand holding the current item 
-		
-		- Mobile Version
-			- hand icon on right side, no cursor
-			- no mute button?
-	Dev mode flag
-		- clicking a codex item converts item in hand to that item
+	- Levels
