@@ -588,10 +588,15 @@ public class Board : MonoBehaviour {
 		GameObject newstorage = UnityEngine.Object.Instantiate(Data.storagetemplate, new Vector3(), new Quaternion()) as GameObject;
 		
 		newstorage.GetComponent<Tile>().transform.SetParent(parentboard.transform);
-		newstorage.GetComponent<RectTransform>().anchoredPosition = new Vector2(-10 + 4*bottomleft.x,-10 + 4*bottomleft.y);
-		newstorage.GetComponent<RectTransform>().sizeDelta = new Vector2(-24,-24);
-		newstorage.GetComponent<Transform>().position = new Vector3(newstorage.GetComponent<Transform>().position.x, newstorage.GetComponent<Transform>().position.y, -0.01f);
+	
+		newstorage.GetComponent<RectTransform>().sizeDelta = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) + newstorage.GetComponent<RectTransform>().sizeDelta.x, (this.GetComponentInParent<RectTransform>().rect.height / boardHeight) + newstorage.GetComponent<RectTransform>().sizeDelta.y);
+		newstorage.GetComponent<RectTransform>().localScale = Vector3.one;
+		newstorage.GetComponent<BoxCollider2D>().size = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth), (this.GetComponentInParent<RectTransform>().rect.width / boardWidth));
 
+		newstorage.GetComponent<RectTransform>().transform.localPosition = Vector3.zero; 
+		newstorage.GetComponent<RectTransform>().anchoredPosition = new Vector3((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) * (bottomleft.x + 1f) - (this.GetComponentInParent<RectTransform>().rect.width * .5f), (this.GetComponentInParent<RectTransform>().rect.height / boardWidth) * (bottomleft.y + 1f) - (this.GetComponentInParent<RectTransform>().rect.height * .5f), 0f);
+		
+		
 		storagelist.Add(newstorage.GetComponent<Storage>());
 
 		Game.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x, bottomleft.y)));

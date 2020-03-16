@@ -10,6 +10,7 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 		newunderlay.GetComponent<Tile>().transform.SetParent(this.gameObject.transform);
 		newunderlay.GetComponent<RectTransform>().transform.localPosition = new Vector3(0,0,0);
 		newunderlay.GetComponent<RectTransform>().sizeDelta = new Vector2(0,0);
+		newunderlay.GetComponent<RectTransform>().localScale = Vector3.one;
 		newunderlay.GetComponent<Ghost>().lifespan = -1;
 		this.gameObject.GetComponent<Tile>().underlay = newunderlay.GetComponent<Tile>();
 		this.gameObject.GetComponent<Tile>().ShowSprite("Empty");
