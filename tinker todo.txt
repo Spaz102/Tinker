@@ -1,69 +1,73 @@
 Gameplay:
-	- Some way to destroy storage? Auto-sort on gameover?
 	- Rats forced wandering before hungry? (Harder to deal with if not contained)
-		- let bump walls
-	- win by using key on box (not just adjacent)
+		- Let rats bump outer walls for a similar effect?
+	- Win by using key on box (Not just adjacent)
 
 Animations:
 	- Misc decorations
 	- Tile unveiling (Pings codex entries, and codex itself if minimized) (maybe just a 'breathing' glow effect)
-	- Rat poop dust poof
-	- Junk->rat merge not hiding rat sprite during animation
+	- Rat poop (big) dust poof
 
 Interface
 	- Misc
-		- flesh out all graphical elements (tiles, bgs, buttons)
-		- fonts
+		- Flesh out all graphical elements (tiles, bgs, buttons)
+		- Fonts
 	- Board
-		- fix storage snap mouseovers to show item in hand
+		- Fix storage snap mouseovers to show item in hand
 	- Codex
-		- add 'playerread' to go alongside 'playerseen' to flag which items have had their codex clicked (for highlighting)
+		- Add 'playerread' to go alongside 'playerseen' to flag which items have had their codex clicked (for highlighting)
 		- Opt buttons: Reset (matches, dustbin), Mute(gramophone?), options(metal/wood plate), credits
-		- side wheels on scroll to snap up or down (to show the clean desk surface)
-			- movement pushes dust motes
+		- Side wheels on scroll to snap up or down (to show the clean desk surface)
+			- Movement pushes dust motes
 		- ClosedScroll glows when unread item in codex (playerread)
 		- Codex items
-			- draw in arrows as items are revealed?
-			- clicking pops up lightbox
-			- new items glow (not blacked out) (playerread)
-			- mouseover to show clickable
+			- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)
+			- Clicking pops up lightbox
+			- New items glow (not blacked out) (playerread)
+			- Mouseover to show clickable
 		- Recipe Lightboxes
-			- papyrus bg faded to edges, dim bg over lower area
-			- plot relevant flavour text tinkerer pov ("It seems that you find a rock ever 4th pile of dirt.... how odd")
+			- Papyrus bg faded to edges, dim bg over lower area
+			- Plot relevant flavour text tinkerer pov ("It seems that you find a rock ever 4th pile of dirt.... how odd")
 			- []x4, [][][], animated version where multiple layouts are allowed (or button to see alternate versions)
-			- Add [x] for dead space like the gear
+			- Add [x] for dead space like the gear?
 	- Menus/Popups/Interfacy things
 		- Win
 		- Player stats
 	- Mobile Version
-		- hand icon on right side 'holding' current item, no cursor
-		- hide mute button?
-		- Two-click mode for mobile		
+		- Hand icon on right side 'holding' current item, no cursor
+		- Hide mute button?
+		- Two-click mode
 
 Events (w/ special animations, sounds, menus etc):
 	- First Load
 	- Later Loads
 	- Win (w/ w/o deaths)
 	- Death
-	- Rat Breeding
+	- (First) Rat Breeding
 
 Sounds:
 	- Random pitch/tempo
 	- Clock themed soundscape
 	- Codex/interface sounds
-	- fix random volume drops
-	- change intro sound
+	- Fix random volume drops
+	- Proper intro sound
 
 Tutorial (necessary? can maybe be handled in):
-	- Sometimes match-4+
+	- Not just a match-3 game (3+ resources, 4+ resources, other pattern types)
 	- Complex crafting
-	- Handrat/mover
-	- Storage
+	- Handrat/mover useage
+	- Storage construction/use
 
 Misc:
-	- Ambiance - ancient tech greek?
-	- save/load storage, playerseen
-	- Dev mode flag - clicking a codex item converts item in hand to that item
+	- Ambiance - ancient tech greek? (9th century Baghdad)
+		- https://en.wikipedia.org/wiki/Ban%C5%AB_M%C5%ABs%C4%81
+	- Finish save/load system
+		- Storage
+		- Playerseen
+		- Settings
+		- Tutorial "progress" (Flag "firsts" as seen)
+	- Dev mode
+		- Clicking a codex item converts item in hand to that item
 
 Eventually:
 	- Kong api

@@ -45,8 +45,11 @@ public static class Game {
 		Idle();
 		MoveHand();
 		if (board.CheckGameOver()) {
+			PlaySound("GameOver");
+			Debug.Log("You lose. Good day, sir!");
 			board.CleanUp();
 			SetHand("Random");
+			board.SaveGame();
 		}
 		if (animationEnd > 0) {
 			animationEnd--;
@@ -209,9 +212,9 @@ public static class Game {
 	}
 }
 
-public class Coord {
-	public int x;
-	public int y;
+public class Coord { // [0,0] is bottom left corner
+	public int x; // Left to right
+	public int y; // Bottom to top
 
 	public Coord(int x, int y) {
 		this.x = x;

@@ -61,7 +61,6 @@ public class Board : MonoBehaviour {
 				tile[x,y].underlay = newunderlay.GetComponent<Tile>();
 
 				newunderlay.GetComponent<Tile>().ShowSprite("Empty");
-				Set(new Coord (x,y), "Empty");
 			}
 		}
 	}
@@ -69,18 +68,20 @@ public class Board : MonoBehaviour {
 	public void ResetBoard() {
 		SetBoard("Clutter");
 		Game.SetHand("Random");
-		PlayerPrefs.SetString("board", GetBoardAsCSV());
-		PlayerPrefs.SetString("hand", Game.hand);
-		PlayerPrefs.Save();
 		Game.PlaySound("Crunch");
+		SaveGame();
 	}
 
 	public void EmptyBoard() {
 		SetBoard("Empty");
+		Game.PlaySound("Byebye");
+		SaveGame();
+	}
+
+	public void SaveGame() {
 		PlayerPrefs.SetString("board", GetBoardAsCSV());
 		PlayerPrefs.SetString("hand", Game.hand);
 		PlayerPrefs.Save();
-		Game.PlaySound("Byebye");
 	}
 
 	public void Set(Coord target, string setto) {
@@ -97,12 +98,14 @@ public class Board : MonoBehaviour {
 			tile[target.x,target.y].breathing = false;
 		}
 
-		foreach (Dependency checkme in dependencies) {
-			if (target.x == checkme.dependson.x && target.y == checkme.dependson.y) {
-				GameObject.Destroy(checkme.target); //TODO: Spawn and animate ghost to show destruction
+		foreach (Dependency checkMe in dependencies) { // Check if any storage was using this (panel) tile
+			if (target.x == checkMe.dependsOn.x && target.y == checkMe.dependsOn.y) { // If this tile was being depended on, its dependents die
+				//TODO: Unique storage-destruction animation
+				GameObject.Destroy(checkMe.dependent);
+				checkMe.dependent = null; // In case the destruction is delayed
 			}
 		}
-		dependencies.RemoveAll(dep => dep.target == null);
+		dependencies.RemoveAll(dep => dep.dependent == null); // Remove all dependencies whose dependents died 
 
 		if (!Data.playerseen[setto]) {
 			Data.playerseen[setto] = true;
@@ -165,14 +168,15 @@ public class Board : MonoBehaviour {
 					}
 				}
 			}
+			/*
 			foreach (Storage stored in storagelist) {
 				if (stored.stored != "Special") {
 					return false;
 				}
 			}
+			*/ // Can now break storage using the tool
 			// Else all spaces empty or storage; all storage filled with tools. The true game over
 		} else if (Game.hand == "Rat") {
-			//TODO: Check if the whole screen is protected storage filled with rats??
 			return false; // Can always either eat or be placed
 		} else {
 			for (int y = 0; y < boardHeight; y++) {
@@ -188,70 +192,82 @@ public class Board : MonoBehaviour {
 				}
 			}
 		}
-		Game.PlaySound("GameOver");
-		Debug.Log("You lose. Good day, sir!");
 		return true;
 	}
 
-	public void CleanUp() { // TODO: Push storage to corner, de-weird method
-		List<string> shuffleme = new List<string>();
-		List<Coord> empties = new List<Coord>();
-
+	public void CleanUp() {
+		List<string> shuffleMe = new List<string>();
+		int storagePanels = 0;
+		
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
 				switch (state[x,y]) {
 				case "Empty":
-					empties.Add(new Coord(x,y));
 					break;
 				case "Dirt":
+				case "Rock":
 				case "Seed":
+				case "Stick":
 				case "Junk1":
 				case "Junk2":
 				case "Junk3":
 				case "Rat": // Remove
-					Set(new Coord(x,y), "Empty");
-					empties.Add(new Coord(x,y));
 					break;
-				case "Stick":
 				case "Wood":
 				case "Plank":
-				case "Rock":
-				case "Metal": // Maybe remove
-					if (Random.Range(0,4) > 0) { // 25% chance to remove
-						shuffleme.Add(state[x,y]);
+				case "Metal":
+				case "Pin": // Maybe remove
+					if (Random.Range(0, 2) > 0) { // 50% chance to remove
+						shuffleMe.Add(state[x,y]);
 					}
-					Set(new Coord(x,y), "Empty");
-					empties.Add(new Coord(x,y));
 					break;
-				case "Panel": // Keep if storage
-					bool isStorage = false;
-					foreach (Dependency dep in Game.board.dependencies) {
-						if (dep.dependson.x == x && dep.dependson.y == y) {
-							isStorage = true;
+				case "Panel": // Sort to corner if storage; treat as semi-valuable resoure otherwise
+					if (Random.Range(0, 9) >= storagePanels || Random.Range(0, 9) >= storagePanels) { // Exponential odds in favor of (re)building storage
+						storagePanels++;
+					} else {
+						if (Random.Range(0, 4) > 0) { // 25% chance to remove
+							shuffleMe.Add(state[x, y]);
 						}
 					}
-					if (!isStorage) {
-						shuffleme.Add(state[x,y]);
-						Set(new Coord(x,y), "Empty");
-						empties.Add(new Coord(x,y));
-					} // Else leave it where it is
 					break;
 				default: // Keep but shuffle
-					shuffleme.Add(state[x,y]);
-					Set(new Coord(x,y), "Empty");
-					empties.Add(new Coord(x,y));
+					shuffleMe.Add(state[x,y]);
 					break;
 				}
+				Set(new Coord(x, y), "Empty");
 			}
 		}
-			
-		if (shuffleme.Count > empties.Count) {
-			Debug.Log("How is this possible??");
+
+		List<Coord> preferredPanelLocations = new List<Coord>();
+		preferredPanelLocations.Add(new Coord(0, 0));
+		preferredPanelLocations.Add(new Coord(0, 1));
+		preferredPanelLocations.Add(new Coord(1, 0));
+		preferredPanelLocations.Add(new Coord(1, 1));
+		preferredPanelLocations.Add(new Coord(2, 0));
+		preferredPanelLocations.Add(new Coord(2, 1));
+		preferredPanelLocations.Add(new Coord(0, 2));
+		preferredPanelLocations.Add(new Coord(1, 2));
+		preferredPanelLocations.Add(new Coord(2, 2));
+		for (int n = 0; n < storagePanels; n++) {
+			Set(preferredPanelLocations[n], "Panel");
 		}
-		foreach (string placeme in shuffleme) {
-			int rand = Random.Range(0,empties.Count);
-			Set(empties[rand],placeme);
-			empties.RemoveAt(rand);
+
+		while (shuffleMe.Count + storagePanels < boardHeight * boardWidth) { // Pad out all remaining space with empties
+			shuffleMe.Add("Empty");
+		}
+		for (int n = 0; n < shuffleMe.Count; n++) { // Everybody do the Fischer-Yates~
+			int swap = Random.Range(n, shuffleMe.Count);
+			string temp = shuffleMe[swap];
+			shuffleMe[swap] = shuffleMe[n];
+			shuffleMe[n] = temp;
+		}
+		for (int y = 0; y < boardHeight; y++) { // Populate the board with the survivors
+			for (int x = 0; x < boardWidth; x++) {
+				if (state[x,y] != "Panel") { // If it isn't a preferred-placed panel
+					Set(new Coord(x, y), shuffleMe[0]);
+					shuffleMe.RemoveAt(0);
+				}
+			}
 		}
 	}
 
@@ -611,11 +627,11 @@ public class Board : MonoBehaviour {
 }
 
 public class Dependency {
-	public GameObject target;
-	public Coord dependson;
+	public GameObject dependent; // For example, a storage tile
+	public Coord dependsOn; // One of that storage tile's component panels
 
-	public Dependency(GameObject target, Coord dependson) {
-		this.target = target;
-		this.dependson = dependson;
+	public Dependency(GameObject dependent, Coord dependsOn) {
+		this.dependent = dependent;
+		this.dependsOn = dependsOn;
 	}
 }

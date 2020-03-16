@@ -5,7 +5,7 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 	public string stored; // The state of the actual tile being stored and displayed
 
 	void Start () {
-		stored = "";
+		stored = "Empty";
 		GameObject newunderlay = UnityEngine.Object.Instantiate(Data.ghosttemplate, this.gameObject.transform.position, this.gameObject.transform.rotation) as GameObject;
 		newunderlay.GetComponent<Tile>().transform.SetParent(this.gameObject.transform);
 		newunderlay.GetComponent<RectTransform>().transform.localPosition = new Vector3(0,0,0);
