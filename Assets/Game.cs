@@ -195,7 +195,7 @@ public static class Game {
 	}
 
 	public static void PlaySound(string name) {
-		if (settings.sound && !string.IsNullOrWhiteSpace(name)) {
+		if (settings.sound && !string.IsNullOrWhiteSpace(name) && Data.audiofiles.ContainsKey(name)) {
 			board.GetComponent<AudioSource>().PlayOneShot(Data.audiofiles[name]);
 		}
 	}
