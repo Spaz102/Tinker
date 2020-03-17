@@ -60,17 +60,12 @@ public static class Game {
 
 	public static void MoveHand() { //TODO: Mouseover snap for storage tiles
 		Vector3 mouse = Input.mousePosition;
-		if (mouseover == null)
-		{ // Mouse is not over the board
+		if (mouseover == null) { // Mouse is not over the board
 			cursor.gameObject.SetActive(false);
-		}
-		else if (CanClick(board.state[mouseover.x, mouseover.y]) != board.state[mouseover.x, mouseover.y])
-		{ // Mouse is over a legal move
+		} else if (CanClick(board.state[mouseover.x, mouseover.y]) != board.state[mouseover.x, mouseover.y]) { // Mouse is over a legal move
 			cursor.gameObject.SetActive(true);
 			cursor.transform.position = board.tile[mouseover.x, mouseover.y].transform.position;
-		}
-		else
-		{ // Mouse is over the board, but not a legal move
+		} else { // Mouse is over the board, but not a legal move
 			Vector2 pos;
 			RectTransformUtility.ScreenPointToLocalPointInRectangle(mainCanvas.transform as RectTransform, mouse, mainCanvas.worldCamera, out pos);
 			cursor.transform.position = mainCanvas.transform.TransformPoint(pos);
@@ -80,9 +75,9 @@ public static class Game {
 
 	public static void Mouseover() { // Updates interface reactions, and highlights potential changes on click
 		board.ClearHighlights();
-		if ((mouseover == null) || (CanClick(board.state[mouseover.x,mouseover.y]) == board.state[mouseover.x,mouseover.y])) { // Go no further if clicking won't cause changes on the board
-		//if ((mouseover == null) || (CanClick(board.state[mouseover.x,mouseover.y]) == board.state[mouseover.x,mouseover.y]) || hand == "Rat") { // Go no further if clicking won't cause changes on the board
-			return;
+		if ((mouseover == null) // Not mousing over a tile
+			|| (CanClick(board.state[mouseover.x,mouseover.y]) == board.state[mouseover.x,mouseover.y])) { // Clicking won't cause changes on the board
+			return; // No point in continuing
 		}
 
 		string[,] boardcopy = (string[,]) board.state.Clone(); // Copy the board
@@ -142,9 +137,8 @@ public static class Game {
 				SetHand("Random");
 				board.Set(queuedClick, result);
 			}
-			
 				
-			if (result != "Rat" && result != "NewRat") { // Otherwise hand rats merge with placed junk
+			if (result != "NewRat") { // Anything other than placing a rat (which has recipes that should only happen mid-cascade
 				board.ResolvePatterns(queuedClick, ref board.state, false);
 			}
 
@@ -152,10 +146,7 @@ public static class Game {
 				board.MoveRats();
 			}
 			Game.Mouseover();
-			string test = board.GetBoardAsCSV();
-			PlayerPrefs.SetString("board",test);
-			PlayerPrefs.SetString("hand", hand);
-			PlayerPrefs.Save();
+			board.SaveGame();
 		}
 		queuedClick = null;
 	}

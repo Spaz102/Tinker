@@ -18,16 +18,13 @@ public class Board : MonoBehaviour {
 	public List<Dependency> dependencies;
 
 	public void Start() {
-		Game.Awake();
+		Game.Awake(); // Make sure it is instantiated before moving on
 		tile = new Tile[boardWidth, boardHeight];
 		state = new string[boardWidth, boardHeight];
 		dependencies = new List<Dependency>();
 		//PlayerPrefs.DeleteAll();
 		CreateBoard();
-		if (PlayerPrefs.HasKey("board")) {
-			SetBoardFromCSV(PlayerPrefs.GetString("board"));
-			Game.SetHand(PlayerPrefs.GetString("hand"));
-		} else {
+		if (!TryLoadGame()) {
 			ResetBoard();
 			//SetBoard("Empty");
 		}
@@ -78,13 +75,56 @@ public class Board : MonoBehaviour {
 		SaveGame();
 	}
 
+	public bool TryLoadGame() {
+		if (!PlayerPrefs.HasKey("board")) {
+			return false;
+		}
+		Game.SetHand(PlayerPrefs.GetString("hand"));
+		SetBoardFromCSV(PlayerPrefs.GetString("board"));
+		RebuildStorage();
+		string[] stored = PlayerPrefs.GetString("storage").Split(',');
+		for (int n = 0; n < stored.Length; n++) {
+			if (!string.IsNullOrEmpty(stored[n])) {
+				storagelist[n].Set(stored[n]);
+			}
+		}
+		string seenRaw = PlayerPrefs.GetString("seen");
+		string readRaw = PlayerPrefs.GetString("read");
+		int index = 0; // Let's just hope tiledata is consistently ordered (It can't be iterated over numerically)
+		foreach (string key in Data.tiledefs.Keys) {
+			Data.playerseen[key] = seenRaw.ToCharArray()[index] == '1';
+			Data.playerread[key] = readRaw.ToCharArray()[index] == '1';
+			index++;
+		}
+		return true;
+	}
+
 	public void SaveGame() {
 		PlayerPrefs.SetString("board", GetBoardAsCSV());
 		PlayerPrefs.SetString("hand", Game.hand);
+		string storageString = "";
+		foreach (Storage stored in storagelist) {
+			storageString += stored.stored + ",";
+		}
+		PlayerPrefs.SetString("storage", storageString);
+
+		string seenRaw = "";
+		string readRaw = "";
+		foreach (string entry in Data.tiledefs.Keys) {
+			seenRaw += Data.playerseen[entry] ? '1' : '0';
+			readRaw += Data.playerread[entry] ? '1' : '0';
+		}
+		PlayerPrefs.SetString("seen", seenRaw);
+		PlayerPrefs.SetString("read", readRaw);
+
 		PlayerPrefs.Save();
 	}
 
-	public void Set(Coord target, string setto) {
+	public void DeleteSaveData() {
+		PlayerPrefs.DeleteAll(); // Will need to exit the game directly after running this; before triggering a new SaveGame call
+	}
+
+	public void Set(Coord target, string setto) { // Does not check for new patterns formed
 		if (state[target.x,target.y] == setto) { // Not strictly necessary to throw away redundant calls, but saves on redrawing
 			return;
 		} else {
@@ -100,7 +140,9 @@ public class Board : MonoBehaviour {
 
 		foreach (Dependency checkMe in dependencies) { // Check if any storage was using this (panel) tile
 			if (target.x == checkMe.dependsOn.x && target.y == checkMe.dependsOn.y) { // If this tile was being depended on, its dependents die
-				//TODO: Unique storage-destruction animation
+				if (storagelist.Remove(checkMe.dependent.GetComponent<Storage>())) { // No longer a valid storage area; returns true if it was considered one
+					//TODO: Unique storage-destruction animation
+				}
 				GameObject.Destroy(checkMe.dependent);
 				checkMe.dependent = null; // In case the destruction is delayed
 			}
@@ -147,6 +189,8 @@ public class Board : MonoBehaviour {
 				Set(new Coord(x, y), split[y * boardWidth + x]);
 			}
 		}
+		RebuildStorage();
+
 	}
 
 	public string GetBoardAsCSV() {
@@ -195,10 +239,24 @@ public class Board : MonoBehaviour {
 		return true;
 	}
 
+	public void RebuildStorage() {
+		for (int y = 0; y < boardHeight; y++) {
+			for (int x = 0; x < boardWidth; x++) {
+				if (CheckStaticAt(ref Data.patternresults["CreateStorage"].value, new Coord(x, y), ref state)) {
+					CreateStorage(new Coord(x, y));
+				}
+			}
+		}
+	}
+
 	public void CleanUp() {
 		List<string> shuffleMe = new List<string>();
 		int storagePanels = 0;
-		
+		List<string> storedResources = new List<string>();
+		foreach (Storage stored in storagelist) {
+			storedResources.Add(stored.stored);
+		}
+
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
 				switch (state[x,y]) {
@@ -251,6 +309,14 @@ public class Board : MonoBehaviour {
 		for (int n = 0; n < storagePanels; n++) {
 			Set(preferredPanelLocations[n], "Panel");
 		}
+		RebuildStorage(); // Warning: Randomly placed panels will not correctly complete storage patterns if they happen to land into them
+		for (int n = 0; n < storedResources.Count; n++) {
+			if (n < storagelist.Count) {
+				storagelist[n].stored = storedResources[n];
+			} else { // More things were stored than can now be contained
+				shuffleMe.Add(storedResources[n]); // Dump them onto the ground
+			}
+		}
 
 		while (shuffleMe.Count + storagePanels < boardHeight * boardWidth) { // Pad out all remaining space with empties
 			shuffleMe.Add("Empty");
@@ -260,7 +326,7 @@ public class Board : MonoBehaviour {
 			string temp = shuffleMe[swap];
 			shuffleMe[swap] = shuffleMe[n];
 			shuffleMe[n] = temp;
-		}
+		} // Warning: If shuffleMe > 49 (technically possible with deferred storage and non-priority-placed panels), some resources won't get placed on the board
 		for (int y = 0; y < boardHeight; y++) { // Populate the board with the survivors
 			for (int x = 0; x < boardWidth; x++) {
 				if (state[x,y] != "Panel") { // If it isn't a preferred-placed panel
@@ -329,7 +395,7 @@ public class Board : MonoBehaviour {
 
 						for (int y = 0; y < Data.patterns[n].value.GetLength(1); y++) {
 							for (int x = 0; x < Data.patterns[n].value.GetLength(0); x++) {
-								if (Data.patterns[n].value[x,y] != "") { //TODO: Add check for other patterns that don't need an animation?
+								if (Data.patterns[n].value[x,y] != "") {
 									newboard[staticresults[random].x + x, staticresults[random].y + Data.patterns[n].value.GetLength(1) - 1 - y] = "Empty";
 									if (test) {
 										Highlight(staticresults[random].x + x, staticresults[random].y + Data.patterns[n].value.GetLength(1) - 1 - y, "Highlight");
@@ -466,7 +532,7 @@ public class Board : MonoBehaviour {
 		return true;
 	}
 
-	public bool SmartCheck(string[,] findon, Coord location, string checkfor) { // Deferred bounds checking, logical order is critical //TODO implement in static pattern checking
+	public bool SmartCheck(string[,] findon, Coord location, string checkfor) { // Deferred bounds checking, logical order is critical
 		return ((checkfor == "") || (location.InBounds() && (checkfor == findon[location.x,location.y])));
 	}
 
@@ -600,7 +666,7 @@ public class Board : MonoBehaviour {
 		}
 	}
 
-	public void CreateStorage(Coord bottomleft) { // Assumes 2x2 pattern for dependencies //TODO: Modify panel appearance when used in storage
+	public void CreateStorage(Coord bottomleft) { // Assumes 2x2 pattern for dependencies //TODO: Modify panel appearance when used in storage?
 		GameObject newstorage = UnityEngine.Object.Instantiate(Data.storagetemplate, new Vector3(), new Quaternion()) as GameObject;
 		
 		newstorage.GetComponent<Tile>().transform.SetParent(parentboard.transform);
@@ -619,10 +685,6 @@ public class Board : MonoBehaviour {
 		Game.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x+1, bottomleft.y)));
 		Game.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x, bottomleft.y+1)));
 		Game.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x+1, bottomleft.y+1)));
-	}
-
-	public void AddDependency(GameObject target, Coord dependson) {
-		Game.board.dependencies.Add(new Dependency(target, dependson));
 	}
 }
 

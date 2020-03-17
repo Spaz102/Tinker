@@ -18,14 +18,18 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 	}
 
 	public void OnMouseUpAsButton() { // Super naive implementation - just swaps hand and stored
-		if (stored == "" || stored == "Empty") {
-			stored = Game.hand;
+		if (stored == "Empty") {
+			Set(Game.hand);
 			Game.SetHand("Random");
 		} else {
-			string temp = Game.hand;
-			Game.SetHand(stored);
-			stored = temp;
+			string temp = stored;
+			Set(Game.hand);
+			Game.SetHand(temp);
 		}
+	}
+
+	public void Set(string setTo) {
+		stored = setTo;
 		this.gameObject.GetComponent<Tile>().ShowSprite(stored);
 	}
 

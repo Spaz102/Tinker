@@ -1,10 +1,19 @@
 Gameplay:
-	- Rats forced wandering before hungry? (Harder to deal with if not contained)
-		- Let rats bump outer walls for a similar effect?
-	- Win by using key on box (Not just adjacent)
+	- Rats chew without always eating
+	- Win by using key on box (Not just adjacent)?
 
 Animations:
 	- Misc decorations
+		- Tool rack
+			- Leather-wrapped rolls of tools?
+		- Magnifying glass on arm
+		- Drawers
+		- Clamps
+		- Spare parts?
+		- Oil lamp
+		- Cup
+			- Empties over time?
+	- Idle "animations"
 	- Tile unveiling (Pings codex entries, and codex itself if minimized) (maybe just a 'breathing' glow effect)
 	- Rat poop (big) dust poof
 
@@ -13,7 +22,7 @@ Interface
 		- Flesh out all graphical elements (tiles, bgs, buttons)
 		- Fonts
 	- Board
-		- Fix storage snap mouseovers to show item in hand
+		- Fix storage mouseover snap
 	- Codex
 		- Opt buttons: Reset (matches, dustbin), Mute(gramophone?), options(metal/wood plate), credits
 		- Side wheels on scroll to snap up or down (to show the clean desk surface)
@@ -45,11 +54,15 @@ Events (w/ special animations, sounds, menus etc):
 	- (First) Rat Breeding
 
 Sounds:
-	- Random pitch/tempo
+	- Random pitch/tempo?
 	- Clock themed soundscape
 	- Codex/interface sounds
 	- Fix random volume drops
 	- Proper intro sound
+	- Soundtrack
+		- Ambiance?
+			- ancient tech greek? (9th century Baghdad)
+				- https://en.wikipedia.org/wiki/Ban%C5%AB_M%C5%ABs%C4%81
 
 Tutorial (necessary? can maybe be handled in):
 	- Not just a match-3 game (3+ resources, 4+ resources, other pattern types)
@@ -58,11 +71,7 @@ Tutorial (necessary? can maybe be handled in):
 	- Storage construction/use
 
 Misc:
-	- Ambiance - ancient tech greek? (9th century Baghdad)
-		- https://en.wikipedia.org/wiki/Ban%C5%AB_M%C5%ABs%C4%81
 	- Finish save/load system
-		- Storage
-		- Playerseen
 		- Settings
 		- Tutorial "progress" (Flag "firsts" as seen)
 	- Dev mode
