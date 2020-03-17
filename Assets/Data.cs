@@ -16,6 +16,7 @@ public static class Data {
 	public static Sprite dustsprite;
 	public static Sprite[] dustsprites;
 	public static Dictionary<string, bool> playerseen;
+	public static Dictionary<string, bool> playerread;
 
 	static Data() {
 		FillLists();
@@ -312,8 +313,10 @@ public static class Data {
 		}
 
 		playerseen = new Dictionary<string, bool>();
+		playerread = new Dictionary<string, bool>();
 		foreach (string defkey in tiledefs.Keys) {
 			playerseen.Add(defkey, false);
+			playerread.Add(defkey, false);
 		}
 		playerseen["Empty"] = true;
 		playerseen["NewRat"] = true;

@@ -24,11 +24,13 @@ public class Blueprints : MonoBehaviour {
 		foreach (Tile butt in buttons) {
 			if (!Data.playerseen.ContainsKey(butt.tiletype)) { // Doesn't exist
 				Debug.Log("Invalid blueprint button");
-			} else if (!Data.patternresults.ContainsKey(butt.tiletype) || CanMake(butt.tiletype) || butt.tiletype == "Rat") { // Uncraftable or have ingredients
+			} else if (Data.playerseen[butt.tiletype] || CanMake(butt.tiletype)) { // Visible (Seen or buildable)
 				butt.SmartShow(butt.tiletype);
 				if (!Data.playerseen[butt.tiletype]) {
 					butt.Sillhouette();
 				}
+				//if (!Data.playerread[butt.tiletype]) { Glow()?}
+
 			} else { // Craftable, but ingredients not seen
 				butt.SmartShow("Empty");
 			}
@@ -37,13 +39,19 @@ public class Blueprints : MonoBehaviour {
 
 	public void CodexClick() {
 		string tiletype = EventSystem.current.currentSelectedGameObject.GetComponent<Tile>().tiletype;
+		if (!Data.playerseen.ContainsKey(tiletype)){ // Doesn't exist
+			Debug.Log("Invalid blueprint button2");
+		} else{
+			Data.playerread[tiletype] = true;
+		}
 
-		if(CanMake(tiletype) || tiletype == "Rat" || (Data.playerseen.ContainsKey(tiletype) && Data.playerseen[tiletype])) {
+		if (CanMake(tiletype) || Data.playerseen[tiletype]) {
 			Show(tiletype);
 		}
 	}
 
 	public void Show(string showme) { // Also show entries for uncraftable tiles (Eg: Dirt)
+		UIControls.LightBox.SetActive(true);
 		if (showme == "Storage") {
 			statBlueprint.gameObject.SetActive(false);
 			specBlueprint.gameObject.SetActive(true);
@@ -78,6 +86,7 @@ public class Blueprints : MonoBehaviour {
 				break;
 			}
 		}
+		if (this.gameObject.name == "CodexContainer") { this.gameObject.SetActive(true); }	// TODO: Clean this
 	}
 
 	public bool CanMake (string showme) { // Can it be made with known ingredients?

@@ -13,8 +13,11 @@ public class Blueprint_Page : MonoBehaviour {
 
 	void Start () {
 		showing = new string[10];
-		this.gameObject.transform.localPosition = new Vector3(0f, -15f, 0f);
+
 		this.gameObject.SetActive(false);
+
+		RectTransform rtPage = this.gameObject.GetComponent<RectTransform>();
+		rtPage.anchoredPosition = Vector2.zero;
 	}
 	
 	public void Show(string showme) {
