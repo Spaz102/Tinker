@@ -21,11 +21,7 @@ public class Blueprint_Page : MonoBehaviour {
 	}
 	
 	public void Show(string showme) {
-		if (showme == "Junk2" || showme == "Junk3") {
-			Show("Junk1");
-			return;
-		}
-		showing[0] = showme;
+		showing[0] = (showme == "Junk2" || showme == "Junk3")? "Junk1" : showme;
 		Recalc();
 	}
 	public void Recalc() {

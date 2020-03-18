@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Interactive : MonoBehaviour { //TODO phase out; use unity's ui interface
-	public string type;
+public class Interactive : MonoBehaviour { // Warning: Needs the GameObject to also have a Tile component; ideally with an underlay as well
+	public string type; // Generally set in the editor // "Tile", "Interface", "Codex", "Storage"
 	public Coord index; // Unused if not a tile
 
 	public void OnMouseUpAsButton() {
@@ -11,18 +11,17 @@ public class Interactive : MonoBehaviour { //TODO phase out; use unity's ui inte
 		}
 	}
 	public void OnMouseEnter() { // Seems to work via raytracing, so no need to worry about layers or z-fighting if it isn't happening visually
-		if (type == "Tile") { //TODO: Mouseover other things, such as blueprint tiles and buttons
-			Game.mouseover = this.index;
-			Game.Mouseover();
-		}
+		Game.mouseover = this;
+
+		Game.Mouseover();
 	}
 	public void OnMouseExit() { //TODO: Add check for if program focus lost/regained? (Add a pause screen)
 		if (type == "Tile") {
-			if (Game.mouseover == this.index) {
+			if (Game.mouseover == this) {
 				Game.mouseover = null;
+				Game.Mouseover();
 			}
-			Game.board.tile[index.x,index.y].underlay.ShowSprite("Empty");
-			Game.Mouseover();
+
 		}
 	}
 }

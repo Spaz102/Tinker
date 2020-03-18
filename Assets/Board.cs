@@ -657,8 +657,8 @@ public class Board : MonoBehaviour {
 		}
 	}
 	public void Highlight(int x, int y, string show) {
-		if (x >= 0 && y >= 0 && x < tile.GetLength(0) && y < tile.GetLength(1)) {
-			if (Game.mouseover== null || x != Game.mouseover.x || y != Game.mouseover.y) {
+		if (x >= 0 && y >= 0 && x < boardWidth && y < boardHeight) {
+			if (Game.mouseover == null || x != Game.mouseover.index.x || y != Game.mouseover.index.y) {
 				tile[x,y].underlay.ShowSprite(show);
 			}
 		}
@@ -672,11 +672,9 @@ public class Board : MonoBehaviour {
 		newstorage.GetComponent<RectTransform>().sizeDelta = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) + newstorage.GetComponent<RectTransform>().sizeDelta.x, (this.GetComponentInParent<RectTransform>().rect.height / boardHeight) + newstorage.GetComponent<RectTransform>().sizeDelta.y);
 		newstorage.GetComponent<RectTransform>().localScale = Vector3.one;
 		newstorage.GetComponent<BoxCollider2D>().size = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth), (this.GetComponentInParent<RectTransform>().rect.width / boardWidth));
-
 		newstorage.GetComponent<RectTransform>().transform.localPosition = Vector3.zero; 
 		newstorage.GetComponent<RectTransform>().anchoredPosition = new Vector3((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) * (bottomleft.x + 1f) - (this.GetComponentInParent<RectTransform>().rect.width * .5f), (this.GetComponentInParent<RectTransform>().rect.height / boardWidth) * (bottomleft.y + 1f) - (this.GetComponentInParent<RectTransform>().rect.height * .5f), 0f);
-		
-		
+
 		storagelist.Add(newstorage.GetComponent<Storage>());
 
 		Game.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x, bottomleft.y)));

@@ -15,7 +15,7 @@ public static class Game {
 	public static int handPoolSize;
 	public static int startingPoolSize;
 	public static string hand;
-	public static Coord mouseover;
+	public static Interactive mouseover;
 
 	public static int animationEnd;
 	public static Coord queuedClick;
@@ -58,32 +58,43 @@ public static class Game {
 		}
 	}
 
-	public static void MoveHand() { //TODO: Mouseover snap for storage tiles
+	public static void MoveHand() {
 		Vector3 mouse = Input.mousePosition;
-		if (mouseover == null) { // Mouse is not over the board
-			cursor.gameObject.SetActive(false);
-		} else if (CanClick(board.state[mouseover.x, mouseover.y]) != board.state[mouseover.x, mouseover.y]) { // Mouse is over a legal move
+		if (mouseover == null) { // Mouse is not over a clickable object (Blank area of interface)
+			cursor.gameObject.SetActive(false); //TODO: Show hand on interface, as in mobile mode?
+		} else if (mouseover.index != null) { // Mousing over a board tile
+			if (CanClick(board.state[mouseover.index.x, mouseover.index.y]) != board.state[mouseover.index.x, mouseover.index.y]) { // Mouse is over a legal move
+				cursor.gameObject.SetActive(true);
+				cursor.transform.position = board.tile[mouseover.index.x, mouseover.index.y].transform.position; // Snap to position
+			} else { // Mouse is over the board, but not a legal move
+				Vector2 pos;
+				RectTransformUtility.ScreenPointToLocalPointInRectangle(mainCanvas.transform as RectTransform, mouse, mainCanvas.worldCamera, out pos);
+				cursor.transform.position = mainCanvas.transform.TransformPoint(pos);
+				cursor.gameObject.SetActive(true);
+			}
+		} else { // Mousing over an interface element (button, storage, etc)
 			cursor.gameObject.SetActive(true);
-			cursor.transform.position = board.tile[mouseover.x, mouseover.y].transform.position;
-		} else { // Mouse is over the board, but not a legal move
-			Vector2 pos;
-			RectTransformUtility.ScreenPointToLocalPointInRectangle(mainCanvas.transform as RectTransform, mouse, mainCanvas.worldCamera, out pos);
-			cursor.transform.position = mainCanvas.transform.TransformPoint(pos);
-			cursor.gameObject.SetActive(true);
+			cursor.transform.position = mouseover.transform.position; // Snap to position
 		}
 	}	
 
 	public static void Mouseover() { // Updates interface reactions, and highlights potential changes on click
 		board.ClearHighlights();
-		if ((mouseover == null) // Not mousing over a tile
-			|| (CanClick(board.state[mouseover.x,mouseover.y]) == board.state[mouseover.x,mouseover.y])) { // Clicking won't cause changes on the board
-			return; // No point in continuing
+		// Clear interface highlights
+		if (mouseover != null) { // Mousing over something interactive
+			if (mouseover.index == null) { // Mousing over an interface button, storage, etc
+				foreach (Storage storage in board.storagelist) {
+					storage.gameObject.GetComponent<Tile>().underlay.ShowSprite("Storage");
+				}
+				mouseover.gameObject.GetComponent<Tile>().underlay.ShowSprite("Mouseover");
+			} else if (CanClick(board.state[mouseover.index.x, mouseover.index.y]) != board.state[mouseover.index.x, mouseover.index.y]) { // Clicking will cause changes on the board
+				string[,] boardcopy = (string[,])board.state.Clone(); // Copy the board
+				boardcopy[mouseover.index.x, mouseover.index.y] = CanClick(board.state[mouseover.index.x, mouseover.index.y]); // Apply the click to the clone
+				board.ResolvePatterns(mouseover.index, ref boardcopy, true); // test = true will show valid patterns on the hypothetical board
+				board.tile[mouseover.index.x, mouseover.index.y].underlay.ShowSprite("Mouseover"); // Override any pattern highlighting with mouseover indicator
+			} // Else mousing over a board tile that can't be clicked
 		}
-
-		string[,] boardcopy = (string[,]) board.state.Clone(); // Copy the board
-		boardcopy[mouseover.x, mouseover.y] = CanClick(board.state[mouseover.x,mouseover.y]); // Apply the click to the clone
-		board.ResolvePatterns(mouseover, ref boardcopy, true); // Show patterns on the hypothetical board
-		board.tile[mouseover.x,mouseover.y].underlay.ShowSprite("Mouseover"); // Override any pattern highlighting with mouseover indicator
+		
 	}
 
 	public static string CanClick(string targetState) { // For mouseover snap and game-over checking; returns new value of the board tile (Returning its current state implies an invalid move)
