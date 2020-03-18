@@ -4,20 +4,21 @@ using System.Collections;
 public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 	public string stored; // The state of the actual tile being stored and displayed
 
-	void Start () {
-		stored = "Empty";
+	void Start () { // Warning: Sometimes gets called after the game has loaded and set each storage
+		stored = (string.IsNullOrEmpty(stored))? "Empty" : stored;
 		GameObject newunderlay = UnityEngine.Object.Instantiate(Data.ghosttemplate, this.gameObject.transform.position, this.gameObject.transform.rotation) as GameObject;
 		newunderlay.GetComponent<Tile>().transform.SetParent(this.gameObject.transform);
 		newunderlay.GetComponent<RectTransform>().transform.localPosition = Vector3.zero;
 		newunderlay.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
 		newunderlay.GetComponent<RectTransform>().localScale = Vector3.one;
 		newunderlay.GetComponent<Ghost>().lifespan = -1;
+		//this.gameObject.GetComponent<Tile>().Awake();
 		this.gameObject.GetComponent<Tile>().underlay = newunderlay.GetComponent<Tile>();
-		this.gameObject.GetComponent<Tile>().ShowSprite("Empty");
+		this.gameObject.GetComponent<Tile>().ShowSprite(stored);
 		this.gameObject.GetComponent<Tile>().underlay.ShowSprite("Storage"); //TODO: Use a special storage sprite
 	}
 
-	public void OnMouseUpAsButton() { // Super naive implementation - just swaps hand and stored
+	public void OnMouseUpAsButton() { // Super naive implementation - just swaps hand and stored; then saves the game
 		if (stored == "Empty") {
 			Set(Game.hand);
 			Game.SetHand("Random");
@@ -26,6 +27,7 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 			Set(Game.hand);
 			Game.SetHand(temp);
 		}
+		Game.board.SaveGame();
 	}
 
 	public void Set(string setTo) {
@@ -41,6 +43,7 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 	}
 
 	public void OnDestroy() { // Unity calls this just before the object is actually destroyed
+		Game.board.dependencies.RemoveAll(dep => dep.dependent == this.gameObject);
 		if (this.gameObject.GetComponent<Tile>().underlay != null) {
 			GameObject.Destroy(this.gameObject.GetComponent<Tile>().underlay.gameObject);
 		}

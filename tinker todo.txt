@@ -1,5 +1,4 @@
 Gameplay:
-	- Rats chew without always eating
 	- Win by using key on box (Not just adjacent)?
 
 Animations:
@@ -23,6 +22,7 @@ Interface
 		- Fonts
 	- Board
 		- Fix storage mouseover snap
+			- It is currently impossible to click (tool or rat) a tile that is wholly surrounded by storage
 	- Codex
 		- Opt buttons: Reset (matches, dustbin), Mute(gramophone?), options(metal/wood plate), credits
 		- Side wheels movement pushes dust motes
@@ -41,8 +41,7 @@ Interface
 		- Player stats
 	- Mobile Version
 		- Hand icon on right side 'holding' current item, no cursor
-		- Hide mute button?
-		- Two-click mode
+		- Two-click mode (on by default)
 
 Events (w/ special animations, sounds, menus etc):
 	- First Load

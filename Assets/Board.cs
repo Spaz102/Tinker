@@ -81,7 +81,6 @@ public class Board : MonoBehaviour {
 		}
 		Game.SetHand(PlayerPrefs.GetString("hand"));
 		SetBoardFromCSV(PlayerPrefs.GetString("board"));
-		RebuildStorage();
 		string[] stored = PlayerPrefs.GetString("storage").Split(',');
 		for (int n = 0; n < stored.Length; n++) {
 			if (!string.IsNullOrEmpty(stored[n])) {
@@ -139,15 +138,13 @@ public class Board : MonoBehaviour {
 		}
 
 		foreach (Dependency checkMe in dependencies) { // Check if any storage was using this (panel) tile
-			if (target.x == checkMe.dependsOn.x && target.y == checkMe.dependsOn.y) { // If this tile was being depended on, its dependents die
+			if (target.x == checkMe.dependsOn.x && target.y == checkMe.dependsOn.y && checkMe.dependent != null) { // If this tile was being depended on, its dependents die
 				if (storagelist.Remove(checkMe.dependent.GetComponent<Storage>())) { // No longer a valid storage area; returns true if it was considered one
 					//TODO: Unique storage-destruction animation
 				}
-				GameObject.Destroy(checkMe.dependent);
-				checkMe.dependent = null; // In case the destruction is delayed
+				GameObject.Destroy(checkMe.dependent); // Warning: The object must purge itself from the dependencies list during OnDestroy() (Can't be done here, as the object is not yet null, and there is no exposed list of objects soon to be destroyed)
 			}
 		}
-		dependencies.RemoveAll(dep => dep.dependent == null); // Remove all dependencies whose dependents died 
 
 		if (!Data.playerseen[setto]) {
 			Data.playerseen[setto] = true;
@@ -593,7 +590,7 @@ public class Board : MonoBehaviour {
 			tile[target.x,target.y].Hide(animationLength);
 		} else {
 			string poop = Data.tiledefs[this.state[target.x,target.y]].edible;
-			if (poop != "") { // The target is edible
+			if (poop != "" && Random.Range(0, 3) > 0) { // The target is edible, and passes 2/3 chance
 				Set(rat, "Empty"); // To keep the rat's old position clear, set this after the spread
 				Set(target, "Empty");
 				Game.PlaySound("Crunch");
