@@ -24,6 +24,7 @@ Interface
 		- Fix storage mouseover snap
 			- It is currently impossible to click (tool or rat) a tile that is wholly surrounded by storage
 	- Codex
+		- dust mote momentum tuning on scrollopen/close/scroll
 		- Opt buttons: Reset (matches, dustbin), Mute(gramophone?), options(metal/wood plate), credits
 		- ClosedScroll glows when unread item in codex (playerread)
 		- Codex items

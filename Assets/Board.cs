@@ -40,10 +40,11 @@ public class Board : MonoBehaviour {
 			for (int x = 0; x < boardWidth; x++) {
 				GameObject newtile = UnityEngine.Object.Instantiate(Data.tiletemplate, new Vector3(), new Quaternion()) as GameObject;
 				newtile.GetComponent<Tile>().transform.SetParent(parentboard.transform);
-				newtile.GetComponent<RectTransform>().sizeDelta = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) + newtile.GetComponent<RectTransform>().sizeDelta.x, (this.GetComponentInParent<RectTransform>().rect.height / boardHeight) + newtile.GetComponent<RectTransform>().sizeDelta.y);
 				newtile.GetComponent<RectTransform>().transform.localPosition = new Vector3(0, 0, 0);
 				newtile.GetComponent<RectTransform>().anchoredPosition = new Vector3((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) * (x + .5f) - (this.GetComponentInParent<RectTransform>().rect.width * .5f), (this.GetComponentInParent<RectTransform>().rect.height / boardWidth) * (y + .5f) - (this.GetComponentInParent<RectTransform>().rect.height * .5f));
 				newtile.GetComponent<RectTransform>().localScale = Vector3.one;
+				newtile.GetComponent<RectTransform>().sizeDelta = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) - this.GetComponentInParent<RectTransform>().rect.width, (this.GetComponentInParent<RectTransform>().rect.height / boardHeight) - this.GetComponentInParent<RectTransform>().rect.height);
+				
 				newtile.GetComponent<BoxCollider2D>().size = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth), (this.GetComponentInParent<RectTransform>().rect.width / boardWidth));
 				newtile.GetComponent<Interactive>().index = new Coord(x, y);
 				newtile.GetComponent<Interactive>().type = "Tile";
@@ -51,7 +52,7 @@ public class Board : MonoBehaviour {
 
 				GameObject newunderlay = UnityEngine.Object.Instantiate(Data.ghosttemplate, new Vector3(), new Quaternion()) as GameObject;
 				newunderlay.GetComponent<Tile>().transform.SetParent(newtile.transform);
-				newunderlay.GetComponent<RectTransform>().sizeDelta = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) + newunderlay.GetComponent<RectTransform>().sizeDelta.x, (this.GetComponentInParent<RectTransform>().rect.height / boardHeight) + newunderlay.GetComponent<RectTransform>().sizeDelta.y);
+				newunderlay.GetComponent<RectTransform>().sizeDelta = Vector2.one;
 				newunderlay.GetComponent<RectTransform>().transform.localPosition = new Vector3(0, 0, 0);
 				newunderlay.GetComponent<RectTransform>().localScale = Vector3.one;
 				newunderlay.GetComponent<Ghost>().lifespan = -1;
