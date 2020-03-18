@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class DustMote : MonoBehaviour {
-	Vector3 momentum;
+	public Vector3 momentum;
 	float rotationalMomentum;
 	int counter; // How long until its next spontaneous redirection
 	float min; // Mimimum velocity
@@ -31,12 +31,12 @@ public class DustMote : MonoBehaviour {
 			}
 		}
 
-		if (GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(this.transform.position + momentum).x < -10 || GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(this.transform.position + momentum).x > 490) {
+		if (GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(this.transform.position + momentum).x < - 10 || GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(this.transform.position + momentum).x > Screen.width + 10) {
 			momentum.x *= -0.7f; // Slow down on collision
 			rotationalMomentum = Random.Range(minRotation * -1f, minRotation);
 			momentum = Quaternion.Euler(0,0,Random.Range(-10,10)) * momentum;
 		}
-		if (GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(this.transform.position + momentum).y < -10 || GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(this.transform.position + momentum).y > 810) {
+		if (GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(this.transform.position + momentum).y < - 10 || GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(this.transform.position + momentum).y > Screen.height + 10) {
 			momentum.y *= -0.7f; // Slow down on collision
 			rotationalMomentum = Random.Range(minRotation * -1f, minRotation);
 			momentum = Quaternion.Euler(0,0,Random.Range(-10,10)) * momentum;

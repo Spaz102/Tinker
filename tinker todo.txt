@@ -25,7 +25,6 @@ Interface
 			- It is currently impossible to click (tool or rat) a tile that is wholly surrounded by storage
 	- Codex
 		- Opt buttons: Reset (matches, dustbin), Mute(gramophone?), options(metal/wood plate), credits
-		- Side wheels movement pushes dust motes
 		- ClosedScroll glows when unread item in codex (playerread)
 		- Codex items
 			- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)

@@ -47,10 +47,13 @@ public class UIControls: MonoBehaviour {
 		OpenedScroll.SetActive(scrollopen);
 		ClosedScroll.SetActive(!scrollopen);
 
-		if (scrollopen) {
-
-		} else {
-
+		// Woosh all the dust motes below the game board (in the path of the scroll)
+		GameObject[] dustList = GameObject.FindGameObjectsWithTag("Dust");
+		foreach (GameObject dust in dustList)
+		{
+			if (GameObject.Find("Main Camera").GetComponent<Camera>().WorldToScreenPoint(dust.transform.position).y < Screen.width) { //using screen.width since the game board is always this high
+				dust.GetComponent<DustMote>().momentum -= Quaternion.Euler(0, 0, Random.Range(-10, 10)) * new Vector3(0, 1f * (scrollopen?1:-1), 0);
+			}
 		}
 	}
 
