@@ -25,14 +25,12 @@ Interface
 		- Fix storage mouseover snap
 	- Codex
 		- Opt buttons: Reset (matches, dustbin), Mute(gramophone?), options(metal/wood plate), credits
-		- Side wheels on scroll to snap up or down (to show the clean desk surface)
-			- Movement pushes dust motes
+		- Side wheels movement pushes dust motes
 		- ClosedScroll glows when unread item in codex (playerread)
 		- Codex items
 			- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)
-			- draw in arrows as items are revealed?
-			- new item glow (playerread)
-			- mouseover to show clickable
+			- New item glow (playerread)
+			- Mouseover to show clickable
 		- Recipe Lightboxes
 			- Papyrus bg faded to edges, dim bg over lower area
 			- Plot relevant flavour text tinkerer pov ("It seems that you find a rock ever 4th pile of dirt.... how odd")

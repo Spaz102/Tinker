@@ -31,6 +31,8 @@ public class UIControls: MonoBehaviour {
 		rtOpenedScroll.anchorMin = Vector2.zero;
 		rtOpenedScroll.anchorMax = Vector2.one;
 		rtOpenedScroll.sizeDelta = Vector2.zero;
+		rtOpenedScroll.offsetMax = new Vector2(-75, -50);
+		rtOpenedScroll.offsetMin = new Vector2(75,0);
 	}
 
 	public void HideLightBox()
