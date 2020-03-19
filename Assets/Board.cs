@@ -127,15 +127,17 @@ public class Board : MonoBehaviour {
 	public void Set(Coord target, string setto) { // Does not check for new patterns formed
 		if (state[target.x,target.y] == setto) { // Not strictly necessary to throw away redundant calls, but saves on redrawing
 			return;
-		} else {
-			this.state[target.x,target.y] = setto;
-			this.tile[target.x,target.y].ShowSprite(setto);
 		}
+		if (!Data.playerseen[setto]) {
+			Data.playerseen[setto] = true;
+			Game.blueprints.Recalc();
+		}
+		
+		this.state[target.x,target.y] = setto;
+		this.tile[target.x,target.y].SmartShow(setto);
+		
 		if (setto == "Rat" || setto == "NewRat") {
-			tile[target.x,target.y].breathing = true;
-			tile[target.x,target.y].scale = Random.Range(0, 0.15f);
-		} else {
-			tile[target.x,target.y].breathing = false;
+			tile[target.x, target.y].StartBreathing();
 		}
 
 		foreach (Dependency checkMe in dependencies) { // Check if any storage was using this (panel) tile
@@ -147,10 +149,7 @@ public class Board : MonoBehaviour {
 			}
 		}
 
-		if (!Data.playerseen[setto]) {
-			Data.playerseen[setto] = true;
-			Game.blueprints.Recalc();
-		}
+		
 	}
 
 	public void SetBoard(string[,] setTo) {

@@ -24,13 +24,8 @@ public class Blueprints : MonoBehaviour {
 		foreach (Tile butt in buttons) {
 			if (!Data.playerseen.ContainsKey(butt.tiletype)) { // Doesn't exist
 				Debug.Log("Invalid blueprint button");
-			} else if (Data.playerseen[butt.tiletype] || CanMake(butt.tiletype)) { // Visible (Seen or buildable)
+			} else if (Data.playerseen[butt.tiletype] || CanMake(butt.tiletype)) { // Visible (Forcibly seen or properly buildable from seen parts)
 				butt.SmartShow(butt.tiletype);
-				if (!Data.playerseen[butt.tiletype]) {
-					butt.Sillhouette();
-				}
-				//if (!Data.playerread[butt.tiletype]) { Glow()?}
-
 			} else { // Craftable, but ingredients not seen
 				butt.SmartShow("Empty");
 			}
@@ -41,8 +36,11 @@ public class Blueprints : MonoBehaviour {
 		string tiletype = EventSystem.current.currentSelectedGameObject.GetComponent<Tile>().tiletype;
 		if (!Data.playerseen.ContainsKey(tiletype)){ // Doesn't exist
 			Debug.Log("Invalid blueprint button2");
-		} else{
-			Data.playerread[tiletype] = true;
+		} else {
+			if (!Data.playerread[tiletype]) {
+				Data.playerread[tiletype] = true;
+				Recalc();
+			}
 		}
 
 		if (CanMake(tiletype) || Data.playerseen[tiletype]) {
