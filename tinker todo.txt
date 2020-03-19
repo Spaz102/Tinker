@@ -1,78 +1,63 @@
 Gameplay:
 	- Win by using key on box (Not just adjacent)?
+	- Save/load settings, tutorials seen
 
-Animations:
+Graphics:
 	- Misc decorations
 		- Tool rack
 			- Leather-wrapped rolls of tools?
 		- Magnifying glass on arm
 		- Drawers
 		- Clamps
-		- Spare parts?
 		- Oil lamp
 		- Cup
-			- Empties over time?
 	- Idle "animations"
-	- Tile unveiling (Pings codex entries, and codex itself if minimized) (maybe just a 'breathing' glow effect)
+	- Unread tiles ('breathing' glow effect)
+		- ClosedScroll (glows when unread item in codex)
 	- Rat poop (big) dust poof
 
 Interface
 	- Misc
 		- Flesh out all graphical elements (tiles, bgs, buttons)
 		- Fonts
-	- Board
-		- Fix storage mouseover snap
-			- It is currently impossible to click (tool or rat) a tile that is wholly surrounded by storage
+		- It is currently impossible to click (tool or rat) a tile that is wholly surrounded by storage
 	- Codex
 		- dust mote momentum tuning on scrollopen/close/scroll
-		- Opt buttons: Reset (matches, dustbin), Mute(gramophone?), options(metal/wood plate), credits
-		- ClosedScroll glows when unread item in codex (playerread)
-		- Codex items
-			- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)
-			- New item glow (playerread)
-			- Mouseover to show clickable
-		- Recipe Lightboxes
-			- Papyrus bg faded to edges, dim bg over lower area
-			- Plot relevant flavour text tinkerer pov ("It seems that you find a rock ever 4th pile of dirt.... how odd")
-			- []x4, [][][], animated version where multiple layouts are allowed (or button to see alternate versions)
-			- Add [x] for dead space like the gear?
-	- Menus/Popups/Interfacy things
-		- Win
+		- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)
+		- Mouseover to show clickable
+		- Papyrus bg faded to edges, dim bg over lower area
+		- Plot relevant flavour text tinkerer pov ("It seems that you find a rock ever 4th pile of dirt.... how odd")
+	- Options buttons
+		- Reset (Dustbin, matches?)
+		- Mute (Gramophone)
+		- Credits
 		- Player stats
+		- Dev mode
 	- Mobile Version
 		- Hand icon on right side 'holding' current item, no cursor
 		- Two-click mode (on by default)
 
-Events (w/ special animations, sounds, menus etc):
-	- First Load
-	- Later Loads
+Popups (With or without special animations, sounds, menus etc):
+	- First Load/tutorial
+	- Later Loads?
+	- Complex crafting tutorial
+	- Rats tutorial
+	- Storage tutorial
 	- Win (w/ w/o deaths)
 	- Death
 	- (First) Rat Breeding
+	- Credits
+	- Player stats	
 
 Sounds:
+	- New sounds for remaining resources
 	- Random pitch/tempo?
-	- Clock themed soundscape
-	- Codex/interface sounds
+	- Clock themed codex/interface sounds
 	- Fix random volume drops
 	- Proper intro sound
-	- Soundtrack
-		- Ambiance?
-			- ancient tech greek? (9th century Baghdad)
-				- https://en.wikipedia.org/wiki/Ban%C5%AB_M%C5%ABs%C4%81
-
-Tutorial (necessary? can maybe be handled in):
-	- Not just a match-3 game (3+ resources, 4+ resources, other pattern types)
-	- Complex crafting
-	- Handrat/mover useage
-	- Storage construction/use
-
-Misc:
-	- Finish save/load system
-		- Settings
-		- Tutorial "progress" (Flag "firsts" as seen)
-	- Dev mode
-		- Clicking a codex item converts item in hand to that item
+	- Soundtrack/ambiance?
+		- 9th century Baghdad??
+		- https://en.wikipedia.org/wiki/Ban%C5%AB_M%C5%ABs%C4%81
 
 Eventually:
 	- Kong api
