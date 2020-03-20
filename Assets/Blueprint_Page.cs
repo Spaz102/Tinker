@@ -20,8 +20,8 @@ public class Blueprint_Page : MonoBehaviour {
 		rtPage.anchoredPosition = Vector2.zero;
 	}
 	
-	public void Show(string showme) {
-		showing[0] = (showme == "Junk2" || showme == "Junk3")? "Junk1" : showme;
+	public void OpenRecipe(string tiletype) {
+		showing[0] = (tiletype == "Junk2" || tiletype == "Junk3")? "Junk1" : tiletype;
 		Recalc();
 	}
 	public void Recalc() {
@@ -114,7 +114,7 @@ public class Blueprint_Page : MonoBehaviour {
 		if (showing[index] == "Panel" && !Data.playerseen["Panel"]) {
 			return;
 		} else if (showing[index] != "Empty") {
-			Game.blueprints.Show(showing[index]);
+			Game.blueprints.OpenRecipe(showing[index]);
 		}
 	}
 }

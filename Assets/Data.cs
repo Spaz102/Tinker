@@ -18,6 +18,8 @@ public static class Data {
 	public static Dictionary<string, bool> playerseen;
 	public static Dictionary<string, bool> playerread;
 
+	public static bool devmode = true;
+
 	static Data() {
 		FillLists();
 	}

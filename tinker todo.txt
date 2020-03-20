@@ -1,34 +1,50 @@
-Gameplay:
+﻿Gameplay:
 	- Win by using key on box (Not just adjacent)?
 	- Save/load settings, tutorials seen
-		
-Graphics:
-	- Flesh out remaining graphical elements (tiles, bgs, buttons)	
-	- Misc decorations
+	- Too many valuables on new game
+
+Graphical Assets:
+	- Finish game tiles + 'little red x' - upscale? (tiles are 144 wide in 1080res, 64 wide in 480)
+	- lightbox
+		- dark bg should peter off at the top to avoid the ugly 'edge'
+		- fade out edges instead of using ragged 'page'
+	- openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
+	- closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body
+		- mousehover shows it slightly pulled down.
+		- glow underlay
+	- scroll ends - ↑↓ ui hints
+	- option buttons
+		- mute, credits, player stats, dust toggle, new/reset game
+	- 'rotateable' icon
+	- codex path arrows
+	- item glow underlays? Or just using breathing?
+	- Misc desk decorations
 		- Tool rack
 			- Leather-wrapped rolls of tools?
 		- Drawers
 		- Clamps
 		- Cup
+
+Other Graphics:
 	- Idle "animations" (?)
-	- Unread tiles ('breathing' glow effect)
-		- ClosedScroll (glows when unread item in codex)
 	- Rat poop (big) dust poof
 
 Interface:
 	- Fonts
-	- Arrows
-	- Codex
+	- ClosedScroll (glows when unread item in codex)
+	- OpenScroll
 		- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)
 		- Mouseover to show clickable
-		- Papyrus bg faded to edges, dim bg over lower area
-		- Plot relevant flavour text
+		- Unread tiles ('breathing' glow effect)
+	- LighBoxes/Recipes
+		- Rearrange as per little yellow note. 1 main layout + 1 for storage + 1 for grabber
+		- Update flavour text 
+			- include item name (title to be removed)
 			- Tinkerer pov ("It seems that you find a rock every 4th pile of dirt.... how odd")
 	- Options buttons
 		- Mute (Gramophone)
 		- Credits
 		- Player stats
-		- Dev mode
 	- Mobile Version
 		- Hand icon on right side 'holding' current item, no cursor
 		- Two-click mode (on by default)
@@ -45,7 +61,7 @@ Popups (With or without special animations, sounds, menus etc):
 	- Credits
 	- Player stats	
 
-Sounds:
+Audio:
 	- New sounds for remaining resources
 	- Random pitch/tempo?
 	- Clock themed codex/interface sounds
@@ -56,9 +72,7 @@ Sounds:
 		- https://en.wikipedia.org/wiki/Ban%C5%AB_M%C5%ABs%C4%81
 
 Misc:
-	- Too many valuables on new game
 	- It is currently impossible to click (tool or rat) a tile that is wholly surrounded by storage
-
 		
 Eventually:
 	- Kong api

@@ -34,57 +34,56 @@ public class Blueprints : MonoBehaviour {
 
 	public void CodexClick() {
 		string tiletype = EventSystem.current.currentSelectedGameObject.GetComponent<Tile>().tiletype;
-		if (!Data.playerseen.ContainsKey(tiletype)){ // Doesn't exist
-			Debug.Log("Invalid blueprint button2");
-		} else {
-			if (!Data.playerread[tiletype]) {
-				Data.playerread[tiletype] = true;
-				Recalc();
-			}
-		}
-
-		if (CanMake(tiletype) || Data.playerseen[tiletype]) {
-			Show(tiletype);
-		}
+		OpenRecipe(tiletype);
+		
 	}
 
-	public void Show(string showme) { // Also show entries for uncraftable tiles (Eg: Dirt)
+	public void OpenRecipe(string tiletype) { // Also show entries for uncraftable tiles (Eg: Dirt)
+		if (!CanMake(tiletype) && !Data.playerseen[tiletype])
+		{
+			Debug.Log("Invalid blueprint button2");
+			return;
+		}
+		
+		Data.playerread[tiletype] = true;
+		Recalc();
+		if (Data.devmode) { Game.SetHand(tiletype); }
+
 		UIControls.LightBox.SetActive(true);
-		if (showme == "Storage") {
+		if (tiletype == "Storage") {
 			statBlueprint.gameObject.SetActive(false);
 			specBlueprint.gameObject.SetActive(true);
 			setBlueprint.gameObject.SetActive(false);
-			specBlueprint.Show(showme);
-			this.gameObject.SetActive(false);
-		} else if (!Data.patternresults.ContainsKey(showme)) { // Atomic tiles like dirt/tool
+			specBlueprint.OpenRecipe(tiletype);
+			if (this.gameObject.name != "CodexContainer") { this.gameObject.SetActive(false); }
+		} else if (!Data.patternresults.ContainsKey(tiletype)) { // Atomic tiles like dirt/tool
 			statBlueprint.gameObject.SetActive(true);
 			specBlueprint.gameObject.SetActive(false);
 			setBlueprint.gameObject.SetActive(false);
-			statBlueprint.Show(showme);
-			this.gameObject.SetActive(false);
+			statBlueprint.OpenRecipe(tiletype);
+			if (this.gameObject.name != "CodexContainer") { this.gameObject.SetActive(false); }
 		} else {
-			switch (Data.patternresults[showme].type) {
+			switch (Data.patternresults[tiletype].type) {
 				case "3Cont":
 				case "4Cont":
 				case "Static":
-				statBlueprint.gameObject.SetActive(true);
-				specBlueprint.gameObject.SetActive(false);
-				setBlueprint.gameObject.SetActive(false);
-				statBlueprint.Show(showme);
-					this.gameObject.SetActive(false);
-				break;
+					statBlueprint.gameObject.SetActive(true);
+					specBlueprint.gameObject.SetActive(false);
+					setBlueprint.gameObject.SetActive(false);
+					statBlueprint.OpenRecipe(tiletype);
+					if (this.gameObject.name != "CodexContainer") { this.gameObject.SetActive(false); }
+					break;
 				case "Set":
-				statBlueprint.gameObject.SetActive(false);
-				specBlueprint.gameObject.SetActive(false);
-				setBlueprint.gameObject.SetActive(true);
-				setBlueprint.Show(showme);
+					statBlueprint.gameObject.SetActive(false);
+					specBlueprint.gameObject.SetActive(false);
+					setBlueprint.gameObject.SetActive(true);
+					setBlueprint.OpenRecipe(tiletype);
 					this.gameObject.SetActive(false);
 				break;
 				default:
 				break;
 			}
 		}
-		if (this.gameObject.name == "CodexContainer") { this.gameObject.SetActive(true); }	// TODO: Clean this
 	}
 
 	public bool CanMake (string showme) { // Can it be made with known ingredients?

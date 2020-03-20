@@ -38,6 +38,7 @@ public class UIControls: MonoBehaviour {
 
 	void Update()
 	{
+		// TODO: change this to a more 'unity' way (not in update)
 		//Debug.Log(Data.playerseen.Values.Count(x => x) + " - " + Data.playerread.Values.Count(x => x));
 		if (Data.playerseen.Values.Count(v => v) > Data.playerread.Values.Count(v => v)) {
 			ClosedScroll.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, .5f);
