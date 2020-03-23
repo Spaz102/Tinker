@@ -87,6 +87,8 @@ public static class Game {
 					storage.gameObject.GetComponent<Tile>().underlay.ShowSprite("Storage");
 				}
 				mouseover.gameObject.GetComponent<Tile>().underlay.ShowSprite("Mouseover");
+			} else if (CanClick(board.state[mouseover.index.x, mouseover.index.y]) == "Win") { // Clicking a key onto a music box
+				board.tile[mouseover.index.x, mouseover.index.y].underlay.ShowSprite("Mouseover"); // TODO: Something fancier?
 			} else if (CanClick(board.state[mouseover.index.x, mouseover.index.y]) != board.state[mouseover.index.x, mouseover.index.y]) { // Clicking will cause changes on the board
 				string[,] boardcopy = (string[,])board.state.Clone(); // Copy the board
 				boardcopy[mouseover.index.x, mouseover.index.y] = CanClick(board.state[mouseover.index.x, mouseover.index.y]); // Apply the click to the clone
@@ -108,6 +110,8 @@ public static class Game {
 			}
 		} else if (hand == "Special") {
 			return "Empty";
+		} else if (hand == "Key" && targetState == "MusicBox") {
+			return "Win";
 		} else { // Ordinary tile
 			if (targetState == "Empty") { // Or storage tile
 				return hand;
@@ -129,7 +133,12 @@ public static class Game {
 		}
 		idletime = 0;
 		string result = CanClick(board.state[queuedClick.x,queuedClick.y]);
-		if (result != board.state[queuedClick.x,queuedClick.y]) { // A click is possible
+		if (result == "Win") {
+			Game.PlaySound("Byebye");
+			Debug.Log("You win"); // TODO: Win popup
+			SetHand("Random");
+			board.Set(queuedClick, "Empty");
+		} else if (result != board.state[queuedClick.x,queuedClick.y]) { // A click is possible
 			PlaySound(hand);
 			if (hand == "Special") {
 				Data.playerseen["Special"] = true;

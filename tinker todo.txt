@@ -1,7 +1,6 @@
 ﻿Gameplay:
-	- Win by using key on box (Not just adjacent)?
 	- Save/load settings, tutorials seen
-	- Too many valuables on new game
+	- Clicking on the game board should not close the lightbox
 
 Graphical Assets:
 	- Finish game tiles
@@ -23,8 +22,7 @@ Graphical Assets:
 	- Item glow underlays? Or just using breathing?
 	- Misc desk decorations
 		- Tool rack
-			- Leather-wrapped rolls of tools?
-		- Drawers
+			- Leather-wrapped rolls of tools
 		- Clamps
 		- Cup
 	- Fonts

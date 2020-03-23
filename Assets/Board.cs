@@ -39,6 +39,7 @@ public class Board : MonoBehaviour {
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
 				GameObject newtile = UnityEngine.Object.Instantiate(Data.tiletemplate, new Vector3(), new Quaternion(), parentboard.transform) as GameObject;
+				newtile.transform.localScale = Vector3.one;
 				newtile.GetComponent<RectTransform>().transform.localPosition = new Vector3(0, 0, 0);
 				newtile.GetComponent<RectTransform>().anchoredPosition = new Vector3((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) * (x + .5f) - (this.GetComponentInParent<RectTransform>().rect.width * .5f), (this.GetComponentInParent<RectTransform>().rect.height / boardWidth) * (y + .5f) - (this.GetComponentInParent<RectTransform>().rect.height * .5f), 0f);
 				
