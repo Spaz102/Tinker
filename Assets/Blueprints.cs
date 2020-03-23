@@ -26,6 +26,11 @@ public class Blueprints : MonoBehaviour {
 				Debug.Log("Invalid blueprint button");
 			} else if (Data.playerseen[butt.tiletype] || CanMake(butt.tiletype)) { // Visible (Forcibly seen or properly buildable from seen parts)
 				butt.SmartShow(butt.tiletype);
+				if (!Data.playerread[butt.tiletype]) {
+					butt.StartBreathing();
+				} else {
+					butt.breathing = false;
+				}
 			} else { // Craftable, but ingredients not seen
 				butt.SmartShow("Empty");
 			}

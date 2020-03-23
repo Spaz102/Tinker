@@ -86,6 +86,7 @@ public class Board : MonoBehaviour {
 		foreach (string key in Data.tiledefs.Keys) {
 			Data.playerseen[key] = seenRaw.ToCharArray()[index] == '1';
 			Data.playerread[key] = readRaw.ToCharArray()[index] == '1';
+			//Data.playerread[key] = Data.playerread[key] || readRaw.ToCharArray()[index] == '1';
 			index++;
 		}
 		Game.SetHand(PlayerPrefs.GetString("hand"));

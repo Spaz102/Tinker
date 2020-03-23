@@ -61,11 +61,6 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 		if (!Data.playerseen[state]) {
 			this.Sillhouette();
 		}
-		if (!Data.playerread[state]) {
-			StartBreathing();
-		} else {
-			this.breathing = false;
-		}
 	}
 
 	public void StartBreathing() {
