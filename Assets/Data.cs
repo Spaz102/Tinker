@@ -325,7 +325,9 @@ public static class Data {
 		//playerseen["Rat"] = true;
 		playerseen["Junk1"] = true;
 		playerseen["Junk2"] = true;
+		playerread["Junk2"] = true;
 		playerseen["Junk3"] = true;
+		playerread["Junk3"] = true;
 		playerseen["Seed"] = true;
 		playerseen["Dirt"] = true;
 		playerseen["Special"] = true;

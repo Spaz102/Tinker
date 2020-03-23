@@ -80,14 +80,6 @@ public class Board : MonoBehaviour {
 		if (!PlayerPrefs.HasKey("board")) {
 			return false;
 		}
-		Game.SetHand(PlayerPrefs.GetString("hand"));
-		SetBoardFromCSV(PlayerPrefs.GetString("board"));
-		string[] stored = PlayerPrefs.GetString("storage").Split(',');
-		for (int n = 0; n < stored.Length; n++) {
-			if (!string.IsNullOrEmpty(stored[n])) {
-				storagelist[n].Set(stored[n]);
-			}
-		}
 		string seenRaw = PlayerPrefs.GetString("seen");
 		string readRaw = PlayerPrefs.GetString("read");
 		int index = 0; // Let's just hope tiledata is consistently ordered (It can't be iterated over numerically)
@@ -95,6 +87,14 @@ public class Board : MonoBehaviour {
 			Data.playerseen[key] = seenRaw.ToCharArray()[index] == '1';
 			Data.playerread[key] = readRaw.ToCharArray()[index] == '1';
 			index++;
+		}
+		Game.SetHand(PlayerPrefs.GetString("hand"));
+		SetBoardFromCSV(PlayerPrefs.GetString("board"));
+		string[] stored = PlayerPrefs.GetString("storage").Split(',');
+		for (int n = 0; n < stored.Length; n++) {
+			if (!string.IsNullOrEmpty(stored[n])) {
+				storagelist[n].Set(stored[n]);
+			}
 		}
 		return true;
 	}
