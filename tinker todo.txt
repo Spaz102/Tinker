@@ -4,34 +4,37 @@
 	- Too many valuables on new game
 
 Graphical Assets:
-	- Finish game tiles + 'little red x' - upscale? (tiles are 144 wide in 1080res, 64 wide in 480)
-	- lightbox
-		- dark bg should peter off at the top to avoid the ugly 'edge'
-		- fade out edges instead of using ragged 'page'
-	- openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
-	- closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body
-		- mousehover shows it slightly pulled down.
-		- glow underlay
-	- scroll ends - ↑↓ ui hints
-	- option buttons
-		- mute, credits, player stats, dust toggle, new/reset game
-	- 'rotateable' icon
-	- codex path arrows
-	- item glow underlays? Or just using breathing?
+	- Finish game tiles
+	- Red 'x' for blueprints
+	- Red grid for blueprints
+	- Upscaled tileset (144 x 144)
+	- Lightbox
+		- Dark bg should peter off at the top to avoid the ugly 'edge'
+		- Fade out edges instead of using ragged 'page'
+	- Openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
+	- Closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body
+		- Somehow match the texture of the scroll surface
+		- Mousehover shows it slightly pulled down.
+	- Scroll ends - ↑↓ ui hints (Only if a really good graphic is found?)
+	- Option buttons
+		- Mute, credits, player stats, dust toggle, new/reset game
+	- 'rotateable' icon? (Could sneak this into a tutorial, by showing it done the "wrong" way)
+	- Codex path arrows
+	- Item glow underlays? Or just using breathing?
 	- Misc desk decorations
 		- Tool rack
 			- Leather-wrapped rolls of tools?
 		- Drawers
 		- Clamps
 		- Cup
+	- Fonts
 
 Other Graphics:
 	- Idle "animations" (?)
-	- Rat poop (big) dust poof
+	- Rat poop dust poof (Needs longer duration than current poofs allow)
 
 Interface:
-	- Fonts
-	- ClosedScroll (glows when unread item in codex)
+	- ClosedScroll show/hide glow image when there's a new entry
 	- OpenScroll
 		- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)
 		- Mouseover to show clickable
@@ -65,7 +68,6 @@ Audio:
 	- New sounds for remaining resources
 	- Random pitch/tempo?
 	- Clock themed codex/interface sounds
-	- Fix random volume drops
 	- Proper intro sound
 	- Soundtrack/ambiance?
 		- 9th century Baghdad??

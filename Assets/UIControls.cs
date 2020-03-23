@@ -23,7 +23,6 @@ public class UIControls: MonoBehaviour {
 		rtLB.anchoredPosition = Vector2.zero;
 		rtLB.anchorMin = Vector2.zero;
 		rtLB.anchorMax = Vector2.one;
-		rtLB.sizeDelta = Vector2.zero;
 
 		// Scroll state handling (resize needed to allow it to be displayed in the editor)        
 		OpenedScroll.SetActive(false);
@@ -31,7 +30,6 @@ public class UIControls: MonoBehaviour {
 		rtOpenedScroll.anchoredPosition = Vector2.zero;
 		rtOpenedScroll.anchorMin = Vector2.zero;
 		rtOpenedScroll.anchorMax = Vector2.one;
-		rtOpenedScroll.sizeDelta = Vector2.zero;
 		rtOpenedScroll.offsetMax = new Vector2(-75, -50);
 		rtOpenedScroll.offsetMin = new Vector2(75,0);
 	}

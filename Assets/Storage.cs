@@ -6,13 +6,9 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 
 	void Start () { // Warning: Sometimes gets called after the game has loaded and set each storage
 		stored = (string.IsNullOrEmpty(stored))? "Empty" : stored;
-		GameObject newunderlay = UnityEngine.Object.Instantiate(Data.ghosttemplate, this.gameObject.transform.position, this.gameObject.transform.rotation) as GameObject;
-		newunderlay.GetComponent<Tile>().transform.SetParent(this.gameObject.transform);
-		newunderlay.GetComponent<RectTransform>().transform.localPosition = Vector3.zero;
-		newunderlay.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
-		newunderlay.GetComponent<RectTransform>().localScale = Vector3.one;
+		GameObject newunderlay = UnityEngine.Object.Instantiate(Data.ghosttemplate, this.gameObject.transform.position, this.gameObject.transform.rotation, this.gameObject.transform) as GameObject;
 		newunderlay.GetComponent<Ghost>().lifespan = -1;
-		//this.gameObject.GetComponent<Tile>().Awake();
+		
 		this.gameObject.GetComponent<Tile>().underlay = newunderlay.GetComponent<Tile>();
 		this.gameObject.GetComponent<Tile>().ShowSprite(stored);
 		this.gameObject.GetComponent<Tile>().underlay.ShowSprite("Storage"); //TODO: Use a special storage sprite

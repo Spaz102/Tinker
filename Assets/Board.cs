@@ -38,21 +38,15 @@ public class Board : MonoBehaviour {
 	public void CreateBoard() { // Warning, only run once! (Or fix to clear old tiles)
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
-				GameObject newtile = UnityEngine.Object.Instantiate(Data.tiletemplate, new Vector3(), new Quaternion()) as GameObject;
-				newtile.GetComponent<Tile>().transform.SetParent(parentboard.transform);
+				GameObject newtile = UnityEngine.Object.Instantiate(Data.tiletemplate, new Vector3(), new Quaternion(), parentboard.transform) as GameObject;
 				newtile.GetComponent<RectTransform>().transform.localPosition = new Vector3(0, 0, 0);
-				newtile.GetComponent<RectTransform>().anchoredPosition = new Vector3((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) * (x + .5f) - (this.GetComponentInParent<RectTransform>().rect.width * .5f), (this.GetComponentInParent<RectTransform>().rect.height / boardWidth) * (y + .5f) - (this.GetComponentInParent<RectTransform>().rect.height * .5f));
-				newtile.GetComponent<RectTransform>().localScale = Vector3.one;
-				newtile.GetComponent<RectTransform>().sizeDelta = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) - this.GetComponentInParent<RectTransform>().rect.width, (this.GetComponentInParent<RectTransform>().rect.height / boardHeight) - this.GetComponentInParent<RectTransform>().rect.height);
+				newtile.GetComponent<RectTransform>().anchoredPosition = new Vector3((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) * (x + .5f) - (this.GetComponentInParent<RectTransform>().rect.width * .5f), (this.GetComponentInParent<RectTransform>().rect.height / boardWidth) * (y + .5f) - (this.GetComponentInParent<RectTransform>().rect.height * .5f), 0f);
 				
-				newtile.GetComponent<BoxCollider2D>().size = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth), (this.GetComponentInParent<RectTransform>().rect.width / boardWidth));
 				newtile.GetComponent<Interactive>().index = new Coord(x, y);
 				newtile.GetComponent<Interactive>().type = "Tile";
 				tile[x, y] = newtile.GetComponent<Tile>();
 
-				GameObject newunderlay = UnityEngine.Object.Instantiate(Data.ghosttemplate, new Vector3(), new Quaternion()) as GameObject;
-				newunderlay.GetComponent<Tile>().transform.SetParent(newtile.transform);
-				newunderlay.GetComponent<RectTransform>().sizeDelta = Vector2.one;
+				GameObject newunderlay = UnityEngine.Object.Instantiate(Data.ghosttemplate, new Vector3(), new Quaternion(), newtile.transform) as GameObject;
 				newunderlay.GetComponent<RectTransform>().transform.localPosition = new Vector3(0, 0, 0);
 				newunderlay.GetComponent<RectTransform>().localScale = Vector3.one;
 				newunderlay.GetComponent<Ghost>().lifespan = -1;
@@ -139,6 +133,8 @@ public class Board : MonoBehaviour {
 		
 		if (setto == "Rat" || setto == "NewRat") {
 			tile[target.x, target.y].StartBreathing();
+		} else {
+			tile[target.x, target.y].breathing = false;
 		}
 
 		foreach (Dependency checkMe in dependencies) { // Check if any storage was using this (panel) tile
@@ -209,15 +205,7 @@ public class Board : MonoBehaviour {
 						return false;
 					}
 				}
-			}
-			/*
-			foreach (Storage stored in storagelist) {
-				if (stored.stored != "Special") {
-					return false;
-				}
-			}
-			*/ // Can now break storage using the tool
-			// Else all spaces empty or storage; all storage filled with tools. The true game over
+			} // Else all spaces empty The true game over
 		} else if (Game.hand == "Rat") {
 			return false; // Can always either eat or be placed
 		} else {
@@ -581,7 +569,7 @@ public class Board : MonoBehaviour {
 		}
 	}
 
-	private void MoveRat(Coord rat) { //TODO: Upgrade ai as needed for difficulty (Period of time before they start eating, aim towards high value)
+	private void MoveRat(Coord rat) {
 		Coord target = rat.Neighbors()[Game.rng.Next(rat.Neighbors().Count)]; // Guaranteed to always have at least two options (No board walls), so no worries there
 
 		if (this.state[target.x,target.y] == "Empty") {
@@ -595,7 +583,7 @@ public class Board : MonoBehaviour {
 				Set(rat, "Empty"); // To keep the rat's old position clear, set this after the spread
 				Set(target, "Empty");
 				Game.PlaySound("Crunch");
-				AnimatePoof(target, 1);
+				AnimatePoof(target, 1.5f);
 				foreach (Coord spot in target.Neighbors()) {
 					if (state[spot.x,spot.y] == "Empty") {
 						Set(spot, poop);
@@ -616,11 +604,7 @@ public class Board : MonoBehaviour {
 			return;
 		}
 		
-		GameObject newghost = Instantiate(Data.ghosttemplate, tile[start.x, start.y].gameObject.transform.position, tile[start.x, start.y].gameObject.transform.rotation) as GameObject;
-
-		newghost.GetComponent<Tile>().transform.SetParent(parentboard.transform);
-		newghost.GetComponent<RectTransform>().sizeDelta = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) + newghost.GetComponent<RectTransform>().sizeDelta.x, (this.GetComponentInParent<RectTransform>().rect.height / boardHeight) + newghost.GetComponent<RectTransform>().sizeDelta.y);
-		newghost.GetComponent<RectTransform>().localScale = Vector3.one;
+		GameObject newghost = Instantiate(Data.ghosttemplate, tile[start.x, start.y].gameObject.transform.position, tile[start.x, start.y].gameObject.transform.rotation, parentboard.transform) as GameObject;
 
 		newghost.GetComponent<UnityEngine.UI.Image>().sprite = Data.tiledefs[sprite].sprite;
 		newghost.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, Data.tiledefs[sprite].opacity);
@@ -631,16 +615,12 @@ public class Board : MonoBehaviour {
 
 
 
-	public void AnimatePoof(Coord target, float size) {
+	public void AnimatePoof(Coord target, float size) { // TODO: Longer duration poofs
 		if (!Game.settings.dust) {
 			return;
 		}
-		GameObject newghost = UnityEngine.Object.Instantiate(Data.ghosttemplate, tile[target.x,target.y].gameObject.transform.position, tile[target.x,target.y].gameObject.transform.rotation) as GameObject;
-
-		newghost.GetComponent<Tile>().transform.SetParent(parentboard.transform);
-		newghost.GetComponent<RectTransform>().sizeDelta = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) + newghost.GetComponent<RectTransform>().sizeDelta.x, (this.GetComponentInParent<RectTransform>().rect.height / boardHeight) + newghost.GetComponent<RectTransform>().sizeDelta.y);
-		newghost.GetComponent<RectTransform>().localScale = Vector3.one;
-
+		GameObject newghost = UnityEngine.Object.Instantiate(Data.ghosttemplate, tile[target.x,target.y].gameObject.transform.position, tile[target.x,target.y].gameObject.transform.rotation, parentboard.transform) as GameObject;
+		
 		newghost.GetComponent<UnityEngine.UI.Image>().sprite = Data.dustsprites[Random.Range(4,5)];
 		newghost.transform.rotation = Quaternion.Euler(0,0,Random.Range(0,360));
 
@@ -665,15 +645,10 @@ public class Board : MonoBehaviour {
 	}
 
 	public void CreateStorage(Coord bottomleft) { // Assumes 2x2 pattern for dependencies //TODO: Modify panel appearance when used in storage?
-		GameObject newstorage = UnityEngine.Object.Instantiate(Data.storagetemplate, new Vector3(), new Quaternion()) as GameObject;
+		GameObject newstorage = UnityEngine.Object.Instantiate(Data.storagetemplate, new Vector3(), new Quaternion(), parentboard.transform) as GameObject;
 		
-		newstorage.GetComponent<Tile>().transform.SetParent(parentboard.transform);
-	
-		newstorage.GetComponent<RectTransform>().sizeDelta = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) + newstorage.GetComponent<RectTransform>().sizeDelta.x, (this.GetComponentInParent<RectTransform>().rect.height / boardHeight) + newstorage.GetComponent<RectTransform>().sizeDelta.y);
-		newstorage.GetComponent<RectTransform>().localScale = Vector3.one;
-		newstorage.GetComponent<BoxCollider2D>().size = new Vector2((this.GetComponentInParent<RectTransform>().rect.width / boardWidth), (this.GetComponentInParent<RectTransform>().rect.width / boardWidth));
-		newstorage.GetComponent<RectTransform>().transform.localPosition = Vector3.zero; 
-		newstorage.GetComponent<RectTransform>().anchoredPosition = new Vector3((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) * (bottomleft.x + 1f) - (this.GetComponentInParent<RectTransform>().rect.width * .5f), (this.GetComponentInParent<RectTransform>().rect.height / boardWidth) * (bottomleft.y + 1f) - (this.GetComponentInParent<RectTransform>().rect.height * .5f), 0f);
+		newstorage.GetComponent<RectTransform>().transform.localPosition = new Vector3(0, 0, -0.1f); 
+		newstorage.GetComponent<RectTransform>().anchoredPosition = new Vector3((this.GetComponentInParent<RectTransform>().rect.width / boardWidth) * (bottomleft.x + 1f) - (this.GetComponentInParent<RectTransform>().rect.width * .5f), (this.GetComponentInParent<RectTransform>().rect.height / boardWidth) * (bottomleft.y + 1f) - (this.GetComponentInParent<RectTransform>().rect.height * .5f), -0.1f);
 
 		storagelist.Add(newstorage.GetComponent<Storage>());
 
