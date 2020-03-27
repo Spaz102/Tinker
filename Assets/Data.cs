@@ -15,6 +15,7 @@ public static class Data {
 	public static Dictionary<string, AudioClip> audiofiles;
 	public static Sprite dustsprite;
 	public static Sprite[] dustsprites;
+	public static Sprite[] storageSprites;
 	public static Dictionary<string, bool> playerseen;
 	public static Dictionary<string, bool> playerread;
 
@@ -33,6 +34,7 @@ public static class Data {
 		dustsprites = Resources.LoadAll<Sprite>("Sprites/smokesheet");
 		dustsprite = Resources.Load<Sprite>("Sprites/Dust");
 		Sprite[] rawsprites = Resources.LoadAll<Sprite>("Sprites/Tinkerer");
+		storageSprites = Resources.LoadAll<Sprite>("Sprites/storage spritesheet");
 		tiledefs = new Dictionary<string, TileDef>();
 
 		tiledefs.Add("Empty", new TileDef("Empty", 0, "", null, 0f, 76, "Hello World", ""));
@@ -42,7 +44,8 @@ public static class Data {
 		tiledefs.Add("Stick", new TileDef("Stick", 28, "Seed", rawsprites[1], 1f, 3, "Stick with me, and we'll do great things", "Click"));
 		tiledefs.Add("Wood", new TileDef("Raw lumber", 10, "Stick", rawsprites[2], 1f, 1, "Shall I compare thee to a summer's day? Thou art more... Uh... Look, it's just some wood, ok?", "Click"));
 		tiledefs.Add("Plank", new TileDef("Wood plank", 4, "Wood", rawsprites[3], 1f, 0, "Resist the urge to imitate one", "Click"));
-		tiledefs.Add("Panel", new TileDef("Sturdy panel", 1, "Plank", rawsprites[4], 1f, 0, "It makes a decent coaster, if nothing else", "Click"));
+		tiledefs.Add("Panel", new TileDef("Sturdy panel", 1000, "Plank", rawsprites[4], 1f, 0, "It makes a decent coaster, if nothing else", "Click"));
+		//tiledefs.Add("Panel", new TileDef("Sturdy panel", 1, "Plank", rawsprites[4], 1f, 0, "It makes a decent coaster, if nothing else", "Click"));
 
 		tiledefs.Add("Dirt", new TileDef("Dirt", 127, "Empty", rawsprites[5], 1f, 5, "The humblest of beginnings. Clump together enough... and you'll still be disappointed", "Click"));
 		tiledefs.Add("Rock", new TileDef("Rock", 30, "Dirt", rawsprites[6], 1f, 3, "One day, I'll treat you to my conglomeration of rock puns", "Click"));

@@ -32,10 +32,15 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 		if (Data.tiledefs.TryGetValue(state, out temp)) {
 			this.GetComponent<UnityEngine.UI.Image>().sprite = temp.sprite;
 			this.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, temp.opacity);
-			Fade(temp.opacity);
+			Fade(temp.opacity); // Makes sure hidden tiles are still hidden
 		} else {
 			Debug.Log("bad tiledef");
 		}
+	}
+	public void ShowSprite(Sprite sprite) {
+		this.GetComponent<UnityEngine.UI.Image>().sprite = sprite;
+		this.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, 1);
+		Fade(1); // Makes sure hidden tiles are still hidden
 	}
 
 	public void Fade(float amount) { // Currently only used to hide tiles during animations - and for the hand

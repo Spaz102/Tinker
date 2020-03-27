@@ -141,13 +141,13 @@ public class Board : MonoBehaviour {
 		foreach (Dependency checkMe in dependencies) { // Check if any storage was using this (panel) tile
 			if (target.x == checkMe.dependsOn.x && target.y == checkMe.dependsOn.y && checkMe.dependent != null) { // If this tile was being depended on, its dependents die
 				if (storagelist.Remove(checkMe.dependent.GetComponent<Storage>())) { // No longer a valid storage area; returns true if it was considered one
+					//RedrawAllStorage();
 					//TODO: Unique storage-destruction animation
 				}
 				GameObject.Destroy(checkMe.dependent); // Warning: The object must purge itself from the dependencies list during OnDestroy() (Can't be done here, as the object is not yet null, and there is no exposed list of objects soon to be destroyed)
 			}
 		}
-
-		
+		//TODO: Somehow force redraw storage shapes here, instead of on storage object deletion (Which is when the board knows which dependencies are still active)
 	}
 
 	public void SetBoard(string[,] setTo) {
@@ -234,6 +234,7 @@ public class Board : MonoBehaviour {
 				}
 			}
 		}
+		RedrawAllStorage();
 	}
 
 	public void CleanUp() {
@@ -474,6 +475,9 @@ public class Board : MonoBehaviour {
 		foreach (Coord newstore in newstorage) {
 			CreateStorage(newstore);
 		}
+		if (newstorage.Count > 0) {
+			RedrawAllStorage();
+		}
 	}
 
 	public string[,] CheckContiguous(string findme, Coord target, ref int counter, string[,] oldboard) { // Do NOT look for contiguous "Empty"!
@@ -631,8 +635,8 @@ public class Board : MonoBehaviour {
 	}
 
 	public void ClearHighlights() {
-		for (int x = 0; x < tile.GetLength(0); x++) {
-			for (int y = 0; y < tile.GetLength(0); y++) {
+		for (int y = 0; y < boardHeight; y++) {
+			for (int x = 0; x < boardWidth; x++) {
 				tile[x,y].underlay.ShowSprite("Empty");
 			}
 		}
@@ -657,6 +661,73 @@ public class Board : MonoBehaviour {
 		Game.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x+1, bottomleft.y)));
 		Game.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x, bottomleft.y+1)));
 		Game.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x+1, bottomleft.y+1)));
+	}
+
+	public void RedrawAround(Coord target) { // Redraws all panels surrounding a newly placed panel (which contributed to the creation of new storage)
+		for (int y = target.y - 1; y <= target.y + 1; y++) {
+			for (int x = target.x - 1; x <= target.x + 1; x++) {
+				Coord thisCoord = new Coord(x, y);
+				if (thisCoord.InBounds() && Game.board.state[thisCoord.x, thisCoord.y] == "Panel") {
+					RedrawPanel(thisCoord);
+				}
+			}
+		}
+	}
+
+	public void RedrawAllStorage() {
+		for (int y = 0; y < boardHeight; y++) {
+			for (int x = 0; x < boardWidth; x++) {
+				if (Game.board.state[x, y] == "Panel") {
+					RedrawPanel(new Coord(x, y));
+				}
+			}
+		}
+	}
+
+	public void RedrawPanel(Coord target) {
+		if (!HasDependents(target)) {
+			Game.board.tile[target.x, target.y].SmartShow("Panel");
+			return;
+		}
+		int magicNumber = 0;
+		int spriteIndex = 0;
+		if (IsStoragePanel(target.Up())) {
+			magicNumber += 1;
+		}
+		if (IsStoragePanel(target.Down())) {
+			magicNumber += 2;
+		}
+		if (IsStoragePanel(target.Left())) {
+			magicNumber += 4;
+		}
+		if (IsStoragePanel(target.Right())) {
+			magicNumber += 8;
+		}
+
+		spriteIndex = new int[] {-1, -1, -1, -1, -1, 8, 2, 5, -1, 6, 0, 3, -1, 7, 1, 4}[magicNumber];
+		if (spriteIndex < 0) { // This should be impossible in any board's final state, but is possible when destroying multiple storage areas in one click (The dependency list only updates when the objects are actually destroyed)
+			Game.board.tile[target.x, target.y].SmartShow("Panel");
+			return;
+			//Debug.Log("Something went horribly wrong in determining which panel sprite to show at " + target.x + ", " + target.y + ". Good luck?");
+		}
+
+		Game.board.tile[target.x, target.y].GetComponent<UnityEngine.UI.Image>().sprite = Data.storageSprites[spriteIndex];
+		Game.board.tile[target.x, target.y].GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, 1f);
+	}
+
+	public bool IsStoragePanel(Coord target) {
+		return (target.InBounds()
+			&& Game.board.state[target.x, target.y] == "Panel"
+			&& HasDependents(target));
+	}
+
+	public bool HasDependents(Coord target) { //TODO: Check if dependent is a storage object
+		foreach (Dependency dependency in Game.board.dependencies) {
+			if (dependency.dependsOn.Equals(target)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
 

@@ -43,5 +43,6 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 		if (this.gameObject.GetComponent<Tile>().underlay != null) {
 			GameObject.Destroy(this.gameObject.GetComponent<Tile>().underlay.gameObject);
 		}
+		Game.board.RedrawAllStorage();
 	}
 }
