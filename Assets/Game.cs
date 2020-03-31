@@ -83,10 +83,11 @@ public static class Game {
 		// Clear interface highlights
 		if (mouseover != null) { // Mousing over something interactive
 			if (mouseover.index == null) { // Mousing over an interface button, storage, etc
+				//TODO: Add a second underlay for the mousover highlight (Needs to show the storage core, the highlight, AND the previous resource)
 				foreach (Storage storage in board.storagelist) {
-					storage.gameObject.GetComponent<Tile>().underlay.ShowSprite("Storage");
+					//storage.gameObject.GetComponent<Tile>().ShowSprite("Storage");
 				}
-				mouseover.gameObject.GetComponent<Tile>().underlay.ShowSprite("Mouseover");
+				//mouseover.gameObject.GetComponent<Tile>().underlay.ShowSprite("Mouseover");
 			} else if (CanClick(board.state[mouseover.index.x, mouseover.index.y]) == "Win") { // Clicking a key onto a music box
 				board.tile[mouseover.index.x, mouseover.index.y].underlay.ShowSprite("Mouseover"); // TODO: Something fancier?
 			} else if (CanClick(board.state[mouseover.index.x, mouseover.index.y]) != board.state[mouseover.index.x, mouseover.index.y]) { // Clicking will cause changes on the board

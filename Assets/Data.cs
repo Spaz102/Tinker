@@ -63,7 +63,7 @@ public static class Data {
 		tiledefs.Add("MusicBox", new TileDef("Mechanical box", 0, "", rawsprites[16], 1f, 0, "What kind of box needs a key, but isn't locked?", "Click"));
 		tiledefs.Add("Special", new TileDef("Lift-o-matic", 19, "", rawsprites[17], 1f, 0, "You have in your hand, a great tool for picking things up. Also, you're holding something", "Wrench"));
 		tiledefs.Add("Rat", new TileDef("Rattus norvegicus", 10, "Rat", rawsprites[18], 1f, 3, "Ugly, but also cute! Kind of like a pug, except it will eat anything and won't drool. Why do people like pugs?", "Rat"));
-		tiledefs.Add("Storage", new TileDef("Storage space", 0, "", rawsprites[23], 0.3f, 0, "Put things down here, and you can pick them up again! This stackable storage is pretty much a miracle", "Pew_Pew-DKnight556-1379997159"));
+		tiledefs.Add("Storage", new TileDef("Storage space", 0, "", rawsprites[19], 1f, 0, "Put things down here, and you can pick them up again! This stackable storage is pretty much a miracle", "Pew_Pew-DKnight556-1379997159"));
 
 		tiledefs.Add("Junk1", new TileDef("Junk 'n stuff", 17, "", rawsprites[20], 1f, 1, "Hoarding is a disgusting habit. This is how you get rats", "Mirror Breaking-SoundBible.com-73239746"));
 		tiledefs.Add("Junk2", new TileDef("Scraps 'n stuff", 17, "", rawsprites[21], 1f, 1, "", "Glass Breaking-SoundBible.com-1765179538"));

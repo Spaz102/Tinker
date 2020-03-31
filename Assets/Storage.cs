@@ -5,13 +5,14 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 	public string stored; // The state of the actual tile being stored and displayed
 
 	void Start () { // Warning: Sometimes gets called after the game has loaded and set each storage
+		this.gameObject.GetComponent<Tile>().ShowSprite("Storage");
+		
 		stored = (string.IsNullOrEmpty(stored))? "Empty" : stored;
+
 		GameObject newunderlay = UnityEngine.Object.Instantiate(Data.ghosttemplate, this.gameObject.transform.position, this.gameObject.transform.rotation, this.gameObject.transform) as GameObject;
 		newunderlay.GetComponent<Ghost>().lifespan = -1;
-		
 		this.gameObject.GetComponent<Tile>().underlay = newunderlay.GetComponent<Tile>();
-		this.gameObject.GetComponent<Tile>().ShowSprite(stored);
-		this.gameObject.GetComponent<Tile>().underlay.ShowSprite("Storage"); //TODO: Use a special storage sprite
+		this.gameObject.GetComponent<Tile>().underlay.ShowSprite(stored);
 	}
 
 	public void OnMouseUpAsButton() { // Super naive implementation - just swaps hand and stored; then saves the game
@@ -28,14 +29,13 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 
 	public void Set(string setTo) {
 		stored = setTo;
-		this.gameObject.GetComponent<Tile>().ShowSprite(stored);
 	}
 
 	public void OnMouseEnter() { // Seems to work via raytracing, so no need to worry about layers or z-fighting if it isn't happening visually
 		this.gameObject.GetComponent<Tile>().underlay.ShowSprite("Mouseover");
 	}
 	public void OnMouseExit() { //TODO: Add check for if program focus lost/regained? (Add a pause screen)
-		this.gameObject.GetComponent<Tile>().underlay.ShowSprite("Storage");
+		this.gameObject.GetComponent<Tile>().underlay.ShowSprite(stored);
 	}
 
 	public void OnDestroy() { // Unity calls this just before the object is actually destroyed

@@ -102,6 +102,7 @@ public class Board : MonoBehaviour {
 		foreach (Storage stored in storagelist) {
 			storageString += stored.stored + ",";
 		}
+		storageString = storageString.Trim(new char[] {','});
 		PlayerPrefs.SetString("storage", storageString);
 
 		string seenRaw = "";
@@ -415,12 +416,11 @@ public class Board : MonoBehaviour {
 							Highlight(found.x + 1, found.y, "Highlight");
 							Highlight(found.x, found.y + 1, "Highlight");
 							Highlight(found.x + 1, found.y + 1, "Highlight");
-
 						} else {
-							Animate(new Coord(found.x, found.y), new Coord(found.x, found.y), resolved, "Storage", "Slide", "Storage");
-							Animate(new Coord(found.x + 1, found.y), new Coord(found.x + 1, found.y), resolved, "Storage", "Slide");
-							Animate(new Coord(found.x, found.y + 1), new Coord(found.x, found.y + 1), resolved, "Storage", "Slide");
-							Animate(new Coord(found.x + 1, found.y + 1), new Coord(found.x + 1, found.y + 1), resolved, "Storage", "Slide");
+							Animate(new Coord(found.x, found.y), new Coord(found.x + 1, found.y), resolved, "Panel", "Slide", "Storage"); //TODO: Audio immediately instead of after animation?
+							Animate(new Coord(found.x + 1, found.y), new Coord(found.x + 1, found.y + 1), resolved, "Panel", "Slide");
+							Animate(new Coord(found.x, found.y + 1), new Coord(found.x, found.y), resolved, "Panel", "Slide");
+							Animate(new Coord(found.x + 1, found.y + 1), new Coord(found.x, found.y + 1), resolved, "Panel", "Slide");
 
 							newstorage.Add(found);
 						}
