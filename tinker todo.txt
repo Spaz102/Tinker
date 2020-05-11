@@ -4,11 +4,9 @@
 
 Graphical Assets:
 	- Finish game tiles
-	- Red 'x' for blueprints
 	- Red grid for blueprints
 	- Upscaled tileset (144 x 144)
 	- Lightbox
-		- Dark bg should peter off at the top to avoid the ugly 'edge'
 		- Fade out edges instead of using ragged 'page'
 	- Openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
 	- Closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body
