@@ -15,7 +15,6 @@ Core:
 	
 Bugs:
 	- some tile glow fx crosses sprite borders
-	- main game should always be near top of screen, even on 'tall' layout
 	- cannot support wide devices like ipads
 	
 GFX Assets:
