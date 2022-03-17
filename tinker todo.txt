@@ -2,6 +2,25 @@
 + Cur
 ++++++++++++
 
++ add popup functionality
+	? hardcoded or in 'data'?
+		- if hardcoded, should just make different containers and swap them in/out.
+	- mostly hardcoded, call popup(type,(msg)) ... allowing for various error msgs or w/e, and also allowing for custom popups as needed
+	
++ go through all code, comment, refactor, restructure
+	- make an audio.cs
+	- all cs files get a header comment and all non-stub functions get one
+	- all top level variables get one too
+	- determine how to divide up ui controls, popups, interactive
+	- rename cs file game-logic
+	- need a 'main.cs'?
+	- UI item moving done all in one place. save details in data?
+	- change all buttons away from direct 'onclick' events so that it is all viewable from code
+	- write some doc about how scaling and graphics works atm...
+	- clean up scraps folder, reorg/move
+	
+- find a few audio files (paper scroll noises)
+
 ++++++++++++
 + Main
 ++++++++++++
@@ -16,6 +35,8 @@ Core:
 Bugs:
 	- some tile glow fx crosses sprite borders
 	- cannot support wide devices like ipads
+		- slide the scroll up across page to ensure enough height
+	- rat breathing a bit .... not centered on rat? using wrong metric to center breathe anim?
 	
 GFX Assets:
 	- Tiles: log, plank, storage, Spiked cylinder, spring battery, music box
@@ -25,7 +46,6 @@ GFX Assets:
 			- Somehow match the texture of the scroll surface
 			- Mousehover shows it slightly pulled down.
 		- Scroll ends - ↑↓ ui hints (Only if a really good graphic is found?)
-		- OpenScroll Codex path arrows (see UI todo) - https://app.diagrams.net/#G1eGWl-wfE9w9VwvRRW0TPmbjkErIhY_ZF
 	- Option buttons
 		- Mute, credits, player stats, dust toggle, new/reset game
 	- 'rotateable' icon? (Could sneak this into a tutorial, by showing it done the "wrong" way)
@@ -37,11 +57,12 @@ GFX Assets:
 		- Cup
 		- something flat like a map, drawings/notes (hints?)
 
-UI:
+UI Code:
 	- Lightbox
 		- Fade out edges instead of using ragged 'page'
 	- Item glow underlays? Or just using breathing?
 	- Codex:
+		- reveal paths as needed + pen scritching sound
 		- ClosedScroll show/hide glow image when there's a new entry
 		- OpenScroll
 			- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)
