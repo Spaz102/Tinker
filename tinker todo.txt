@@ -1,41 +1,54 @@
-﻿Gameplay:
+﻿++++++++++++
++ Cur
+++++++++++++
+
+++++++++++++
++ Main
+++++++++++++
+
+- Thematic Fonts
+
+Core:
 	- Save/load settings, tutorials seen
 	- Clicking on the game board should not close the lightbox
-
-Graphical Assets:
-	- Finish game tiles
-	- Red grid for blueprints
-	- Upscaled tileset (144 x 144)
-	- Lightbox
-		- Fade out edges instead of using ragged 'page'
-	- Openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
-	- Closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body
-		- Somehow match the texture of the scroll surface
-		- Mousehover shows it slightly pulled down.
-	- Scroll ends - ↑↓ ui hints (Only if a really good graphic is found?)
+	- Compile for web, Android
+	
+Bugs:
+	- some tile glow fx crosses sprite borders
+	- main game should always be near top of screen, even on 'tall' layout
+	- cannot support wide devices like ipads
+	
+GFX Assets:
+	- Tiles: log, plank, storage, Spiked cylinder, spring battery, music box
+	- Codex
+		- Openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
+		- Closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body
+			- Somehow match the texture of the scroll surface
+			- Mousehover shows it slightly pulled down.
+		- Scroll ends - ↑↓ ui hints (Only if a really good graphic is found?)
+		- OpenScroll Codex path arrows (see UI todo) - https://app.diagrams.net/#G1eGWl-wfE9w9VwvRRW0TPmbjkErIhY_ZF
 	- Option buttons
 		- Mute, credits, player stats, dust toggle, new/reset game
 	- 'rotateable' icon? (Could sneak this into a tutorial, by showing it done the "wrong" way)
-	- Codex path arrows
-	- Item glow underlays? Or just using breathing?
+	- Red grid for blueprints
 	- Misc desk decorations
 		- Tool rack
 			- Leather-wrapped rolls of tools
 		- Clamps
 		- Cup
-	- Fonts
+		- something flat like a map, drawings/notes (hints?)
 
-Other Graphics:
-	- Idle "animations" (?)
-	- Rat poop dust poof (Needs longer duration than current poofs allow)
-
-Interface:
-	- ClosedScroll show/hide glow image when there's a new entry
-	- OpenScroll
-		- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)
-		- Mouseover to show clickable
-		- Unread tiles ('breathing' glow effect)
-	- LighBoxes/Recipes
+UI:
+	- Lightbox
+		- Fade out edges instead of using ragged 'page'
+	- Item glow underlays? Or just using breathing?
+	- Codex:
+		- ClosedScroll show/hide glow image when there's a new entry
+		- OpenScroll
+			- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)
+			- Mouseover to show clickable
+			- Unread tiles ('breathing' glow effect)
+	- LightBoxes/Recipes
 		- Rearrange as per little yellow note. 1 main layout + 1 for storage + 1 for grabber
 		- Update flavour text 
 			- include item name (title to be removed)
@@ -48,7 +61,7 @@ Interface:
 		- Hand icon on right side 'holding' current item, no cursor
 		- Two-click mode (on by default)
 	- Dust mote momentum tuning on scrollopen/close/scroll
-	
+		
 Popups (With or without special animations, sounds, menus etc):
 	- First Load/tutorial
 	- Later Loads?
@@ -59,7 +72,7 @@ Popups (With or without special animations, sounds, menus etc):
 	- Death
 	- Credits
 	- Player stats	
-
+	
 Audio:
 	- New sounds for remaining resources
 	- Random pitch/tempo?
@@ -68,12 +81,26 @@ Audio:
 	- Soundtrack/ambiance?
 		- 9th century Baghdad??
 		- https://en.wikipedia.org/wiki/Ban%C5%AB_M%C5%ABs%C4%81
-
-Misc:
-	- It is currently impossible to click (tool or rat) a tile that is wholly surrounded by storage
 		
-Eventually:
-	- Kong api
-	- Watch ad for next n pieces prediction
-	- Pay for 1-shot tool/handrat
-	- Levels
+++++++++++++
++ Future
+++++++++++++
+
+$:
+	+ Watch ad for next n pieces prediction
+	+ Pay for 1-shot tool/handrat
+	+ Levels
+	+ android mini bar ads
+	
+++++++++++++
++ Old
+++++++++++++
+
+- It is currently impossible to click (tool or rat) a tile that is wholly surrounded by storage
+
+GFX:
+	- Upscaled tileset (144 x 144)
+	- Idle "animations" (?)
+	- Rat poop dust poof (Needs longer duration than current poofs allow)
+	
+		
