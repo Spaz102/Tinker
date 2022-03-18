@@ -38,14 +38,14 @@ public static class Game {
 		mouseover = null;
 		cursor.transform.localScale = new Vector3(0.75f, 0.75f, 1);
 		settings = new Settings();
-		PlaySound("Startup");
+		Audio.PlaySound("Startup");
 	}
 
 	public static void Update () {
 		Idle();
 		MoveHand();
 		if (board.CheckGameOver()) {
-			PlaySound("GameOver");
+			Audio.PlaySound("GameOver");
 			Debug.Log("You lose. Good day, sir!");
 			board.CleanUp();
 			SetHand("Random");
@@ -135,12 +135,12 @@ public static class Game {
 		idletime = 0;
 		string result = CanClick(board.state[queuedClick.x,queuedClick.y]);
 		if (result == "Win") {
-			Game.PlaySound("Byebye");
+			Audio.PlaySound("Byebye");
 			Debug.Log("You win"); // TODO: Win popup
 			SetHand("Random");
 			board.Set(queuedClick, "Empty");
 		} else if (result != board.state[queuedClick.x,queuedClick.y]) { // A click is possible
-			PlaySound(hand);
+			Audio.PlaySound(hand);
 			if (hand == "Special") {
 				Data.playerseen["Special"] = true;
 				SetHand(board.state[queuedClick.x,queuedClick.y]);
@@ -207,12 +207,6 @@ public static class Game {
 			}
 		}
 		return "Error";
-	}
-
-	public static void PlaySound(string name) {
-		if (settings.sound && !string.IsNullOrWhiteSpace(name) && Data.audiofiles.ContainsKey(name)) {
-			board.audiosrc.PlayOneShot(Data.audiofiles[name]);
-		}
 	}
 
 	public static void Idle() {

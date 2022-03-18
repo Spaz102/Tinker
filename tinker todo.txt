@@ -3,12 +3,9 @@
 ++++++++++++
 
 + add popup functionality
-	? hardcoded or in 'data'?
-		- if hardcoded, should just make different containers and swap them in/out.
 	- mostly hardcoded, call popup(type,(msg)) ... allowing for various error msgs or w/e, and also allowing for custom popups as needed
 	
 + go through all code, comment, refactor, restructure
-	- make an audio.cs
 	- all cs files get a header comment and all non-stub functions get one
 	- all top level variables get one too
 	- determine how to divide up ui controls, popups, interactive
@@ -18,6 +15,7 @@
 	- change all buttons away from direct 'onclick' events so that it is all viewable from code
 	- write some doc about how scaling and graphics works atm...
 	- clean up scraps folder, reorg/move
+	- audio handler should have data in it to all autocomplete on playsound()
 	
 - find a few audio files (paper scroll noises)
 

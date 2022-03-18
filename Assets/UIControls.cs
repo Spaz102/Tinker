@@ -55,7 +55,7 @@ public class UIControls: MonoBehaviour {
 	}
 
 	public void ToggleScroll() {
-		Game.PlaySound("Codex");
+		Audio.PlaySound("Codex");
 		//toggles
 		scrollopen = !scrollopen;
 		OpenedScroll.SetActive(scrollopen);
@@ -73,6 +73,6 @@ public class UIControls: MonoBehaviour {
 
 	public void ToggleDust() {
 		Game.settings.SetDust(!Game.settings.dust);
-		Game.PlaySound("Menu");
+		Audio.PlaySound("Menu");
 	}
 }

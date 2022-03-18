@@ -9,13 +9,13 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 	public string animationstyle;
 	public int lifespan;
 	int delay;
-	string audioEvent; // On complete for slide, on turnaround for bump
+	string sfx; // On complete for slide, on turnaround for bump
 
-	public void Spawn(string style, Vector3 target, int delay, bool freezeinputs, string audio = null) {
+	public void Spawn(string style, Vector3 target, int delay, bool freezeinputs, string sfx_name = null) {
 		this.animationstyle = style;
 		this.delay = delay;
 		this.start = this.gameObject.transform.position;
-		this.audioEvent = audio;
+		this.sfx = sfx_name;
 
 		if (style == "Slide" || style == "Bump") {
 			this.lifespan = Game.board.animationLength + delay + 1;
@@ -33,11 +33,11 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 		if (lifespan == -1) {
 			return; // Underlay; lasts forever
 		} else if (lifespan == 1) {
-			if (!string.IsNullOrEmpty(audioEvent) && animationstyle == "Slide") {
-				Game.PlaySound(audioEvent);
+			if (!string.IsNullOrEmpty(sfx) && animationstyle == "Slide") {
+				Audio.PlaySound(sfx);
 			}
 			Object.Destroy(this.gameObject);
-			//TODO: Check if it should play an audio file??
+			//TODO: Check if it should play an sfx file??
 			return;
 		}
 		lifespan--;
@@ -63,9 +63,9 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 	}
 
 	public void Bump() { // Rats' gnawing
-		if (!string.IsNullOrEmpty(audioEvent) && (float)lifespan / Game.board.animationLength > 0.5f) { // Bump at the halfway point?
-			Game.PlaySound(audioEvent);
-			this.audioEvent = null; // Make sure it only plays once
+		if (!string.IsNullOrEmpty(sfx) && (float)lifespan / Game.board.animationLength > 0.5f) { // Bump at the halfway point?
+			Audio.PlaySound(sfx);
+			this.sfx = null; // Make sure it only plays once
 		}
 		this.gameObject.transform.position = Vector3.Lerp(start, finish, Mathf.PingPong((float)lifespan * 2f / (float)Game.board.animationLength, 1f));
 	}

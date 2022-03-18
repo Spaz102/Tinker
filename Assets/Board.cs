@@ -10,7 +10,6 @@ public class Board : MonoBehaviour {
 
 	public GameObject parentboard;
 	public Text textbox;
-	public AudioSource audiosrc;
 
 	public Tile[,] tile; // Implicitly a ref
 	public string[,] state;
@@ -61,13 +60,13 @@ public class Board : MonoBehaviour {
 	public void ResetBoard() {
 		SetBoard("Clutter");
 		Game.SetHand("Random");
-		Game.PlaySound("Crunch");
+		Audio.PlaySound("Crunch");
 		SaveGame();
 	}
 
 	public void EmptyBoard() {
 		SetBoard("Empty");
-		Game.PlaySound("Byebye");
+		Audio.PlaySound("Byebye");
 		SaveGame();
 	}
 
@@ -587,7 +586,7 @@ public class Board : MonoBehaviour {
 			if (poop != "" && Random.Range(0, 3) > 0) { // The target is edible, and passes 2/3 chance
 				Set(rat, "Empty"); // To keep the rat's old position clear, set this after the spread
 				Set(target, "Empty");
-				Game.PlaySound("Crunch");
+				Audio.PlaySound("Crunch");
 				AnimatePoof(target, 1.5f);
 				foreach (Coord spot in target.Neighbors()) {
 					if (state[spot.x,spot.y] == "Empty") {
@@ -604,7 +603,7 @@ public class Board : MonoBehaviour {
 		}
 	}
 
-	public void Animate(Coord start, Coord finish, int delay, string sprite, string type, string audio = null) {
+	public void Animate(Coord start, Coord finish, int delay, string sprite, string type, string sfx_name = null) {
 		if (sprite == "Empty") {
 			return;
 		}
@@ -614,7 +613,7 @@ public class Board : MonoBehaviour {
 		newghost.GetComponent<UnityEngine.UI.Image>().sprite = Data.tiledefs[sprite].sprite;
 		newghost.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, Data.tiledefs[sprite].opacity);
 
-		newghost.GetComponent<Ghost>().Spawn(type, tile[finish.x, finish.y].gameObject.transform.position, delay * animationLength, true, audio);
+		newghost.GetComponent<Ghost>().Spawn(type, tile[finish.x, finish.y].gameObject.transform.position, delay * animationLength, true, sfx_name);
 		newghost.GetComponent<Tile>().Hide(tile[start.x, start.y].hidden); // Delay this animation until after it unhides
 	}
 

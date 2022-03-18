@@ -38,7 +38,7 @@ public static class Data {
 		tiledefs = new Dictionary<string, TileDef>();
 
 		tiledefs.Add("Empty", new TileDef("Empty", 0, "", null, 0f, 76, "Hello World", ""));
-		tiledefs.Add("NewRat", new TileDef("Temporary rat", 0, "", rawsprites[18], 1f, 0, "", "Rat")); // Correct/ideal audio?
+		tiledefs.Add("NewRat", new TileDef("Temporary rat", 0, "", rawsprites[18], 1f, 0, "", "Rat")); // Correct/ideal sfx_name?
 		
 		tiledefs.Add("Seed", new TileDef("Sapling", 96, "Empty", rawsprites[0], 1f, 5, "Why does it take three seeds to grow a single stick? Taxes.", "Click"));
 		tiledefs.Add("Stick", new TileDef("Stick", 28, "Seed", rawsprites[1], 1f, 3, "Stick with me, and we'll do great things", "Click"));
@@ -311,9 +311,9 @@ public static class Data {
 		audiofiles.Add("Byebye", Resources.Load<AudioClip>("Audio/bye_bye_son-Mike_Koenig-1260922981"));
 		audiofiles.Add("GameOver", Resources.Load<AudioClip>("Audio/Sad_Trombone-Joe_Lamb-665429450"));
 
-		foreach(string resource in tiledefs.Keys) { // Warning: Loads the same audio file multiple times, if used for multiple resources
-			if (!string.IsNullOrWhiteSpace(tiledefs[resource].audio)) {
-				audiofiles.Add(resource, Resources.Load<AudioClip>("Audio/" + tiledefs[resource].audio));
+		foreach(string resource in tiledefs.Keys) { // Warning: Loads the same sfx_name file multiple times, if used for multiple resources
+			if (!string.IsNullOrWhiteSpace(tiledefs[resource].sfx_name)) {
+				audiofiles.Add(resource, Resources.Load<AudioClip>("Audio/" + tiledefs[resource].sfx_name));
 			}
 		}
 
@@ -386,9 +386,9 @@ public class TileDef {
 	public Sprite sprite;
 	public float opacity;
 	public int startingChance; // The weight of this resource on the initial board state' distribution
-	public string audio; // The filename in the Audio resources folder
+	public string sfx_name; // The filename in the Audio resources folder
 
-	public TileDef(string name, int chanceToDraw, string edible, Sprite sprite, float opacity, int startingChance, string description, string audio) {
+	public TileDef(string name, int chanceToDraw, string edible, Sprite sprite, float opacity, int startingChance, string description, string sfx_name) {
 		this.name = name;
 		this.description = description;
 		this.chanceToDraw = chanceToDraw;
@@ -396,6 +396,6 @@ public class TileDef {
 		this.sprite = sprite;
 		this.opacity = opacity;
 		this.startingChance = startingChance;
-		this.audio = audio;
+		this.sfx_name = sfx_name;
 	}
 }
