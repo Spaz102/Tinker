@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+/// <summary>
+/// Core functionality (controls, clicking, startup) and holds core definitions
+/// </summary>
 public static class Game {
 	public static void Awake() {}
 	public static System.Random rng;
@@ -11,18 +14,23 @@ public static class Game {
 	public static Tile cursor;
 	public static Board board;
 	public static Blueprints blueprints;
-	
+
+	// Used in random drawing to hand
 	public static int handPoolSize;
 	public static int startingPoolSize;
 	public static string hand;
-	public static Interactive mouseover;
 
+	// Animations
+	public static Interactive mouseover;
 	public static int animationEnd;
 	public static Coord queuedClick;
 	public static int idletime;
 	
 	public static Settings settings;
 
+	/// <summary>
+	/// Game Constructor - attaches cs logic to unity objects, starts rand seed, plays startup sound
+	/// </summary>
 	static Game () {
 		rng = new System.Random();
 		Data.Awake();
@@ -41,6 +49,9 @@ public static class Game {
 		Audio.PlaySound("Startup");
 	}
 
+	/// <summary>
+	/// Game tick
+	/// </summary>
 	public static void Update () {
 		Idle();
 		MoveHand();
@@ -217,10 +228,16 @@ public static class Game {
 	}
 }
 
-public class Coord { // [0,0] is bottom left corner
+/// <summary>
+/// Board coordinate system [0,0] is bottom left corner 
+/// </summary>
+public class Coord { 
 	public int x; // Left to right
 	public int y; // Bottom to top
 
+	/// <summary>
+	/// [0,0] is bottom left corner 
+	/// </summary>
 	public Coord(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -254,50 +271,5 @@ public class Coord { // [0,0] is bottom left corner
 
 	public bool Equals(Coord other) {
 		return (this.x == other.x && this.y == other.y);
-	}
-}
-
-public class Settings {
-	public bool dust;
-	public bool sound;
-	private GameObject[] dustList;
-
-	public Settings() {
-		dustList = GameObject.FindGameObjectsWithTag("Dust");
-
-		if (PlayerPrefs.HasKey("dust")) {
-			dust = true;
-			SetDust(PlayerPrefs.GetInt("dust") == 1);
-		} else {
-			dust = true;
-			PlayerPrefs.SetInt("dust", 1);
-			PlayerPrefs.Save();
-		}
-
-		if (PlayerPrefs.HasKey("sound")) {
-			sound = PlayerPrefs.GetInt("sound") == 1;
-		} else {
-			sound = true;
-			PlayerPrefs.SetInt("sound", 1);
-			PlayerPrefs.Save();
-		}
-	}
-
-	public void SetDust(bool setting) { //TODO: Update interface
-		if (setting == dust) return;
-
-		dust = setting;
-		if (setting) {
-			PlayerPrefs.SetInt("dust", 1);
-			foreach (GameObject found in dustList) {
-				found.SetActive(true);
-			}
-		} else {
-			PlayerPrefs.SetInt("dust", 0);
-			foreach (GameObject found in dustList) {
-				found.SetActive(false);
-			}
-		}
-		PlayerPrefs.Save();
 	}
 }

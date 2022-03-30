@@ -6,18 +6,21 @@
 	- mostly hardcoded, call popup(type,(msg)) ... allowing for various error msgs or w/e, and also allowing for custom popups as needed
 	
 + go through all code, comment, refactor, restructure
-	- all cs files get a header comment and all non-stub functions get one
-	- all top level variables get one too
+	? rename game.cs to core (it doesn't have much actual game logic)
+	? rename board.cs game-logic?
+	- Comments: classes, non-stub fns, public variables, params as needed
+		- use ///<summary><param name="x"><example><code>
+	- reduce scope of public variables (most shouldn't need to be public)
 	- determine how to divide up ui controls, popups, interactive
-	- rename cs file game-logic
-	- need a 'main.cs'?
-	- UI item moving done all in one place. save details in data?
-	- change all buttons away from direct 'onclick' events so that it is all viewable from code
-	- write some doc about how scaling and graphics works atm...
-	- clean up scraps folder, reorg/move
-	- audio handler should have data in it to all autocomplete on playsound()
+
+- change all buttons away from direct 'onclick' events so that it is all viewable from code (settings)
+- write some doc about how scaling and graphics works atm...
+- clean up scraps folder, reorg/move
+	? audio handler should have data in it to all autocomplete on playsound()
 	
 - find a few audio files (paper scroll noises)
+
+- each faux scene (that is off board for visibility in editor) should exist in a full screen size container object. This makes moving it into place easy... just make size 100% of main
 
 ++++++++++++
 + Main
@@ -103,6 +106,8 @@ Audio:
 ++++++++++++
 + Future
 ++++++++++++
+
+- generate the codex objects from data
 
 $:
 	+ Watch ad for next n pieces prediction
