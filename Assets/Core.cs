@@ -13,7 +13,7 @@ public static class Core {
 	public static Canvas mainCanvas;
 	public static Tile cursor;
 	public static Board board;
-	public static Blueprints blueprints;
+	public static Codex blueprints;
 
 	// Used in random drawing to hand
 	public static int handPoolSize;
@@ -41,7 +41,7 @@ public static class Core {
 		board = GameObject.Find("PlayArea").GetComponent<Board>();
 		mainCanvas = GameObject.Find("Main Canvas").GetComponent<Canvas>();
 		cursor = GameObject.Find("Hand").GetComponent<Tile>();
-		blueprints = GameObject.Find("CodexContainer").GetComponent<Blueprints>();
+		blueprints = GameObject.Find("CodexContainer").GetComponent<Codex>();
 		
 		mouseover = null;
 		cursor.transform.localScale = new Vector3(0.75f, 0.75f, 1);

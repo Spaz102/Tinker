@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Blueprints : MonoBehaviour {
+/// <summary>
+/// Handler for the blueprint ui element (loads the needed blueprint_page and hands off to it)
+/// </summary>
+public class Codex : MonoBehaviour {
 	public Blueprint_Page statBlueprint;
 	public Blueprint_Page setBlueprint;
 	public Blueprint_Page specBlueprint;
@@ -20,6 +23,9 @@ public class Blueprints : MonoBehaviour {
 		Recalc();
 	}
 
+	/// <summary>
+	/// After change, recalc which Codecs should be shown/highlit
+	/// </summary>
 	public void Recalc () {
 		foreach (Tile butt in buttons) {
 			if (!Data.playerseen.ContainsKey(butt.tiletype)) { // Doesn't exist
@@ -37,11 +43,30 @@ public class Blueprints : MonoBehaviour {
 		}
 	}
 
+	public bool CanMake(string showme)
+	{ // Can it be made with known ingredients?
+		if (!Data.patternresults.ContainsKey(showme))
+		{ // Not craftable, like dirt/tools
+			return true;
+		}
+		foreach (string required in Data.patternresults[showme].value)
+		{
+			if (required != "" && required != "Empty" && !Data.playerseen[required])
+			{ // Contains an unseen ingredient
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public void CodexClick() {
 		string tiletype = EventSystem.current.currentSelectedGameObject.GetComponent<Tile>().tiletype;
 		OpenRecipe(tiletype);
 	}
 
+	/// <summary>
+	/// Given selected tiletype (through click or other script), open the appropriate bp page
+	/// </summary>
 	public void OpenRecipe(string tiletype) { // Also show entries for uncraftable tiles (Eg: Dirt)
 		if (!CanMake(tiletype) && !Data.playerseen[tiletype])
 		{
@@ -91,17 +116,5 @@ public class Blueprints : MonoBehaviour {
 				break;
 			}
 		}
-	}
-
-	public bool CanMake (string showme) { // Can it be made with known ingredients?
-		if (!Data.patternresults.ContainsKey(showme)) { // Not craftable, like dirt/tools
-			return true;
-		}
-		foreach (string required in Data.patternresults[showme].value) {
-			if (required != "" && required != "Empty" && !Data.playerseen[required]) { // Contains an unseen ingredient
-				return false;
-			}
-		}
-		return true;
 	}
 }

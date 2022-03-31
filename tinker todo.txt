@@ -2,27 +2,57 @@
 + Cur
 ++++++++++++
 
-+ add popup functionality
-	- mostly hardcoded, call popup(type,(msg)) ... allowing for various error msgs or w/e, and also allowing for custom popups as needed
-	
++ make a dev doc
+	- code style guide
+		- decide on camelcase or underlines and make uniform
+		- comment locations
+	- ui/scaling info guide
+	- folder layout
+
+
 + go through all code, comment, refactor, restructure
-	- Comments: classes, non-stub fns, public variables, params as needed
+	- Comments: classes, non-stub fns, public variables, params as needed, #region comments
 		- use ///<summary><param name="x"><example><code>
 	- reduce scope of public variables (most shouldn't need to be public)
 	- determine how to divide up ui controls, popups, interactive
+	
+	Audio - ok
+	BP_P - using showing[0] is pretty jank .. handling the 3 types of BP invisibly like this is ... bad.
+			- should have a blueprint object with a type and tiletype
+		- recalc() should be redisplay... it isn't calcing anything ...
+		- regroup functions with breaks (major/helper)
+		- move ui content to data?
+	Codex - deal with bp_p rework
+	Board - cut down ... does it need animations? rat control? animate poof? storage stuff?
+		++
+	Core ++
+	Data - add blueprint ui data (new)
+		- comments 
+	Mote/Ghost - standalone... works fine
+	Interactive - ?
+	Options - does nothing? delete? intended body went to settings
+	Popups - only a stub atm
+	Settings - change to static? (use audio as a model?)
+		++
+	Storage ?
+	Tile ?
+	UI - rename uihandler
 
-- change all buttons away from direct 'onclick' events so that it is all viewable from code (settings)
-- write some doc about how scaling and graphics works atm...
+- change all buttons away from direct unity style 'onclick' events so that it is all viewable from code (settings)
+
 - clean up scraps folder, reorg/move
-	? audio handler should have data in it to all autocomplete on playsound()
+	
+? audio handler should have data in it to allow autocomplete on playsound() ... really everything in data should be able to do this
 	
 - find a few audio files (paper scroll noises)
 
 - each faux scene (that is off board for visibility in editor) should exist in a full screen size container object. This makes moving it into place easy... just make size 100% of main
 
-+ bug - storage bin graphic jank after merging ... only in top 2 rows
++ finish storage blueprint_page (spec) ui
 
-+ finish storage blueprint ui
++ add popup functionality
+	- mostly hardcoded, call popup(type,(msg)) ... allowing for various error msgs or w/e, and also allowing for custom popups as needed
+	- model on blueprints ... after fixing BP_P
 
 ++++++++++++
 + Main
@@ -40,6 +70,7 @@ Bugs:
 	- cannot support wide devices like ipads
 		- slide the scroll up across page to ensure enough height
 	- rat breathing a bit .... not centered on rat? using wrong metric to center breathe anim?
+	+ bug - storage bin graphic jank after merging ... only in top 2 rows
 	
 GFX Assets:
 	- Tiles: log, plank, storage, Spiked cylinder, spring battery, music box
@@ -109,7 +140,7 @@ Audio:
 + Future
 ++++++++++++
 
-- generate the codex objects from data
++ generate the codex objects from data
 
 $:
 	+ Watch ad for next n pieces prediction
@@ -118,7 +149,7 @@ $:
 	+ android mini bar ads
 	
 ++++++++++++
-+ Old
++ Old?
 ++++++++++++
 
 - It is currently impossible to click (tool or rat) a tile that is wholly surrounded by storage
