@@ -11,7 +11,7 @@ public class Blueprint_Page : MonoBehaviour {
 	public Text arrowText;
 	public bool showgrid; // For static blueprints to show geometric significance
 
-	void Start () {
+	void Awake () {
 		showing = new string[10];
 
 		this.gameObject.SetActive(false);

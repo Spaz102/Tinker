@@ -40,7 +40,6 @@ public class Blueprints : MonoBehaviour {
 	public void CodexClick() {
 		string tiletype = EventSystem.current.currentSelectedGameObject.GetComponent<Tile>().tiletype;
 		OpenRecipe(tiletype);
-		
 	}
 
 	public void OpenRecipe(string tiletype) { // Also show entries for uncraftable tiles (Eg: Dirt)
@@ -52,7 +51,10 @@ public class Blueprints : MonoBehaviour {
 		
 		Data.playerread[tiletype] = true;
 		Recalc();
-		if (Data.devmode) { Game.SetHand(tiletype); }
+		if (Data.devmode) {
+			if (tiletype == "Storage") { Core.SetHand("Panel"); }
+			else { Core.SetHand(tiletype); }
+		}
 
 		UIControls.LightBox.SetActive(true);
 		if (tiletype == "Storage") {
