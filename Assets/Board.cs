@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+/// <summary>
+/// Game logic. Control tiles/rats on the board, save/load/new game, game state, pattern matches, animations
+/// </summary>
 public class Board : MonoBehaviour {
 	public int boardWidth = 7;
 	public int boardHeight = 7;

@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/// <summary>
+/// Unity containters for a blueprint. There are 3 types: statBlueprint, setBlueprint, specBlueprint defined in Blueprints.cs
+/// </summary>
 public class Blueprint_Page : MonoBehaviour {
 	public Tile[] displayTiles;
 	public string[] showing;
@@ -11,6 +14,9 @@ public class Blueprint_Page : MonoBehaviour {
 	public Text arrowText;
 	public bool showgrid; // For static blueprints to show geometric significance
 
+	/// <summary>
+	/// Awake runs on insantiation. 'Start' is a JIT feature
+	/// </summary>
 	void Awake () {
 		showing = new string[10];
 
@@ -24,6 +30,10 @@ public class Blueprint_Page : MonoBehaviour {
 		showing[0] = (tiletype == "Junk2" || tiletype == "Junk3")? "Junk1" : tiletype;
 		Recalc();
 	}
+
+	/// <summary>
+	/// Given a tiletype in 'showing[0]' (the selected tiletype) this will rearrange what appears on the blueprint page popup
+	/// </summary>
 	public void Recalc() {
 		if (showing == null || showing[0] == null || showing[0] == "" || !Data.tiledefs.ContainsKey(showing[0])) {
 			Debug.Log(showing[0]);
