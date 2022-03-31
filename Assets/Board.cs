@@ -17,7 +17,7 @@ public class Board : MonoBehaviour {
 	public List<Dependency> dependencies;
 
 	public void Start() {
-		Game.Awake(); // Make sure it is instantiated before moving on
+		Core.Awake(); // Make sure it is instantiated before moving on
 		tile = new Tile[boardWidth, boardHeight];
 		state = new string[boardWidth, boardHeight];
 		dependencies = new List<Dependency>();
@@ -31,7 +31,7 @@ public class Board : MonoBehaviour {
 	}
 
 	public void Update() {
-		Game.Update();
+		Core.Update();
 	}
 
 	public void CreateBoard() { // Warning, only run once! (Or fix to clear old tiles)
@@ -59,7 +59,7 @@ public class Board : MonoBehaviour {
 
 	public void ResetBoard() {
 		SetBoard("Clutter");
-		Game.SetHand("Random");
+		Core.SetHand("Random");
 		Audio.PlaySound("Crunch");
 		SaveGame();
 	}
@@ -83,7 +83,7 @@ public class Board : MonoBehaviour {
 			//Data.playerread[key] = Data.playerread[key] || readRaw.ToCharArray()[index] == '1';
 			index++;
 		}
-		Game.SetHand(PlayerPrefs.GetString("hand"));
+		Core.SetHand(PlayerPrefs.GetString("hand"));
 		SetBoardFromCSV(PlayerPrefs.GetString("board"));
 		string[] stored = PlayerPrefs.GetString("storage").Split(',');
 		for (int n = 0; n < stored.Length; n++) {
@@ -96,7 +96,7 @@ public class Board : MonoBehaviour {
 
 	public void SaveGame() {
 		PlayerPrefs.SetString("board", GetBoardAsCSV());
-		PlayerPrefs.SetString("hand", Game.hand);
+		PlayerPrefs.SetString("hand", Core.hand);
 		string storageString = "";
 		foreach (Storage stored in storagelist) {
 			storageString += stored.stored + ",";
@@ -126,7 +126,7 @@ public class Board : MonoBehaviour {
 		}
 		if (!Data.playerseen[setto]) {
 			Data.playerseen[setto] = true;
-			Game.blueprints.Recalc();
+			Core.blueprints.Recalc();
 		}
 		
 		this.state[target.x,target.y] = setto;
@@ -162,7 +162,7 @@ public class Board : MonoBehaviour {
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
 				if (setTo == "Clutter") {
-					int remaining = Game.rng.Next(Game.startingPoolSize); // Pulls a random tile, with respect to relative chances
+					int remaining = Core.rng.Next(Core.startingPoolSize); // Pulls a random tile, with respect to relative chances
 					foreach (string key in Data.tiledefs.Keys) {
 						remaining -= Data.tiledefs[key].startingChance;
 						if (remaining < 0) {
@@ -199,7 +199,7 @@ public class Board : MonoBehaviour {
 	}
 
 	public bool CheckGameOver() { //TODO: Change to void; interpret from here instead of main loop
-		if (Game.hand == "Special") {
+		if (Core.hand == "Special") {
 			for (int y = 0; y < boardHeight; y++) {
 				for (int x = 0; x < boardWidth; x++) {
 					if (state[x, y] != "Empty") { //TODO: Also check if part of a storage bin
@@ -207,7 +207,7 @@ public class Board : MonoBehaviour {
 					}
 				}
 			} // Else all spaces empty The true game over
-		} else if (Game.hand == "Rat") {
+		} else if (Core.hand == "Rat") {
 			return false; // Can always either eat or be placed
 		} else {
 			for (int y = 0; y < boardHeight; y++) {
@@ -376,7 +376,7 @@ public class Board : MonoBehaviour {
 					} else {
 						int random = 0;
 						if (!test) {
-							random = Game.rng.Next(staticresults.Count);
+							random = Core.rng.Next(staticresults.Count);
 						} else {
 							// Highlight only first found. What else would look right?
 						}
@@ -443,7 +443,7 @@ public class Board : MonoBehaviour {
 							}
 						}
 					} else {
-						int random = Game.rng.Next(results.Count);
+						int random = Core.rng.Next(results.Count);
 						foreach (Coord spot in results[random]) {
 							string thisSound = (soundMade) ? null : Data.patterns[n].result;
 							soundMade = true;
@@ -574,7 +574,7 @@ public class Board : MonoBehaviour {
 	}
 
 	private void MoveRat(Coord rat) {
-		Coord target = rat.Neighbors()[Game.rng.Next(rat.Neighbors().Count)]; // Guaranteed to always have at least two options (No board walls), so no worries there
+		Coord target = rat.Neighbors()[Core.rng.Next(rat.Neighbors().Count)]; // Guaranteed to always have at least two options (No board walls), so no worries there
 
 		if (this.state[target.x,target.y] == "Empty") {
 			Set(target, "Rat");
@@ -620,7 +620,7 @@ public class Board : MonoBehaviour {
 
 
 	public void AnimatePoof(Coord target, float size) { // TODO: Longer duration poofs
-		if (!Game.settings.dust) {
+		if (!Core.settings.dust) {
 			return;
 		}
 		GameObject newghost = UnityEngine.Object.Instantiate(Data.ghosttemplate, tile[target.x,target.y].gameObject.transform.position, tile[target.x,target.y].gameObject.transform.rotation, parentboard.transform) as GameObject;
@@ -642,7 +642,7 @@ public class Board : MonoBehaviour {
 	}
 	public void Highlight(int x, int y, string show) {
 		if (x >= 0 && y >= 0 && x < boardWidth && y < boardHeight) {
-			if (Game.mouseover == null || x != Game.mouseover.index.x || y != Game.mouseover.index.y) {
+			if (Core.mouseover == null || x != Core.mouseover.index.x || y != Core.mouseover.index.y) {
 				tile[x,y].underlay.ShowSprite(show);
 			}
 		}
@@ -656,17 +656,17 @@ public class Board : MonoBehaviour {
 
 		storagelist.Add(newstorage.GetComponent<Storage>());
 
-		Game.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x, bottomleft.y)));
-		Game.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x+1, bottomleft.y)));
-		Game.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x, bottomleft.y+1)));
-		Game.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x+1, bottomleft.y+1)));
+		Core.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x, bottomleft.y)));
+		Core.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x+1, bottomleft.y)));
+		Core.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x, bottomleft.y+1)));
+		Core.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x+1, bottomleft.y+1)));
 	}
 
 	public void RedrawAround(Coord target) { // Redraws all panels surrounding a newly placed panel (which contributed to the creation of new storage)
 		for (int y = target.y - 1; y <= target.y + 1; y++) {
 			for (int x = target.x - 1; x <= target.x + 1; x++) {
 				Coord thisCoord = new Coord(x, y);
-				if (thisCoord.InBounds() && Game.board.state[thisCoord.x, thisCoord.y] == "Panel") {
+				if (thisCoord.InBounds() && Core.board.state[thisCoord.x, thisCoord.y] == "Panel") {
 					RedrawPanel(thisCoord);
 				}
 			}
@@ -676,7 +676,7 @@ public class Board : MonoBehaviour {
 	public void RedrawAllStorage() {
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
-				if (Game.board.state[x, y] == "Panel") {
+				if (Core.board.state[x, y] == "Panel") {
 					RedrawPanel(new Coord(x, y));
 				}
 			}
@@ -685,7 +685,7 @@ public class Board : MonoBehaviour {
 
 	public void RedrawPanel(Coord target) {
 		if (!HasDependents(target)) {
-			Game.board.tile[target.x, target.y].SmartShow("Panel");
+			Core.board.tile[target.x, target.y].SmartShow("Panel");
 			return;
 		}
 		int magicNumber = 0;
@@ -705,23 +705,23 @@ public class Board : MonoBehaviour {
 
 		spriteIndex = new int[] {-1, -1, -1, -1, -1, 8, 2, 5, -1, 6, 0, 3, -1, 7, 1, 4}[magicNumber];
 		if (spriteIndex < 0) { // This should be impossible in any board's final state, but is possible when destroying multiple storage areas in one click (The dependency list only updates when the objects are actually destroyed)
-			Game.board.tile[target.x, target.y].SmartShow("Panel");
+			Core.board.tile[target.x, target.y].SmartShow("Panel");
 			return;
 			//Debug.Log("Something went horribly wrong in determining which panel sprite to show at " + target.x + ", " + target.y + ". Good luck?");
 		}
 
-		Game.board.tile[target.x, target.y].GetComponent<UnityEngine.UI.Image>().sprite = Data.storageSprites[spriteIndex];
-		Game.board.tile[target.x, target.y].GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, 1f);
+		Core.board.tile[target.x, target.y].GetComponent<UnityEngine.UI.Image>().sprite = Data.storageSprites[spriteIndex];
+		Core.board.tile[target.x, target.y].GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, 1f);
 	}
 
 	public bool IsStoragePanel(Coord target) {
 		return (target.InBounds()
-			&& Game.board.state[target.x, target.y] == "Panel"
+			&& Core.board.state[target.x, target.y] == "Panel"
 			&& HasDependents(target));
 	}
 
 	public bool HasDependents(Coord target) { //TODO: Check if dependent is a storage object
-		foreach (Dependency dependency in Game.board.dependencies) {
+		foreach (Dependency dependency in Core.board.dependencies) {
 			if (dependency.dependsOn.Equals(target)) {
 				return true;
 			}

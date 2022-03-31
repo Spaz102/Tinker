@@ -72,7 +72,7 @@ public class UIControls: MonoBehaviour {
 	}
 
 	public void ToggleDust() {
-		Game.settings.SetDust(!Game.settings.dust);
+		Core.settings.SetDust(!Core.settings.dust);
 		Audio.PlaySound("Menu");
 	}
 }

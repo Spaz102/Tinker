@@ -17,14 +17,14 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 
 	public void OnMouseUpAsButton() { // Super naive implementation - just swaps hand and stored; then saves the game
 		if (stored == "Empty") {
-			Set(Game.hand);
-			Game.SetHand("Random");
+			Set(Core.hand);
+			Core.SetHand("Random");
 		} else {
 			string temp = stored;
-			Set(Game.hand);
-			Game.SetHand(temp);
+			Set(Core.hand);
+			Core.SetHand(temp);
 		}
-		Game.board.SaveGame();
+		Core.board.SaveGame();
 	}
 
 	public void Set(string setTo) {
@@ -39,10 +39,10 @@ public class Storage : MonoBehaviour { // Always accompanied by a Tile class
 	}
 
 	public void OnDestroy() { // Unity calls this just before the object is actually destroyed
-		Game.board.dependencies.RemoveAll(dep => dep.dependent == this.gameObject);
+		Core.board.dependencies.RemoveAll(dep => dep.dependent == this.gameObject);
 		if (this.gameObject.GetComponent<Tile>().underlay != null) {
 			GameObject.Destroy(this.gameObject.GetComponent<Tile>().underlay.gameObject);
 		}
-		Game.board.RedrawAllStorage();
+		Core.board.RedrawAllStorage();
 	}
 }

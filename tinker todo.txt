@@ -6,8 +6,6 @@
 	- mostly hardcoded, call popup(type,(msg)) ... allowing for various error msgs or w/e, and also allowing for custom popups as needed
 	
 + go through all code, comment, refactor, restructure
-	? rename game.cs to core (it doesn't have much actual game logic)
-	? rename board.cs game-logic?
 	- Comments: classes, non-stub fns, public variables, params as needed
 		- use ///<summary><param name="x"><example><code>
 	- reduce scope of public variables (most shouldn't need to be public)
@@ -21,6 +19,10 @@
 - find a few audio files (paper scroll noises)
 
 - each faux scene (that is off board for visibility in editor) should exist in a full screen size container object. This makes moving it into place easy... just make size 100% of main
+
++ bug - storage bin graphic jank after merging ... only in top 2 rows
+
++ finish storage blueprint ui
 
 ++++++++++++
 + Main

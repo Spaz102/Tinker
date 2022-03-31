@@ -7,19 +7,19 @@ public class Interactive : MonoBehaviour { // Warning: Needs the GameObject to a
 
 	public void OnMouseUpAsButton() {
 		if (type == "Tile") {
-			Game.QueueClick(this.index);
+			Core.QueueClick(this.index);
 		}
 	}
 	public void OnMouseEnter() { // Seems to work via raytracing, so no need to worry about layers or z-fighting if it isn't happening visually
-		Game.mouseover = this;
+		Core.mouseover = this;
 
-		Game.Mouseover();
+		Core.Mouseover();
 	}
 	public void OnMouseExit() { //TODO: Add check for if program focus lost/regained? (Add a pause screen)
 		if (type == "Tile") {
-			if (Game.mouseover == this) {
-				Game.mouseover = null;
-				Game.Mouseover();
+			if (Core.mouseover == this) {
+				Core.mouseover = null;
+				Core.Mouseover();
 			}
 
 		}

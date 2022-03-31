@@ -18,14 +18,14 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 		this.sfx = sfx_name;
 
 		if (style == "Slide" || style == "Bump") {
-			this.lifespan = Game.board.animationLength + delay + 1;
+			this.lifespan = Core.board.animationLength + delay + 1;
 			this.finish = target;
 		} else if (style == "Poof") {
 			this.lifespan = 10;
 		}
 
 		if (freezeinputs) {
-			Game.animationEnd = (int) Mathf.Max(Game.animationEnd, lifespan);
+			Core.animationEnd = (int) Mathf.Max(Core.animationEnd, lifespan);
 		}
 	}
 	
@@ -59,15 +59,15 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 	}
 
 	public void SlideTowards() {
-		this.gameObject.transform.position = Vector3.Lerp(finish, start, ((float)lifespan / (float)Game.board.animationLength)); // Reversed because it lerps from 1 to 0
+		this.gameObject.transform.position = Vector3.Lerp(finish, start, ((float)lifespan / (float)Core.board.animationLength)); // Reversed because it lerps from 1 to 0
 	}
 
 	public void Bump() { // Rats' gnawing
-		if (!string.IsNullOrEmpty(sfx) && (float)lifespan / Game.board.animationLength > 0.5f) { // Bump at the halfway point?
+		if (!string.IsNullOrEmpty(sfx) && (float)lifespan / Core.board.animationLength > 0.5f) { // Bump at the halfway point?
 			Audio.PlaySound(sfx);
 			this.sfx = null; // Make sure it only plays once
 		}
-		this.gameObject.transform.position = Vector3.Lerp(start, finish, Mathf.PingPong((float)lifespan * 2f / (float)Game.board.animationLength, 1f));
+		this.gameObject.transform.position = Vector3.Lerp(start, finish, Mathf.PingPong((float)lifespan * 2f / (float)Core.board.animationLength, 1f));
 	}
 
 	public void Grow(float amount) {
@@ -80,8 +80,8 @@ public class Ghost : MonoBehaviour { // Independant non-interactive Tile-like en
 	}
 
 	public void Pulse(float amount) { // Small for mouseover, medium for tile placement, large for pattern resolution
-		float scale = ((float)(Game.board.animationLength) - (float)lifespan) / (Game.board.animationLength); // 0 to 0.5f to 1
-		if (lifespan > (Game.board.animationLength/2)) {
+		float scale = ((float)(Core.board.animationLength) - (float)lifespan) / (Core.board.animationLength); // 0 to 0.5f to 1
+		if (lifespan > (Core.board.animationLength/2)) {
 			this.gameObject.transform.localScale = new Vector3((1 + scale*amount*2), (1 + scale*amount*2), 1); // 1 to 1+amount
 		} else {
 			this.gameObject.transform.localScale = new Vector3((1 + (1-scale)*amount*2), (1 + (1-scale)*amount*2), 1); // 1+amount to 1

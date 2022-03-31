@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Core functionality (controls, clicking, startup) and holds core definitions
 /// </summary>
-public static class Game {
+public static class Core {
 	public static void Awake() {}
 	public static System.Random rng;
 
@@ -31,7 +31,7 @@ public static class Game {
 	/// <summary>
 	/// Game Constructor - attaches cs logic to unity objects, starts rand seed, plays startup sound
 	/// </summary>
-	static Game () {
+	static Core () {
 		rng = new System.Random();
 		Data.Awake();
 		CalcHandPoolSize();
@@ -65,7 +65,7 @@ public static class Game {
 		if (animationEnd > 0) {
 			animationEnd--;
 		} else {
-			Game.Click();
+			Core.Click();
 		}
 	}
 
@@ -177,7 +177,7 @@ public static class Game {
 			if (result != "Empty") { // No time progressed for hand-rats, specials, or storage; even if they trigger a pattern (Only possible by putting a hole in a pattern where "Empty" is needed)
 				board.MoveRats();
 			}
-			Game.Mouseover();
+			Core.Mouseover();
 			board.SaveGame();
 		}
 		queuedClick = null;
@@ -210,7 +210,7 @@ public static class Game {
 		}
 	}
 	public static string GetRandom() { // Seed is int from 0-sum of all chancetodraw in tiledefs
-		int remaining = Game.rng.Next(handPoolSize); // Pulls a random tile, with respect to relative chances
+		int remaining = Core.rng.Next(handPoolSize); // Pulls a random tile, with respect to relative chances
 		foreach (string key in Data.tiledefs.Keys) {
 			remaining -= Data.tiledefs[key].chanceToDraw;
 			if (remaining < 0) {
@@ -259,14 +259,14 @@ public class Coord {
 	public List<Coord> Neighbors() {
 		List<Coord> results = new List<Coord>();
 		if (this.x - 1 >= 0) {results.Add(this.Left());}
-		if (this.x + 1 < Game.board.boardWidth) {results.Add(this.Right());}
+		if (this.x + 1 < Core.board.boardWidth) {results.Add(this.Right());}
 		if (this.y - 1 >= 0) {results.Add(this.Down());}
-		if (this.y + 1 < Game.board.boardHeight) {results.Add(this.Up());}
+		if (this.y + 1 < Core.board.boardHeight) {results.Add(this.Up());}
 		return results;
 	}
 
 	public bool InBounds() {
-		return (this.x >=0 && this.y >= 0 && this.x < Game.board.boardWidth && this.y < Game.board.boardHeight);
+		return (this.x >=0 && this.y >= 0 && this.x < Core.board.boardWidth && this.y < Core.board.boardHeight);
 	}
 
 	public bool Equals(Coord other) {

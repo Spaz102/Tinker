@@ -114,7 +114,7 @@ public class Blueprint_Page : MonoBehaviour {
 		if (showing[index] == "Panel" && !Data.playerseen["Panel"]) {
 			return;
 		} else if (showing[index] != "Empty") {
-			Game.blueprints.OpenRecipe(showing[index]);
+			Core.blueprints.OpenRecipe(showing[index]);
 		}
 	}
 }
