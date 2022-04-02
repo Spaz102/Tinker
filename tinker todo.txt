@@ -2,6 +2,10 @@
 + Cur
 ++++++++++++
 
++ Decide how ui should work ... all go through uicontrols or through handlers for each thing?
+	- how is this set up in core? have a uicontrol instance instead of blueprints, etc?
+	+ Decide which classes should be static ... need to build fewer objects
+
 + go through all code, comment, refactor, restructure
 	- Comments: classes, non-stub fns, public variables, params as needed, #region comments
 		- use ///<summary><param name="x"><example><code>
@@ -9,18 +13,18 @@
 	- determine how to divide up ui controls, popups, interactive
 	
 	Audio
-	BP_P
-		? rewrite to be a single unity object and put everything needed to load into /data
-	Codex - deal with bp_p rework
-	Board - cut down ... does it need animations? rat control? animate poof? storage stuff?
-		++
+	BPP ? rewrite to be a single unity object and put everything needed to load into /data
+	Board ++
+		- cut down ... does it need animations? rat control? animate poof? storage stuff?
+	Codex
 	Core ++
-	Data - add blueprint ui data (new)
+	Data ? add blueprint ui data (new)
 		- comments 
-	Mote/Ghost - standalone... works fine
-	Interactive - Does this need to exist?
+		++
+	Mote/Ghost
+	Interactive ? Does this need to exist?
 	Options - does nothing? delete? intended body went to settings
-	Popups - only a stub atm
+	Popup - only a stub atm
 	Settings - change to static? (use audio as a model?)
 		++
 	Storage ?
@@ -37,11 +41,9 @@
 
 - each faux scene (that is off board for visibility in editor) should exist in a full screen size container object. This makes moving it into place easy... just make size 100% of main
 
-+ finish storage blueprint_page (spec) ui
-
 + add popup functionality
 	- mostly hardcoded, call popup(type,(msg)) ... allowing for various error msgs or w/e, and also allowing for custom popups as needed
-	- model on blueprints ... after fixing BP_P
+	- model on blueprints
 
 ++++++++++++
 + Main
