@@ -1,0 +1,39 @@
+
+Code
+	Comments
+		Classes - /// <summary> comment minimum
+		Fns - main ones get a sum comment, where it is called from
+			- helpers point to the boss Fn
+		- explanatory comments go line before except for:
+			- if statements, then they go in opening curly bracket
+			- variable description goes same line since i'm not a madman
+		- blocks of code worth visually seperating get a 3 line comment /**/
+	Naming
+		Variables (instances) -  camelCase -  start lc
+		Classes - CamelCase start uc
+		C# - lower case (if, static)
+	Spacing
+		- no nl for opening {
+		- tabs not spaces.
+	- all logical binary statements get enclosed in ()
+	- large classes with multiple logical groupings are blocked by #region tags
+
+
+UI/Scaling/Graphics
+	(use px for pixels, u for unity scaling units)
+	Resolution
+		1080u * 1920u
+		Optimized for: 1080px * 1920px
+		Min ~ Max: 
+		Ratio widest~tallest: must be ~30% taller than wide to give space for codex
+			- too tall shouldn't be an issue, care about desk decorations though
+		Unity size:
+	Sizes
+		Tile
+
+Audio
+
+Folders
+
+Compiling info:
+	made in Unity 2019.3.4f1
