@@ -8,15 +8,11 @@ using UnityEngine.EventSystems;
 /// Handler for the blueprint ui element (loads the needed blueprint_page and hands off to it)
 /// </summary>
 public class Codex : MonoBehaviour {
-	public Blueprint_Page statBlueprint;
-	public Blueprint_Page setBlueprint;
-	public Blueprint_Page specBlueprint;
+	public BlueprintPage statBlueprint;
+	public BlueprintPage setBlueprint;
+	public BlueprintPage specBlueprint;
 
 	public Tile[] buttons;
-
-	//public Text headtext;
-	//public Text bodytext;
-	public void Awake(){}
 
 	void Start () {
 		buttons = this.gameObject.GetComponentsInChildren<Tile>();
@@ -51,8 +47,7 @@ public class Codex : MonoBehaviour {
 		}
 		foreach (string required in Data.patternresults[showme].value)
 		{
-			if (required != "" && required != "Empty" && !Data.playerseen[required])
-			{ // Contains an unseen ingredient
+			if (required != "" && required != "Empty" && !Data.playerseen[required]) { // Contains an unseen ingredient
 				return false;
 			}
 		}
@@ -61,19 +56,19 @@ public class Codex : MonoBehaviour {
 
 	public void CodexClick() {
 		string tiletype = EventSystem.current.currentSelectedGameObject.GetComponent<Tile>().tiletype;
-		OpenRecipe(tiletype);
+		OpenBlueprint(tiletype);
 	}
 
 	/// <summary>
 	/// Given selected tiletype (through click or other script), open the appropriate bp page
 	/// </summary>
-	public void OpenRecipe(string tiletype) { // Also show entries for uncraftable tiles (Eg: Dirt)
+	public void OpenBlueprint(string tiletype) { 
 		if (!CanMake(tiletype) && !Data.playerseen[tiletype])
 		{
 			Debug.Log("Invalid blueprint button2");
 			return;
 		}
-		
+
 		Data.playerread[tiletype] = true;
 		Recalc();
 		if (Data.devmode) {
@@ -110,8 +105,8 @@ public class Codex : MonoBehaviour {
 					specBlueprint.gameObject.SetActive(false);
 					setBlueprint.gameObject.SetActive(true);
 					setBlueprint.OpenRecipe(tiletype);
-					this.gameObject.SetActive(false);
-				break;
+					if (this.gameObject.name != "CodexContainer") { this.gameObject.SetActive(false); }
+					break;
 				default:
 				break;
 			}

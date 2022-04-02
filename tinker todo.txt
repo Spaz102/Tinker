@@ -2,26 +2,15 @@
 + Cur
 ++++++++++++
 
-+ make a dev doc
-	- code style guide
-		- decide on camelcase or underlines and make uniform
-		- comment locations
-	- ui/scaling info guide
-	- folder layout
-
-
 + go through all code, comment, refactor, restructure
 	- Comments: classes, non-stub fns, public variables, params as needed, #region comments
 		- use ///<summary><param name="x"><example><code>
 	- reduce scope of public variables (most shouldn't need to be public)
 	- determine how to divide up ui controls, popups, interactive
 	
-	Audio - ok
-	BP_P - using showing[0] is pretty jank .. handling the 3 types of BP invisibly like this is ... bad.
-			- should have a blueprint object with a type and tiletype
-		- recalc() should be redisplay... it isn't calcing anything ...
-		- regroup functions with breaks (major/helper)
-		- move ui content to data?
+	Audio
+	BP_P
+		? rewrite to be a single unity object and put everything needed to load into /data
 	Codex - deal with bp_p rework
 	Board - cut down ... does it need animations? rat control? animate poof? storage stuff?
 		++
@@ -29,7 +18,7 @@
 	Data - add blueprint ui data (new)
 		- comments 
 	Mote/Ghost - standalone... works fine
-	Interactive - ?
+	Interactive - Does this need to exist?
 	Options - does nothing? delete? intended body went to settings
 	Popups - only a stub atm
 	Settings - change to static? (use audio as a model?)
@@ -64,7 +53,7 @@ Core:
 	- Save/load settings, tutorials seen
 	- Clicking on the game board should not close the lightbox
 	- Compile for web, Android
-	
+	+ codex should be entirely loaded from script in data rather than hardcoded
 Bugs:
 	- some tile glow fx crosses sprite borders
 	- cannot support wide devices like ipads
