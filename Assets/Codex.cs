@@ -39,8 +39,10 @@ public class Codex : MonoBehaviour {
 		}
 	}
 
-	public bool CanMake(string showme)
-	{ // Can it be made with known ingredients?
+	/// <summary>
+	/// Can it be made with known ingredients?
+	/// </summary>
+	public bool CanMake(string showme) {
 		if (!Data.patternresults.ContainsKey(showme))
 		{ // Not craftable, like dirt/tools
 			return true;
@@ -76,7 +78,6 @@ public class Codex : MonoBehaviour {
 			else { Core.SetHand(tiletype); }
 		}
 
-		UIControls.LightBox.SetActive(true);
 		if (tiletype == "Storage") {
 			statBlueprint.gameObject.SetActive(false);
 			specBlueprint.gameObject.SetActive(true);
@@ -111,5 +112,6 @@ public class Codex : MonoBehaviour {
 				break;
 			}
 		}
+		UIControls.LightBox.SetActive(true);
 	}
 }

@@ -5,6 +5,8 @@ public class UIControls: MonoBehaviour {
 	public static GameObject ClosedScroll;
 	public static GameObject OpenedScroll;
 	public static GameObject LightBox;
+	public static GameObject Codex;
+	public static GameObject Popup;
 
 	public bool scrollopen = false;
 
@@ -12,6 +14,8 @@ public class UIControls: MonoBehaviour {
 		ClosedScroll = GameObject.Find("ClosedScroll");
 		OpenedScroll = GameObject.Find("OpenedScroll");
 		LightBox = GameObject.Find("LightBox");
+		Popup = GameObject.Find("Popup");
+		Codex = GameObject.Find("CodexContainer");
 
 		// refit LowerArea to fit resolution
 		RectTransform rtLowerArea = GameObject.Find("LowerArea").GetComponent<RectTransform>();
@@ -34,6 +38,14 @@ public class UIControls: MonoBehaviour {
 		rtOpenedScroll.sizeDelta = Vector2.zero;
 		rtOpenedScroll.offsetMax = new Vector2(-75, -25);
 		rtOpenedScroll.offsetMin = new Vector2(75,0);
+
+		// Resize needed to allow it to be displayed in the editor
+		Popup.SetActive(false);
+		RectTransform rtPopup = Popup.GetComponent<RectTransform>();
+		rtPopup.anchoredPosition = Vector2.zero;
+		rtPopup.anchorMin = Vector2.zero;
+		rtPopup.anchorMax = Vector2.one;
+		rtPopup.sizeDelta = Vector2.zero;
 	}
 
 	void Update()
@@ -52,6 +64,11 @@ public class UIControls: MonoBehaviour {
 	public void HideLightBox()
 	{
 		GameObject.Find("LightBox").SetActive(false);
+	}
+
+	public void HidePopup()
+	{
+		GameObject.Find("Popup").SetActive(false);
 	}
 
 	public void ToggleScroll() {

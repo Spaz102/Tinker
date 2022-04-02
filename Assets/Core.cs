@@ -14,6 +14,7 @@ public static class Core {
 	public static Tile cursor;
 	public static Board board;
 	public static Codex blueprints;
+	public static Popup popup;
 
 	// Used in random drawing to hand
 	public static int handPoolSize;
@@ -41,8 +42,9 @@ public static class Core {
 		board = GameObject.Find("PlayArea").GetComponent<Board>();
 		mainCanvas = GameObject.Find("Main Canvas").GetComponent<Canvas>();
 		cursor = GameObject.Find("Hand").GetComponent<Tile>();
-		blueprints = GameObject.Find("CodexContainer").GetComponent<Codex>();
-		
+		blueprints = UIControls.Codex.GetComponent<Codex>();
+		popup = UIControls.Popup.GetComponent<Popup>();
+			
 		mouseover = null;
 		cursor.transform.localScale = new Vector3(0.75f, 0.75f, 1);
 		settings = new Settings();
@@ -58,6 +60,7 @@ public static class Core {
 		if (board.CheckGameOver()) {
 			Audio.PlaySound("GameOver");
 			Debug.Log("You lose. Good day, sir!");
+			popup.Open(Popup.PopupTypes.lose);
 			board.CleanUp();
 			SetHand("Random");
 			board.SaveGame();
@@ -147,7 +150,8 @@ public static class Core {
 		string result = CanClick(board.state[queuedClick.x,queuedClick.y]);
 		if (result == "Win") {
 			Audio.PlaySound("Byebye");
-			Debug.Log("You win"); // TODO: Win popup
+			Debug.Log("You win");
+			popup.Open(Popup.PopupTypes.win);
 			SetHand("Random");
 			board.Set(queuedClick, "Empty");
 		} else if (result != board.state[queuedClick.x,queuedClick.y]) { // A click is possible
