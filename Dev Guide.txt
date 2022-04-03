@@ -39,5 +39,9 @@ File/Folder management
 	- image gen process saved in pdn files
 	- WIPs, pdns, reference material, disused assets go into top level Dev folder
 
+Todo
+	- Todos only in the todo file, not elsewhere!
+	- '+' for items that are high priority, '-' for low prio or unclear, '?' for ideas that haven't been decided on, 'A'/'C' initial to claim a task
+
 Compiling info:
 	made in Unity 2019.3.4f1

@@ -6,58 +6,88 @@
 	- how is this set up in core? have a uicontrol instance instead of blueprints, etc?
 	+ Decide which classes should be static ... need to build fewer objects
 
-+ Refactor
-	+ go through all code, comment, refactor, restructure
-	- Comments: classes, non-stub fns, public variables, params as needed, #region comments
-		- use ///<summary><param name="x"><example><code>
-	- reduce scope of public variables (most shouldn't need to be public)
-	
-Audio
-BPP ? rewrite to be a single unity object and put everything needed to load into /data
-Board ++
-	- cut down ... does it need animations? rat control? animate poof? storage stuff?
-Codex
-Core ++
-Data ? add blueprint ui data (new)
-	- comments 
-	++
-Mote/Ghost
-Interactive ? Does this need to exist?
-Popup
-Settings - change to static? (use audio as a model?)
-	++
-Storage ?
-Tile ?
-UI ?
-
 - change all ui buttons away from direct unity style 'onclick' events so that it is all viewable from code (settings)
 
-	
-? audio handler should have data in it to allow autocomplete on playsound() ... really everything in data should be able to do this
-	
-- find a few audio files (paper scroll noises)
-
-- each faux scene (that is off board for visibility in editor) should exist in a full screen size container object. This makes moving it into place easy... just make size 100% of main
+? each faux scene (that is off board for visibility in editor) should exist in a full screen size container object. This makes moving it into place easy... just make size 100% of main
 
 ++++++++++++
-+ Main
++ Main/Code
 ++++++++++++
 
 - Thematic Fonts
 
+Refactor:
+	Board ++
+		- cut down ... does it need animations? rat control? animate poof? storage stuff?
+	Codex
+	Core ++
+	Data ? add blueprint ui data (new)
+		- comments 
+		++
+	Interactive ? Does this need to exist?
+	Settings - change to static? (use audio as a model?)
+		++
+	Storage ?
+	Tile ?
+	UI ?
+	+ go through all code, comment, refactor, restructure
+	- Comments: classes, non-stub fns, public variables, params as needed, #region comments
+		- use ///<summary><param name="x"><example><code>
+	- reduce scope of public variables (most shouldn't need to be public)
+
 Core:
-	- Save/load settings, tutorials seen
-	- Clicking on the game board should not close the lightbox
-	- Compile for web, Android
-	+ codex should be entirely loaded from script in data rather than hardcoded
+	+ Save/load settings, tutorials seen
+
+UI Code:
+	- Lightbox
+		- Fade out edges instead of using ragged 'page'
+	- Item glow underlays? Or just using breathing?
+	- Codex:
+		- reveal paths as needed + pen scritching sound
+		- ClosedScroll show/hide glow image when there's a new entry
+		- OpenScroll
+			- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)
+			- Mouseover to show clickable
+			- Unread tiles ('breathing' glow effect)
+	- LightBoxes/Recipes
+		- Rearrange as per little yellow note. 1 main layout + 1 for storage + 1 for grabber
+		+ Update flavour text to Tinkerer pov ("It seems that you find a rock every 4th pile of dirt.... how odd")
+			- include item name (title to be removed)
+	- Mobile Version
+		- Hand icon on right side 'holding' current item, no cursor
+		- Two-click mode (on by default)
+		
+Dust:
+	- Rat poop dust poof (Needs longer duration than current poofs allow)
+	- Dust mote momentum tuning on scrollopen/close/scroll
+
+Popups (With or without special animations, sounds, menus etc):
+	- First Load/tutorial
+	- Later Loads?
+	- Complex crafting tutorial
+	- Rats tutorial
+	- Storage tutorial
+	- Win (w/ w/o deaths)
+	- Death
+	- Credits
+	- Player stats	
+	
+Audio:
+	? audio handler should have data in it to allow autocomplete on playsound() ... really everything in data should be able to do this	
+
 Bugs:
-	- some tile glow fx crosses sprite borders
-	- cannot support wide devices like ipads
-		- slide the scroll up across page to ensure enough height
+	+ cannot support wide devices like ipads
+		- slide the scroll up across page to ensure enough height?
 	- rat breathing a bit .... not centered on rat? using wrong metric to center breathe anim?
 	+ bug - storage bin graphic jank after merging ... only in top 2 rows
-	
-GFX Assets:
+	? when filled storage is destroyed (rat/tool) the contents are deleted, is this good behavior?
+
+++++++++++++
++ Assets
+++++++++++++
+
+GFX:
+	- fill dev guide for tile rules.
 	- Tiles: log, plank, storage, Spiked cylinder, spring battery, music box
 	- Codex
 		- Openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
@@ -76,42 +106,6 @@ GFX Assets:
 		- Cup
 		- something flat like a map, drawings/notes (hints?)
 
-UI Code:
-	- Lightbox
-		- Fade out edges instead of using ragged 'page'
-	- Item glow underlays? Or just using breathing?
-	- Codex:
-		- reveal paths as needed + pen scritching sound
-		- ClosedScroll show/hide glow image when there's a new entry
-		- OpenScroll
-			- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)
-			- Mouseover to show clickable
-			- Unread tiles ('breathing' glow effect)
-	- LightBoxes/Recipes
-		- Rearrange as per little yellow note. 1 main layout + 1 for storage + 1 for grabber
-		- Update flavour text 
-			- include item name (title to be removed)
-			- Tinkerer pov ("It seems that you find a rock every 4th pile of dirt.... how odd")
-	- Options buttons
-		- Mute (Gramophone)
-		- Credits
-		- Player stats
-	- Mobile Version
-		- Hand icon on right side 'holding' current item, no cursor
-		- Two-click mode (on by default)
-	- Dust mote momentum tuning on scrollopen/close/scroll
-		
-Popups (With or without special animations, sounds, menus etc):
-	- First Load/tutorial
-	- Later Loads?
-	- Complex crafting tutorial
-	- Rats tutorial
-	- Storage tutorial
-	- Win (w/ w/o deaths)
-	- Death
-	- Credits
-	- Player stats	
-	
 Audio:
 	- New sounds for remaining resources
 	- Random pitch/tempo?
@@ -120,28 +114,25 @@ Audio:
 	- Soundtrack/ambiance?
 		- 9th century Baghdad??
 		- https://en.wikipedia.org/wiki/Ban%C5%AB_M%C5%ABs%C4%81
-		
+
 ++++++++++++
-+ Future
+? Maybe?
+++++++++++++
+- upscale tileset?
+? rewrite Blueprints to be a single unity object and put everything needed to load into /data (use popup as model?)
+
+++++++++++++
++ Future/Eventually/Maybe?
 ++++++++++++
 
 + generate the codex objects from data
++ Android
++ idle animations (moving stank lines)
 
 $:
 	+ Watch ad for next n pieces prediction
 	+ Pay for 1-shot tool/handrat
 	+ Levels
 	+ android mini bar ads
-	
-++++++++++++
-+ Old?
-++++++++++++
-
-- It is currently impossible to click (tool or rat) a tile that is wholly surrounded by storage
-
-GFX:
-	- Upscaled tileset (144 x 144)
-	- Idle "animations" (?)
-	- Rat poop dust poof (Needs longer duration than current poofs allow)
 	
 		

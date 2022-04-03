@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Unity container for a Popup
+/// </summary>
 public class Popup: MonoBehaviour {
 	public enum PopupTypes { win = 0, lose = 1};
 	
@@ -9,22 +12,22 @@ public class Popup: MonoBehaviour {
 	public Text msg;
 	public Image image;
 
-	void Start() {
-
-	}
-		
+	/// <summary>
+	/// Trigger a popup
+	/// </summary>
 	public void Open(PopupTypes popupType)
 	{
-		if (popupType == PopupTypes.lose) {
+		switch (popupType) {
+		case PopupTypes.lose:
 			title.text = "";
 			msg.text = "Whaa... you lost...";
 			image.sprite = Resources.Load<Sprite>("Sprites/lose");
-		}
-		else
-		{
+			break;
+		case PopupTypes.win:
 			title.text = "";
 			msg.text = "Woo! You won!";
 			image.sprite = Resources.Load<Sprite>("Sprites/win");
+			break;
 		}
 
 		this.gameObject.SetActive(true);
