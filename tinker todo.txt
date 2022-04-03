@@ -6,44 +6,38 @@
 	- how is this set up in core? have a uicontrol instance instead of blueprints, etc?
 	+ Decide which classes should be static ... need to build fewer objects
 
-+ go through all code, comment, refactor, restructure
++ Refactor
+	+ go through all code, comment, refactor, restructure
 	- Comments: classes, non-stub fns, public variables, params as needed, #region comments
 		- use ///<summary><param name="x"><example><code>
 	- reduce scope of public variables (most shouldn't need to be public)
-	- determine how to divide up ui controls, popups, interactive
 	
-	Audio
-	BPP ? rewrite to be a single unity object and put everything needed to load into /data
-	Board ++
-		- cut down ... does it need animations? rat control? animate poof? storage stuff?
-	Codex
-	Core ++
-	Data ? add blueprint ui data (new)
-		- comments 
-		++
-	Mote/Ghost
-	Interactive ? Does this need to exist?
-	Options - does nothing? delete? intended body went to settings
-	Popup - only a stub atm
-	Settings - change to static? (use audio as a model?)
-		++
-	Storage ?
-	Tile ?
-	UI - rename uihandler
+Audio
+BPP ? rewrite to be a single unity object and put everything needed to load into /data
+Board ++
+	- cut down ... does it need animations? rat control? animate poof? storage stuff?
+Codex
+Core ++
+Data ? add blueprint ui data (new)
+	- comments 
+	++
+Mote/Ghost
+Interactive ? Does this need to exist?
+Popup
+Settings - change to static? (use audio as a model?)
+	++
+Storage ?
+Tile ?
+UI ?
 
-- change all buttons away from direct unity style 'onclick' events so that it is all viewable from code (settings)
+- change all ui buttons away from direct unity style 'onclick' events so that it is all viewable from code (settings)
 
-- clean up scraps folder, reorg/move
 	
 ? audio handler should have data in it to allow autocomplete on playsound() ... really everything in data should be able to do this
 	
 - find a few audio files (paper scroll noises)
 
 - each faux scene (that is off board for visibility in editor) should exist in a full screen size container object. This makes moving it into place easy... just make size 100% of main
-
-+ add popup functionality
-	- mostly hardcoded, call popup(type,(msg)) ... allowing for various error msgs or w/e, and also allowing for custom popups as needed
-	- model on blueprints
 
 ++++++++++++
 + Main

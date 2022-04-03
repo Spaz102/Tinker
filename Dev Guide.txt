@@ -33,7 +33,11 @@ UI/Scaling/Graphics
 
 Audio
 
-Folders
+File/Folder management
+	- No disused assets in asset folder!!
+	- Gfx done in photoshop only
+	- image gen process saved in pdn files
+	- WIPs, pdns, reference material, disused assets go into top level Dev folder
 
 Compiling info:
 	made in Unity 2019.3.4f1
