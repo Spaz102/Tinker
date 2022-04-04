@@ -30,7 +30,7 @@ public static class Core {
 	public static Settings settings;
 
 	/// <summary>
-	/// Game Constructor - attaches cs logic to unity objects, starts rand seed, plays startup sound
+	/// Core Constructor - attaches cs logic to unity objects, starts rand seed, plays startup sound
 	/// </summary>
 	static Core () {
 		rng = new System.Random();

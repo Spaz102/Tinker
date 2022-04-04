@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Basic interaction handling for generated objects (tiles)
+/// </summary>
 public class Interactive : MonoBehaviour { // Warning: Needs the GameObject to also have a Tile component; ideally with an underlay as well
 	public string type; // Generally set in the editor // "Tile", "Interface", "Codex", "Storage"
 	public Coord index; // Unused if not a tile

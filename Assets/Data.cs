@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Collections.Generic; // Remember that dictionaries must be initialized manually
 
+/// <summary>
+/// Holds our constant data
+/// </summary>
+/// Ideal is that you should be able to change ONLY this to make a new level or rebalance
 public static class Data {
 	public static void Awake() {}
 
@@ -19,7 +23,11 @@ public static class Data {
 	public static Dictionary<string, bool> playerseen;
 	public static Dictionary<string, bool> playerread;
 
-	public static bool devmode = true;
+	// Enables some dev only features
+	// sets all items to 'seen'
+	// clicking on items in the codex puts them in your hand
+	// enables dev menu in codex
+	public static bool devmode = true;	
 
 	static Data() {
 		FillLists();
@@ -37,7 +45,8 @@ public static class Data {
 		storageSprites = Resources.LoadAll<Sprite>("Sprites/storage spritesheet");
 		tiledefs = new Dictionary<string, TileDef>();
 
-		tiledefs.Add("Empty", new TileDef("Empty", 0, "", null, 0f, 76, "Hello World", ""));
+        #region tiledefs
+        tiledefs.Add("Empty", new TileDef("Empty", 0, "", null, 0f, 76, "Hello World", ""));
 		tiledefs.Add("NewRat", new TileDef("Temporary rat", 0, "", rawsprites[18], 1f, 0, "", "Rat")); // Correct/ideal sfx_name?
 		
 		tiledefs.Add("Seed", new TileDef("Sapling", 96, "Empty", rawsprites[0], 1f, 5, "Why does it take three seeds to grow a single stick? Taxes.", "Click"));
@@ -70,8 +79,9 @@ public static class Data {
 		tiledefs.Add("Junk3", new TileDef("Junk 'n scraps", 17, "", rawsprites[22], 1f, 1, "", "Mirror Breaking-SoundBible.com-73239746"));
 		tiledefs.Add("Highlight", new TileDef("Highlight", 0, "", rawsprites[23], 0.3f, 0, "", ""));
 		tiledefs.Add("Mouseover", new TileDef("Mouseover", 0, "", rawsprites[23], 0.1f, 0, "", ""));
+        #endregion
 
-		patterns = new List<Pattern>(); // Warning: Patterns checked in order; be careful of conflicts
+        patterns = new List<Pattern>(); // Warning: Patterns checked in order; be careful of conflicts
 		#region continuous
 		patterns.Add(new Pattern("Dirt", "4Cont", "Rock"));
 		patterns.Add(new Pattern("Rock", "4Cont", "Metal"));
@@ -294,17 +304,19 @@ public static class Data {
 		patterns.Add(new Pattern(new string[] {"Junk1", "Junk2", "NewRat"}, "Set", "NewRat"));
 		Pattern temp = new Pattern(new string[] {"Junk1", "Junk2", "Junk3"}, "Set", "NewRat"); // Done to force blueprints to show rat pattern correctly
 		patterns.Add(temp);
-		#endregion
-
-		patternresults = new Dictionary<string, Pattern>();
+        #endregion
+        #region rat
+        patternresults = new Dictionary<string, Pattern>();
 		patternresults.Add("Rat", temp);
 		foreach (Pattern pattern in patterns) {
 			if (!patternresults.ContainsKey(pattern.result)) {
 				patternresults.Add(pattern.result, pattern);
 			}
 		}
+        #endregion
 
-		audiofiles.Add("Startup", Resources.Load<AudioClip>("Audio/snd_quest_complete"));
+        #region audio
+        audiofiles.Add("Startup", Resources.Load<AudioClip>("Audio/snd_quest_complete"));
 		audiofiles.Add("Menu", Resources.Load<AudioClip>("Audio/323402__gosfx__sound-2"));
 		audiofiles.Add("Crunch", Resources.Load<AudioClip>("Audio/Crunch"));
 		audiofiles.Add("Codex", Resources.Load<AudioClip>("Audio/Page_Turn-Mark_DiAngelo-1304638748"));
@@ -316,25 +328,17 @@ public static class Data {
 				audiofiles.Add(resource, Resources.Load<AudioClip>("Audio/" + tiledefs[resource].sfx_name));
 			}
 		}
+        #endregion
 
-		playerseen = new Dictionary<string, bool>();
+        playerseen = new Dictionary<string, bool>();
 		playerread = new Dictionary<string, bool>();
 		foreach (string defkey in tiledefs.Keys) {
 			playerseen.Add(defkey, false);
 			playerread.Add(defkey, false);
+			if (devmode) {
+				playerseen[defkey] = true;
+			}
 		}
-		playerseen["Empty"] = true;
-		playerseen["NewRat"] = true;
-		//playerseen["Rat"] = true;
-		playerseen["Junk1"] = true;
-		playerseen["Junk2"] = true;
-		playerread["Junk2"] = true;
-		playerseen["Junk3"] = true;
-		playerread["Junk3"] = true;
-		playerseen["Seed"] = true;
-		playerseen["Dirt"] = true;
-		playerseen["Special"] = true;
-		playerseen["Storage"] = true;
 	}
 }
 
@@ -381,12 +385,12 @@ public class Pattern {
 public class TileDef {
 	public string name;
 	public string description;
-	public int chanceToDraw; // Sum of all values used to determine actual chances
-	public string edible;
+	public int chanceToDraw;		// Sum of all values used to determine actual chances
+	public string edible;			// Can be eaten by rat
 	public Sprite sprite;
 	public float opacity;
-	public int startingChance; // The weight of this resource on the initial board state' distribution
-	public string sfx_name; // The filename in the Audio resources folder
+	public int startingChance;		// The weight of this resource on the initial board state' distribution
+	public string sfx_name;			// The filename in the Audio resources folder
 
 	public TileDef(string name, int chanceToDraw, string edible, Sprite sprite, float opacity, int startingChance, string description, string sfx_name) {
 		this.name = name;

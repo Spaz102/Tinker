@@ -6,7 +6,7 @@
 	- how is this set up in core? have a uicontrol instance instead of blueprints, etc?
 	+ Decide which classes should be static ... need to build fewer objects
 
-- change all ui buttons away from direct unity style 'onclick' events so that it is all viewable from code (settings)
+- change all ui buttons away from direct unity style 'onclick' events so that it is all viewable from code (settings) and we can add sounds/w/e
 
 ++++++++++++
 + Main/Code
@@ -17,11 +17,7 @@
 Refactor:
 	Board ++
 		- cut down ... does it need animations? rat control? animate poof? storage stuff?
-	Codex
 	Core ++
-	Data
-		- comments 
-		++
 	Interactive ? Does this need to exist?
 	Settings - change to static? (use audio as a model?)
 		++
@@ -36,25 +32,24 @@ Refactor:
 New Features:
 	+ Save/load settings, tutorials seen
 
-UI Code:
-	- Lightbox
-		- Fade out edges instead of using ragged 'page'
-	- Item glow underlays? Or just using breathing?
-	- Codex:
-		- reveal paths as needed + pen scritching sound
-		- ClosedScroll show/hide glow image when there's a new entry
-		- OpenScroll
-			- Draw in arrows as items are revealed (Arrows sprites as children of tile should work)
-			- Mouseover to show clickable
-			- Unread tiles ('breathing' glow effect)
-	- LightBoxes/Recipes
-		- Rearrange as per little yellow note. 1 main layout + 1 for storage + 1 for grabber
+Mobile Support:
+	+ Hand icon on right side 'holding' current item, no cursor
+	+ Two-click mode (on by default)
+		
+Codex/BP:
+	? rewrite Blueprints to be a single unity object and put everything needed to load into /data (use popup as model?)
+	ClosedScroll:
+		- show/hide glow image when there's a new entry
+	OpenScroll:
+		+ Draw in arrows as items are revealed (Arrows sprites as children of tile should work) + pen scritching sound
+		- Mouseover to show clickable
+		- Unread tiles ('breathing' glow effect)
+	BP:
+		+ Fade out edges instead of using ragged 'page' .. we're writing on the scroll... maybe a zoom animation? blur?
 		+ Update flavour text to Tinkerer pov ("It seems that you find a rock every 4th pile of dirt.... how odd")
 			- include item name (title to be removed)
-	- Mobile Version
-		- Hand icon on right side 'holding' current item, no cursor
-		- Two-click mode (on by default)
-		
+		- beautify layouts
+
 Dust:
 	- Rat poop dust poof (Needs longer duration than current poofs allow)
 	- Dust mote momentum tuning on scrollopen/close/scroll
@@ -117,7 +112,7 @@ Audio:
 ++++++++++++
 ? Maybe?
 ++++++++++++
-? rewrite Blueprints to be a single unity object and put everything needed to load into /data (use popup as model?)
+
 ? each faux scene (that is off board for visibility in editor) should exist in a full screen size container object. This makes moving it into place easy... just make size 100% of main
 
 ++++++++++++
@@ -127,6 +122,8 @@ Audio:
 + Android
 + idle animations (moving stank lines)
 - upscale tileset?
++ achievements?
+	+ dying with only pliers and blank board
 
 $:
 	+ Watch ad for next n pieces prediction
