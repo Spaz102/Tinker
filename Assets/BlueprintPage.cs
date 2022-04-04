@@ -57,17 +57,19 @@ public class BlueprintPage : MonoBehaviour {
 			titleText.text = "???:";
 			descText.text = "";
 		}
+		
+		for (int n = 0; n < displayTiletypes.Length; n++) { displayTiletypes[n] = "Empty"; }    // Reset display to blank
+
 		if (bpTiletype == "Junk1" || bpTiletype == "Junk2" || bpTiletype == "Junk3") { // Special case: junk
-			arrowText.text = "";
-			for (int n = 0; n < displayTiles.Length; n++) {displayTiletypes[n] = "Empty";}	// Reset display to blank
+			arrowText.text = "";	
 			displayTiletypes[4] = "Junk1";
 			displayTiletypes[5] = "Junk2";
 			displayTiletypes[6] = "Junk3";
 		} else if (bpTiletype == "Rat" || bpTiletype == "NewRat") { // Special case: rat
 			arrowText.text = ">>>";
 			displayTiletypes[0] = "Rat";
-			displayTiletypes[1] = "Junk1";
-			displayTiletypes[2] = "Junk1";
+			displayTiletypes[1] = "Junk3";
+			displayTiletypes[2] = "Junk2";
 			displayTiletypes[3] = "Junk1";
 			displayTiletypes[4] = "Junk1";
 			displayTiletypes[5] = "Junk2";
@@ -75,44 +77,36 @@ public class BlueprintPage : MonoBehaviour {
 		} else if (bpTiletype == "Storage") { // Special case: storage
 			arrowText.text = ">>>";
 			displayTiletypes[0] = "Storage";
-			for (int n = 1; n < displayTiles.Length; n++) {displayTiletypes[n] = "Panel";} // Box of 9 panels for a storage
+			for (int n = 1; n < displayTiletypes.Length; n++) {displayTiletypes[n] = "Panel";} // Box of 9 panels for a storage
 		} else if (!Data.patternresults.ContainsKey(bpTiletype)) { // Atomic tiles like dirt/tools
 			arrowText.text = "";
-			for (int n = 0; n <= 9; n++) {
-				displayTiletypes[n] = "Empty";
-			}
 			displayTiletypes[5] = bpTiletype;
 		} else { // Actual craftable recipe on display
 			arrowText.text = ">>>";
 			displayTiletypes[0] = bpTiletype;
 			switch (Data.patternresults[bpTiletype].type) {
-			case "3Cont":
-				for (int n = 1; n <= 3; n++) {
-					displayTiletypes[n] = (Data.patternresults[bpTiletype].value[0,0]);
-				}
-				for (int n = 4; n <= 9; n++) {
-					displayTiletypes[n] = "Empty";
-				}
-				break;
-			case "4Cont":
-				for (int n = 1; n <= 4; n++) {
-					displayTiletypes[n] = (Data.patternresults[bpTiletype].value[0,0]);
-				}
-				for (int n = 5; n <= 9; n++) {
-					displayTiletypes[n] = "Empty";
-				}
-				break;
-			case "Static":
-				for (int y = 0; y < 3; y++) {
-					for (int x = 0; x < 3; x++) {
-						if (Data.patternresults[bpTiletype].value[x,y] == "" || Data.patternresults[bpTiletype].value[x,y] == "Empty") {
-							displayTiletypes[3*y + x + 1] = "Empty";
-						} else {
-							displayTiletypes[3*y + x + 1] = Data.patternresults[bpTiletype].value[x,y];
+				case "3Cont":
+					displayTiletypes[1] = (Data.patternresults[bpTiletype].value[0, 0]);
+					displayTiletypes[2] = (Data.patternresults[bpTiletype].value[0, 0]);
+					displayTiletypes[3] = (Data.patternresults[bpTiletype].value[0, 0]);
+					break;
+				case "4Cont":
+					displayTiletypes[1] = (Data.patternresults[bpTiletype].value[0, 0]);
+					displayTiletypes[2] = (Data.patternresults[bpTiletype].value[0, 0]);
+					displayTiletypes[3] = (Data.patternresults[bpTiletype].value[0, 0]);
+					displayTiletypes[4] = (Data.patternresults[bpTiletype].value[0, 0]); 
+					break;
+				case "Static":
+					for (int y = 0; y < 3; y++) {
+						for (int x = 0; x < 3; x++) {
+							if (Data.patternresults[bpTiletype].value[x,y] == "" || Data.patternresults[bpTiletype].value[x,y] == "Empty") {
+								displayTiletypes[3*y + x + 1] = "Empty";
+							} else {
+								displayTiletypes[3*y + x + 1] = Data.patternresults[bpTiletype].value[x,y];
+							}
 						}
 					}
-				}
-				break;
+					break;
 			default:
 				Debug.Log("Invalid recipe for blueprint page");
 				break;
