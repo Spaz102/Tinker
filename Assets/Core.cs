@@ -58,7 +58,6 @@ public static class Core {
 		Idle();
 		MoveHand();
 		if (board.CheckGameOver()) {
-			Audio.PlaySound("GameOver");
 			Debug.Log("You lose. Good day, sir!");
 			popup.Open(Popup.PopupTypes.lose);
 			board.CleanUp();
@@ -149,7 +148,6 @@ public static class Core {
 		idletime = 0;
 		string result = CanClick(board.state[queuedClick.x,queuedClick.y]);
 		if (result == "Win") {
-			Audio.PlaySound("Byebye");
 			Debug.Log("You win");
 			popup.Open(Popup.PopupTypes.win);
 			SetHand("Random");

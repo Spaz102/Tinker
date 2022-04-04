@@ -104,7 +104,8 @@ Audio:
 	- New sounds for remaining resources
 	- Random pitch/tempo?
 	- Clock themed codex/interface sounds
-	- Proper intro sound
+	- Proper intro/lose sound
+	? add wind up sound before victory
 	- Soundtrack/ambiance?
 		- 9th century Baghdad??
 		- https://en.wikipedia.org/wiki/Ban%C5%AB_M%C5%ABs%C4%81

@@ -18,16 +18,18 @@ public class Popup: MonoBehaviour {
 	public void Open(PopupTypes popupType)
 	{
 		switch (popupType) {
-		case PopupTypes.lose:
-			title.text = "";
-			msg.text = "Whaa... you lost...";
-			image.sprite = Resources.Load<Sprite>("Sprites/lose");
-			break;
-		case PopupTypes.win:
-			title.text = "";
-			msg.text = "Woo! You won!";
-			image.sprite = Resources.Load<Sprite>("Sprites/win");
-			break;
+			case PopupTypes.lose:
+				title.text = "";
+				msg.text = "Whaa... you lost...";
+				image.sprite = Resources.Load<Sprite>("Sprites/lose");
+				Audio.PlaySound("Lose");
+				break;
+			case PopupTypes.win:
+				title.text = "";
+				msg.text = "Woo! You won!";
+				image.sprite = Resources.Load<Sprite>("Sprites/win");
+				Audio.PlaySound("Win");
+				break;
 		}
 
 		this.gameObject.SetActive(true);

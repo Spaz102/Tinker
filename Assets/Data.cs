@@ -321,9 +321,10 @@ public static class Data {
 		audiofiles.Add("Crunch", Resources.Load<AudioClip>("Audio/Crunch"));
 		audiofiles.Add("Codex", Resources.Load<AudioClip>("Audio/Page_Turn-Mark_DiAngelo-1304638748"));
 		audiofiles.Add("Byebye", Resources.Load<AudioClip>("Audio/bye_bye_son-Mike_Koenig-1260922981"));
-		audiofiles.Add("GameOver", Resources.Load<AudioClip>("Audio/Sad_Trombone-Joe_Lamb-665429450"));
+		audiofiles.Add("Win", Resources.Load<AudioClip>("Audio/625234__sonically-sound__music-box-2-g"));
+		audiofiles.Add("Lose", Resources.Load<AudioClip>("Audio/Sad_Trombone-Joe_Lamb-665429450"));
 
-		foreach(string resource in tiledefs.Keys) { // Warning: Loads the same sfx_name file multiple times, if used for multiple resources
+		foreach (string resource in tiledefs.Keys) { // Warning: Loads the same sfx_name file multiple times, if used for multiple resources
 			if (!string.IsNullOrWhiteSpace(tiledefs[resource].sfx_name)) {
 				audiofiles.Add(resource, Resources.Load<AudioClip>("Audio/" + tiledefs[resource].sfx_name));
 			}
