@@ -82,8 +82,8 @@ Bugs:
 GFX:
 	- codex arrows -> spritesheet
 	- fill dev guide for tile rules.
-	- Tiles: log, plank, storage, Spiked cylinder, spring battery, music box
-	- Codex
+	+ Tiles: log, plank, storage, Spiked cylinder, spring battery, music box
+	+ Codex
 		- Openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
 		- Closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body
 			- Somehow match the texture of the scroll surface
@@ -91,20 +91,24 @@ GFX:
 		- Scroll ends - ↑↓ ui hints (Only if a really good graphic is found?)
 	- Option buttons
 		- Mute, credits, player stats, dust toggle, new/reset game
-	- 'rotateable' icon? (Could sneak this into a tutorial, by showing it done the "wrong" way)
-	- Red grid for blueprints
+	- 'rotateable' icon? (Could sneak this into a tutorial, by showing it done the "wrong" way) (as per image in scraps)
 	- Misc desk decorations
 		- Tool rack
 			- Leather-wrapped rolls of tools
 		- Clamps
 		- Cup
 		- something flat like a map, drawings/notes (hints?)
+	- Popups
+		- Win/Lose ... gif? animation?
+
 
 Audio:
-	- New sounds for remaining resources
-	- Random pitch/tempo?
+	- Board sound variety
+		? Random pitch/tempo? random selection? ... easy to handle in audio.playsound
 	- Clock themed codex/interface sounds
-	- Proper intro/lose sound
+	- intro (tinkerer humming)
+	- lose (grumbling/desk slam/fedup?)
+	- idle (creaks, humming)
 	? add wind up sound before victory
 	- Soundtrack/ambiance?
 		- 9th century Baghdad??
