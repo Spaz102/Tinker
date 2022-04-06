@@ -2,6 +2,13 @@
 + Cur
 ++++++++++++
 
++ Dev mode button menu
+	- in lower area
+	- move reset/clear in here
+	- see all or none button
+
+- Mute toggle button
+
 + Decide how ui should work ... all go through uicontrols or through handlers for each thing?
 	- how is this set up in core? have a uicontrol instance instead of blueprints, etc?
 	+ Decide which classes should be static ... need to build fewer objects
@@ -31,7 +38,13 @@ Refactor:
 
 New Features:
 	+ Save/load settings, tutorials seen
+	- credits, player stats
+	- new game
+	- tutorials
+	- intro/startup
 
+Buttons/UI/Settings:
+	
 Mobile Support:
 	+ Hand icon on right side 'holding' current item, no cursor
 	+ Two-click mode (on by default)
@@ -60,8 +73,6 @@ Popups (With or without special animations, sounds, menus etc):
 	- Complex crafting tutorial
 	- Rats tutorial
 	- Storage tutorial
-	- Win (w/ w/o deaths)
-	- Death
 	- Credits
 	- Player stats	
 	
@@ -81,8 +92,8 @@ Bugs:
 
 GFX:
 	- codex arrows -> spritesheet
-	- fill dev guide for tile rules.
 	+ Tiles: log, plank, storage, Spiked cylinder, spring battery, music box
+		- fill dev guide for tile rules.
 	+ Codex
 		- Openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
 		- Closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body

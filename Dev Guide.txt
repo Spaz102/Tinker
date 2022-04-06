@@ -19,7 +19,7 @@ Code
 	- large classes with multiple logical groupings are blocked by #region tags
 
 
-UI/Scaling/Graphics
+UI/Scaling
 	(use px for pixels, u for unity scaling units)
 	Resolution
 		1080u * 1920u
@@ -30,6 +30,12 @@ UI/Scaling/Graphics
 		Unity size:
 	Sizes
 		Tile
+
+Tiles
+	- 64x64px
+	View angle: top-down, tilted back ~15°
+	Positioning: turned 45°
+	Light angle: from above-bottom-right, 45°
 
 Audio
 
