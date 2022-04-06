@@ -94,6 +94,7 @@ GFX:
 	- codex arrows -> spritesheet
 	+ Tiles: log, plank, storage, Spiked cylinder, spring battery, music box
 		- fill dev guide for tile rules.
+		- fix perspective/lighting on: rat, cyl, rock, pin, junk1
 	+ Codex
 		- Openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
 		- Closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body
