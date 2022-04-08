@@ -37,6 +37,9 @@ Tiles
 	Positioning: turned 45°
 	Light angle: from above-bottom-right, 45°
 
+	Wood: goes light/yellow to dark/red through upgrades
+	Metal: Green tint -> grey -> gold tint + shinier though upgrades
+
 Audio
 
 File/Folder management

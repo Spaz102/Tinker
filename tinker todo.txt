@@ -92,9 +92,9 @@ Bugs:
 
 GFX:
 	- codex arrows -> spritesheet
-	+ Tiles: log, plank, storage, Spiked cylinder, spring battery, music box
-		- fill dev guide for tile rules.
-		- fix perspective/lighting on: rat, cyl, rock, pin, junk1
+	+ Tiles: seed, stick, log, plank, storage
+		- fix perspective/lighting on: rock, pin, junk3
+		- shiny match spring/cylinder. Enforce metal progression
 	+ Codex
 		- Openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
 		- Closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body
