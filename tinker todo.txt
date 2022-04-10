@@ -2,11 +2,6 @@
 + Cur
 ++++++++++++
 
-+ Dev mode button menu
-	- in lower area
-	- move reset/clear in here
-	- see all or none button
-
 - Mute toggle button
 
 + Decide how ui should work ... all go through uicontrols or through handlers for each thing?

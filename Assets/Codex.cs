@@ -73,7 +73,7 @@ public class Codex : MonoBehaviour {
 
 		Data.playerread[tiletype] = true;
 		Recalc();
-		if (Data.devmode) {
+		if (DevMode.devmode) {
 			if (tiletype == "Storage") { Core.SetHand("Panel"); }
 			else { Core.SetHand(tiletype); }
 		}

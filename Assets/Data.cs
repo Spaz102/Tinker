@@ -23,12 +23,6 @@ public static class Data {
 	public static Dictionary<string, bool> playerseen;
 	public static Dictionary<string, bool> playerread;
 
-	// Enables some dev only features
-	// sets all items to 'seen'
-	// clicking on items in the codex puts them in your hand
-	// enables dev menu in codex
-	public static bool devmode = true;	
-
 	static Data() {
 		FillLists();
 	}
@@ -336,9 +330,6 @@ public static class Data {
 		foreach (string defkey in tiledefs.Keys) {
 			playerseen.Add(defkey, false);
 			playerread.Add(defkey, false);
-			if (devmode) {
-				playerseen[defkey] = true;
-			}
 		}
 	}
 }
