@@ -6,11 +6,9 @@ using System;
 /// </summary>
 // Enables some dev only features
 // clicking on items in the codex puts them in your hand
-public sealed class DevMode : MonoBehaviour
-{
-	public static bool devmode = true;
-	
-	private static DevMode _instance;
+public sealed class DevMode : MonoBehaviour {
+    #region Singleton Block
+    private static DevMode _instance;
 	public static DevMode Instance { get { return _instance; } }
 	private void Awake()
 	{
@@ -21,11 +19,22 @@ public sealed class DevMode : MonoBehaviour
 		else
 		{
 			_instance = this;
-			if (!devmode)
-			{
-				GameObject.Find("Dev Buttons").SetActive(false);
-				
-			}
+			FirstStart();
+		}
+	}
+	#endregion
+	
+	public static bool devmode = true;
+
+	/// <summary>
+	/// Acts as a constructor in a seperate function to keep the singleton code in a block
+	/// </summary>
+	private void FirstStart()
+	{
+		if (!devmode)
+		{
+			GameObject.Find("Dev Buttons").SetActive(false);
+
 		}
 	}
 
@@ -46,7 +55,7 @@ public sealed class DevMode : MonoBehaviour
 		foreach (string defkey in Data.tiledefs.Keys) {
 			Data.playerseen[defkey] = true;
 		}
-		Core.blueprints.Recalc();
+		Core.codex.Recalc();
 	}
 
 	/// <summary>
@@ -58,7 +67,7 @@ public sealed class DevMode : MonoBehaviour
 		{
 			Data.playerseen[defkey] = false;
 		}
-		Core.blueprints.Recalc();
+		Core.codex.Recalc();
 	}
 	
 }

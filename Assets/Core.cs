@@ -13,7 +13,7 @@ public static class Core {
 	public static Canvas mainCanvas;
 	public static Tile cursor;
 	public static Board board;
-	public static Codex blueprints;
+	public static Codex codex;
 	public static Popup popup;
 
 	// Used in random drawing to hand
@@ -42,8 +42,8 @@ public static class Core {
 		board = GameObject.Find("PlayArea").GetComponent<Board>();
 		mainCanvas = GameObject.Find("Main Canvas").GetComponent<Canvas>();
 		cursor = GameObject.Find("Hand").GetComponent<Tile>();
-		blueprints = UIControls.Codex.GetComponent<Codex>();
-		popup = UIControls.Popup.GetComponent<Popup>();
+		codex = UI.Codex.GetComponent<Codex>();
+		popup = UI.Popup.GetComponent<Popup>();
 			
 		mouseover = null;
 		cursor.transform.localScale = new Vector3(0.75f, 0.75f, 1);
@@ -193,11 +193,11 @@ public static class Core {
 		}
 		if (!Data.playerseen[hand]) {
 			Data.playerseen[hand] = true;
-			blueprints.Recalc();
+			codex.Recalc();
 		}
 		if (hand == "NewRat" && !Data.playerseen["Rat"]) {
 			Data.playerseen["Rat"] = true;
-			blueprints.Recalc();
+			codex.Recalc();
 		}
 		cursor.ShowSprite(hand);
 		cursor.Fade(0.75f);

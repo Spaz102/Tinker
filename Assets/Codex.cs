@@ -112,6 +112,6 @@ public class Codex : MonoBehaviour {
 				break;
 			}
 		}
-		UIControls.LightBox.SetActive(true);
+		UI.LightBox.SetActive(true);
 	}
 }

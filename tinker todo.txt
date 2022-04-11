@@ -2,13 +2,19 @@
 + Cur
 ++++++++++++
 
-- Mute toggle button
+To singleton: UI, Audio? Codex, Settings
 
-+ Decide how ui should work ... all go through uicontrols or through handlers for each thing?
-	- how is this set up in core? have a uicontrol instance instead of blueprints, etc?
-	+ Decide which classes should be static ... need to build fewer objects
-
-- change all ui buttons away from direct unity style 'onclick' events so that it is all viewable from code (settings) and we can add sounds/w/e
+UI
+	- refactor. only controls the ui elements themselves. Settings etc -> Settings
+	- get rid of uicontrols.update
+	New Buttons:
+		+ Mute toggle button ?one for music?
+		- Stats (like in minesweeper) + Achievements
+		+ Restart/Newgame
+		+ credits
+		+ Help? (replay tutorials)
+		- Rate game button
+	- change all ui buttons away from direct unity style 'onclick' events so that it is all viewable from code (settings) and we can add sounds/w/e
 
 ++++++++++++
 + Main/Code
@@ -21,8 +27,7 @@ Refactor:
 		- cut down ... does it need animations? rat control? animate poof? storage stuff?
 	Core ++
 	Interactive ? Does this need to exist?
-	Settings - change to static? (use audio as a model?)
-		++
+	Settings ++
 	Storage ?
 	Tile ?
 	UI ?
@@ -32,6 +37,7 @@ Refactor:
 	- reduce scope of public variables (most shouldn't need to be public)
 
 New Features:
+	? Pregame screen?
 	+ Save/load settings, tutorials seen
 	- credits, player stats
 	- new game
@@ -70,6 +76,7 @@ Popups (With or without special animations, sounds, menus etc):
 	- Storage tutorial
 	- Credits
 	- Player stats	
+	- loading screen
 	
 Audio:
 	? audio handler should have data in it to allow autocomplete on playsound() ... really everything in data should be able to do this	

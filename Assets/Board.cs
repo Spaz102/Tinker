@@ -129,7 +129,7 @@ public class Board : MonoBehaviour {
 		}
 		if (!Data.playerseen[setto]) {
 			Data.playerseen[setto] = true;
-			Core.blueprints.Recalc();
+			Core.codex.Recalc();
 		}
 		
 		this.state[target.x,target.y] = setto;

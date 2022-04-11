@@ -124,7 +124,7 @@ public class BlueprintPage : MonoBehaviour {
 		if (displayTiletypes[index] == "Panel" && !Data.playerseen["Panel"]) {
 			return;
 		} else if (displayTiletypes[index] != "Empty") {
-			Core.blueprints.OpenBlueprint(displayTiletypes[index]);
+			Core.codex.OpenBlueprint(displayTiletypes[index]);
 		}
 	}
 }
