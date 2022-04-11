@@ -76,6 +76,7 @@ public sealed class UI : MonoBehaviour
 
 	void Update()
 	{
+		//todo: To be moved to a codex function (as part of seen())
 		if (Data.playerseen.Values.Count(v => v) > Data.playerread.Values.Count(v => v))
 		{
 			ClosedScroll.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, .5f);
@@ -128,7 +129,7 @@ public sealed class UI : MonoBehaviour
 
 	public void ToggleMute()
 	{
-		Audio.ToggleMute();
+		Core.settings.ToggleMute();
 		Audio.PlaySound("Menu");
 	}
 }

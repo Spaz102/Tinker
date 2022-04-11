@@ -2,11 +2,9 @@
 + Cur
 ++++++++++++
 
-To singleton: UI, Audio? Codex, Settings
+To singleton: Codex, Settings
 
 UI
-	- refactor. only controls the ui elements themselves. Settings etc -> Settings
-	- get rid of uicontrols.update (make seen a function in codex)
 	New Buttons:
 		- Stats (like in minesweeper) + Achievements
 		+ Restart/Newgame
@@ -29,14 +27,14 @@ Refactor:
 	Settings ++
 	Storage ?
 	Tile ?
-	UI ?
+	+ Make a Dust.cs controller
 	+ go through all code, comment, refactor, restructure
 	- Comments: classes, non-stub fns, public variables, params as needed, #region comments
 		- use ///<summary><param name="x"><example><code>
 	- reduce scope of public variables (most shouldn't need to be public)
 
 New Features:
-	? Pregame screen?
+	? Pregame 'main menu' screen? (New/Continue/stats/credits/)
 	+ Save/load settings, tutorials seen
 	- credits, player stats
 	- new game
@@ -44,7 +42,8 @@ New Features:
 	- intro/startup
 
 Buttons/UI/Settings:
-	
+	- get rid of ui.update (make see() a function in codex)
+
 Mobile Support:
 	+ Hand icon on right side 'holding' current item, no cursor
 	+ Two-click mode (on by default)

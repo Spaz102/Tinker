@@ -2,7 +2,7 @@
 public class Settings
 {
 	public bool dust;
-	public bool sound;
+	public bool muted;
 	private GameObject[] dustList;
 
 	public Settings()
@@ -21,16 +21,27 @@ public class Settings
 			PlayerPrefs.Save();
 		}
 
-		if (PlayerPrefs.HasKey("sound"))
+		if (PlayerPrefs.HasKey("muted"))
 		{
-			sound = PlayerPrefs.GetInt("sound") == 1;
+			muted = PlayerPrefs.GetInt("muted") == 1;
 		}
 		else
 		{
-			sound = true;
-			PlayerPrefs.SetInt("sound", 1);
+			muted = false;
+			PlayerPrefs.SetInt("muted", muted ? 1 : 0);
 			PlayerPrefs.Save();
 		}
+	}
+
+	/// <summary>
+	/// Toggle Mute
+	/// </summary>
+	public void ToggleMute()
+	{
+		muted = !muted;
+		Audio.audiosrc.mute = muted;
+		PlayerPrefs.SetInt("muted", muted ? 1 : 0);
+		PlayerPrefs.Save();
 	}
 
 	public void SetDust(bool setting)
