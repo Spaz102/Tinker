@@ -6,9 +6,8 @@ To singleton: UI, Audio? Codex, Settings
 
 UI
 	- refactor. only controls the ui elements themselves. Settings etc -> Settings
-	- get rid of uicontrols.update
+	- get rid of uicontrols.update (make seen a function in codex)
 	New Buttons:
-		+ Mute toggle button ?one for music?
 		- Stats (like in minesweeper) + Achievements
 		+ Restart/Newgame
 		+ credits
