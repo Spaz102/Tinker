@@ -24,10 +24,10 @@ Refactor:
 		- cut down ... does it need animations? rat control? animate poof? storage stuff?
 	Core ++
 	Interactive ? Does this need to exist?
-	Settings ++
 	Storage ?
 	Tile ?
-	+ Make a Dust.cs controller
+	? Make a Dust.cs controller
+		- pull stuff from settings and core
 	+ go through all code, comment, refactor, restructure
 	- Comments: classes, non-stub fns, public variables, params as needed, #region comments
 		- use ///<summary><param name="x"><example><code>

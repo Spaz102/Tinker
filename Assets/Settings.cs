@@ -1,4 +1,8 @@
 ﻿using UnityEngine;
+
+/// <summary>
+/// Loads/saves set/get settings
+/// </summary>
 public class Settings
 {
 	public bool dust;
@@ -9,24 +13,30 @@ public class Settings
 	{
 		dustList = GameObject.FindGameObjectsWithTag("Dust");
 
+		// Load prefs or else, use defaults
 		if (PlayerPrefs.HasKey("dust"))
 		{
-			dust = true;
-			SetDust(PlayerPrefs.GetInt("dust") == 1);
+			dust = (PlayerPrefs.GetInt("dust") == 1);
 		}
 		else
 		{
+			// defaults 
 			dust = true;
 			PlayerPrefs.SetInt("dust", 1);
 			PlayerPrefs.Save();
 		}
+		foreach (GameObject found in dustList)
+		{
+			found.SetActive(dust);
+		}
 
 		if (PlayerPrefs.HasKey("muted"))
 		{
-			muted = PlayerPrefs.GetInt("muted") == 1;
+			muted = (PlayerPrefs.GetInt("muted") == 1);
 		}
 		else
 		{
+			// defaults 
 			muted = false;
 			PlayerPrefs.SetInt("muted", muted ? 1 : 0);
 			PlayerPrefs.Save();
@@ -44,26 +54,16 @@ public class Settings
 		PlayerPrefs.Save();
 	}
 
-	public void SetDust(bool setting)
-	{ //TODO: Update interface
-		if (setting == dust) return;
-
-		dust = setting;
-		if (setting)
+	/// <summary>
+	/// Toggle Dust Motes
+	/// </summary>
+	public void ToggleDust()
+	{
+		dust = !dust;
+		PlayerPrefs.SetInt("dust", dust ? 1 : 0);
+		foreach (GameObject found in dustList)
 		{
-			PlayerPrefs.SetInt("dust", 1);
-			foreach (GameObject found in dustList)
-			{
-				found.SetActive(true);
-			}
-		}
-		else
-		{
-			PlayerPrefs.SetInt("dust", 0);
-			foreach (GameObject found in dustList)
-			{
-				found.SetActive(false);
-			}
+			found.SetActive(dust);
 		}
 		PlayerPrefs.Save();
 	}

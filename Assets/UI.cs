@@ -123,7 +123,7 @@ public sealed class UI : MonoBehaviour
 	/// </summary>
 	public void ToggleDust()
 	{
-		Core.settings.SetDust(!Core.settings.dust);
+		Core.settings.ToggleDust();
 		Audio.PlaySound("Menu");
 	}
 
