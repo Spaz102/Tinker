@@ -2,6 +2,14 @@
 + Cur
 ++++++++++++
 
+Codex/tile
+	- redo display logic entirely
+	- use states in tile then call update... codex should just handle paths
+
+Paths
+	+ spritesheet
+	+ arrows stored in data
+	
 To singleton: Codex, Settings
 
 UI

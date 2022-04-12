@@ -26,15 +26,25 @@ public class Codex : MonoBehaviour {
 		foreach (Tile butt in buttons) {
 			if (!Data.playerseen.ContainsKey(butt.tiletype)) { // Doesn't exist
 				Debug.Log("Invalid blueprint button");
-			} else if (Data.playerseen[butt.tiletype] || CanMake(butt.tiletype)) { // Visible (Forcibly seen or properly buildable from seen parts)
+			} else if (Data.playerseen[butt.tiletype]) { // Visible (Forcibly seen or properly buildable from seen parts)
 				butt.SmartShow(butt.tiletype);
+				butt.transform.GetChild(0).gameObject.SetActive(true);
 				if (!Data.playerread[butt.tiletype]) {
 					butt.StartBreathing();
 				} else {
 					butt.breathing = false;
-				}
+				}					
 			} else { // Craftable, but ingredients not seen
-				butt.SmartShow("Empty");
+				butt.transform.GetChild(0).gameObject.SetActive(false);
+				if (CanMake(butt.tiletype)) {
+					butt.SmartShow(butt.tiletype);
+					butt.Sillhouette();
+				}
+				else
+				{ // Totally unknown
+					butt.SmartShow("Empty");
+					
+				}
 			}
 		}
 	}

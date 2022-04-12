@@ -6,7 +6,11 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 	public Tile underlay; // null if already underlay // Is this the best way? If so, another layer for drop shadows? // This makes me super uneasy
 	public bool breathing; // Rats pulse to show agency, interface pulses to show new information
 	public float breathCycle; // Initialize to a random value between 0 and 1
+
+	public enum States { normal = 0, invisible = 1, sillhouette = 2, glowing = 3};
+
 	public string tiletype; // What type of tile (dirt, stick)
+	public States state;
 
 	public void Update() {
 		if (hidden == 1) { // Done this way so it only calls once, and preserves -1 as a special value
@@ -27,9 +31,9 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 		this.hidden = length + 1;
 	}
 
-	public void ShowSprite(string state) { // Try to use only when state changes, or unhiding
+	public void ShowSprite(string tiletype) { // Try to use only when state changes, or unhiding
 		TileDef temp;
-		if (Data.tiledefs.TryGetValue(state, out temp)) {
+		if (Data.tiledefs.TryGetValue(tiletype, out temp)) {
 			this.GetComponent<UnityEngine.UI.Image>().sprite = temp.sprite;
 			this.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, temp.opacity);
 			Fade(temp.opacity); // Makes sure hidden tiles are still hidden
@@ -61,11 +65,8 @@ public class Tile : MonoBehaviour { // Is also either a ghost, or interactive
 		this.GetComponent<UnityEngine.UI.Image>().color = clr;
 	}
 
-	public void SmartShow(string state) {
-		this.ShowSprite(state);
-		if (!Data.playerseen[state]) {
-			this.Sillhouette();
-		}
+	public void SmartShow(string tiletype) {
+		this.ShowSprite(tiletype);
 	}
 
 	public void StartBreathing() {
