@@ -3,12 +3,13 @@
 ++++++++++++
 
 Codex/tile
-	- redo display logic entirely
-	- use states in tile then call update... codex should just handle paths
+	- redo display logic entirely (per paper note)
+	- use states in tile then call update
+	
 
 Paths
-	+ spritesheet
-	+ arrows stored in data
+	- get rid of old manual paths/images
+	+ paths should be connected to the target item (not the source)
 	
 To singleton: Codex, Settings
 
