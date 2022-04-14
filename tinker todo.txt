@@ -5,7 +5,6 @@
 - Thematic Fonts
 
 Codex
-	- bug - codex sillhouted items aren't silh in the blueprint itself
 	- bug - paths breath with tiles... lol
 	Paths
 		+ bug - paths should be connected to the target item (not the source)
