@@ -2,15 +2,15 @@
 + Cur
 ++++++++++++
 
+- Thematic Fonts
+
 Codex
-	+ bug - codex initially not updated (showing all)
-	- bug - codex sillhouted items aren't sill in the blueprint itself
+	- bug - codex sillhouted items aren't silh in the blueprint itself
 	- bug - paths breath with tiles... lol
-	+ bug - paths should be connected to the target item (not the source)
-Paths
-	+ paths should be generated from data
-	+ get rid of old manual paths/images
-	
+	Paths
+		+ bug - paths should be connected to the target item (not the source)
+		+ paths should be generated from data
+		+ get rid of old manual paths/images
 	
 To singleton: Codex, Settings
 
@@ -26,8 +26,6 @@ UI
 ++++++++++++
 + Main/Code
 ++++++++++++
-
-- Thematic Fonts
 
 Refactor:
 	Board ++
@@ -104,6 +102,7 @@ GFX:
 	+ Tiles: seed, stick, log, plank, storage
 		- fix perspective/lighting on: rock, pin, junk3
 		- shiny match spring/cylinder. Enforce metal progression
+		- rat has 1px border bot/right along with some other tiles/paths? Might be a unity transparency issue?
 	+ Codex
 		- Openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
 		- Closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body

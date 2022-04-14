@@ -24,6 +24,9 @@ public class Codex : MonoBehaviour {
 	/// </summary>
 	public void Recalc () {
 		foreach (Tile butt in buttons) {
+			if (butt.tiletype != butt.newTiletype) { 
+				butt.Update();
+			}
 			if (!Data.playerseen.ContainsKey(butt.tiletype))
 			{ // Doesn't exist
 				Debug.Log("Invalid blueprint button");
