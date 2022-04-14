@@ -55,7 +55,7 @@ public class Board : MonoBehaviour {
 				newunderlay.GetComponent<Ghost>().lifespan = -1;
 				tile[x,y].underlay = newunderlay.GetComponent<Tile>();
 
-				newunderlay.GetComponent<Tile>().ShowSprite("Empty");
+				newunderlay.GetComponent<Tile>().SetTile("Empty");
 			}
 		}
 	}
@@ -133,12 +133,12 @@ public class Board : MonoBehaviour {
 		}
 		
 		this.state[target.x,target.y] = setto;
-		this.tile[target.x,target.y].SmartShow(setto);
+		this.tile[target.x,target.y].SetTile(setto);
 		
 		if (setto == "Rat" || setto == "NewRat") {
-			tile[target.x, target.y].StartBreathing();
+			tile[target.x, target.y].newState = Tile.States.breathing;
 		} else {
-			tile[target.x, target.y].breathing = false;
+			tile[target.x, target.y].newState = Tile.States.normal;
 		}
 
 		foreach (Dependency checkMe in dependencies) { // Check if any storage was using this (panel) tile
@@ -617,7 +617,7 @@ public class Board : MonoBehaviour {
 		newghost.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, Data.tiledefs[sprite].opacity);
 
 		newghost.GetComponent<Ghost>().Spawn(type, tile[finish.x, finish.y].gameObject.transform.position, delay * animationLength, true, sfx_name);
-		newghost.GetComponent<Tile>().Hide(tile[start.x, start.y].hidden); // Delay this animation until after it unhides
+		newghost.GetComponent<Tile>().Hide(tile[start.x, start.y].hiddenTransitionTime); // Delay this animation until after it unhides
 	}
 
 
@@ -639,14 +639,14 @@ public class Board : MonoBehaviour {
 	public void ClearHighlights() {
 		for (int y = 0; y < boardHeight; y++) {
 			for (int x = 0; x < boardWidth; x++) {
-				tile[x,y].underlay.ShowSprite("Empty");
+				tile[x,y].underlay.SetTile("Empty");
 			}
 		}
 	}
 	public void Highlight(int x, int y, string show) {
 		if (x >= 0 && y >= 0 && x < boardWidth && y < boardHeight) {
 			if (Core.mouseover == null || x != Core.mouseover.index.x || y != Core.mouseover.index.y) {
-				tile[x,y].underlay.ShowSprite(show);
+				tile[x,y].underlay.SetTile(show);
 			}
 		}
 	}
@@ -688,7 +688,7 @@ public class Board : MonoBehaviour {
 
 	public void RedrawPanel(Coord target) {
 		if (!HasDependents(target)) {
-			Core.board.tile[target.x, target.y].SmartShow("Panel");
+			Core.board.tile[target.x, target.y].SetTile("Panel");
 			return;
 		}
 		int magicNumber = 0;
@@ -708,7 +708,7 @@ public class Board : MonoBehaviour {
 
 		spriteIndex = new int[] {-1, -1, -1, -1, -1, 8, 2, 5, -1, 6, 0, 3, -1, 7, 1, 4}[magicNumber];
 		if (spriteIndex < 0) { // This should be impossible in any board's final state, but is possible when destroying multiple storage areas in one click (The dependency list only updates when the objects are actually destroyed)
-			Core.board.tile[target.x, target.y].SmartShow("Panel");
+			Core.board.tile[target.x, target.y].SetTile("Panel");
 			return;
 			//Debug.Log("Something went horribly wrong in determining which panel sprite to show at " + target.x + ", " + target.y + ". Good luck?");
 		}

@@ -2,14 +2,15 @@
 + Cur
 ++++++++++++
 
-Codex/tile
-	- redo display logic entirely (per paper note)
-	- use states in tile then call update
-	
-
+Codex
+	+ bug - codex initially not updated (showing all)
+	- bug - codex sillhouted items aren't sill in the blueprint itself
+	- bug - paths breath with tiles... lol
+	+ bug - paths should be connected to the target item (not the source)
 Paths
-	- get rid of old manual paths/images
-	+ paths should be connected to the target item (not the source)
+	+ paths should be generated from data
+	+ get rid of old manual paths/images
+	
 	
 To singleton: Codex, Settings
 
@@ -34,7 +35,6 @@ Refactor:
 	Core ++
 	Interactive ? Does this need to exist?
 	Storage ?
-	Tile ?
 	? Make a Dust.cs controller
 		- pull stuff from settings and core
 	+ go through all code, comment, refactor, restructure

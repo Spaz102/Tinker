@@ -116,7 +116,7 @@ public class BlueprintPage : MonoBehaviour {
 	}
 	public void ReDisplay() {
 		for (int n = 0; n < displayTiles.Length; n++) {
-			displayTiles[n].SmartShow(displayTiletypes[n]);
+			displayTiles[n].SetTile(displayTiletypes[n]);
 		}
 	}
 

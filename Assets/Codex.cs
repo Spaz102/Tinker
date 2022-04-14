@@ -24,26 +24,30 @@ public class Codex : MonoBehaviour {
 	/// </summary>
 	public void Recalc () {
 		foreach (Tile butt in buttons) {
-			if (!Data.playerseen.ContainsKey(butt.tiletype)) { // Doesn't exist
+			if (!Data.playerseen.ContainsKey(butt.tiletype))
+			{ // Doesn't exist
 				Debug.Log("Invalid blueprint button");
-			} else if (Data.playerseen[butt.tiletype]) { // Visible (Forcibly seen or properly buildable from seen parts)
-				butt.SmartShow(butt.tiletype);
-				butt.transform.GetChild(0).gameObject.SetActive(true);
-				if (!Data.playerread[butt.tiletype]) {
-					butt.StartBreathing();
-				} else {
-					butt.breathing = false;
-				}					
-			} else { // Craftable, but ingredients not seen
-				butt.transform.GetChild(0).gameObject.SetActive(false);
-				if (CanMake(butt.tiletype)) {
-					butt.SmartShow(butt.tiletype);
-					butt.Sillhouette();
+			}
+			else {
+				if (Data.playerseen[butt.tiletype] && Data.playerread[butt.tiletype])
+				{
+					butt.newState = Tile.States.normal;
+					butt.transform.GetChild(0).gameObject.SetActive(true);
 				}
-				else
-				{ // Totally unknown
-					butt.SmartShow("Empty");
-					
+				else if (Data.playerseen[butt.tiletype] && !Data.playerread[butt.tiletype])
+				{
+					butt.newState = Tile.States.glowing;
+					butt.transform.GetChild(0).gameObject.SetActive(true);
+				}
+				else if (!Data.playerseen[butt.tiletype] && CanMake(butt.tiletype))
+				{
+					butt.newState = Tile.States.sillhouette;
+					butt.transform.GetChild(0).gameObject.SetActive(false);
+				}
+				else if (!Data.playerseen[butt.tiletype] && !CanMake(butt.tiletype))
+				{
+					butt.newState = Tile.States.invisible;
+					butt.transform.GetChild(0).gameObject.SetActive(false);
 				}
 			}
 		}

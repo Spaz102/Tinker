@@ -102,12 +102,12 @@ public static class Core {
 				}
 				//mouseover.gameObject.GetComponent<Tile>().underlay.ShowSprite("Mouseover");
 			} else if (CanClick(board.state[mouseover.index.x, mouseover.index.y]) == "Win") { // Clicking a key onto a music box
-				board.tile[mouseover.index.x, mouseover.index.y].underlay.ShowSprite("Mouseover"); // TODO: Something fancier?
+				board.tile[mouseover.index.x, mouseover.index.y].underlay.SetTile("Mouseover"); // TODO: Something fancier?
 			} else if (CanClick(board.state[mouseover.index.x, mouseover.index.y]) != board.state[mouseover.index.x, mouseover.index.y]) { // Clicking will cause changes on the board
 				string[,] boardcopy = (string[,])board.state.Clone(); // Copy the board
 				boardcopy[mouseover.index.x, mouseover.index.y] = CanClick(board.state[mouseover.index.x, mouseover.index.y]); // Apply the click to the clone
 				board.ResolvePatterns(mouseover.index, ref boardcopy, true); // test = true will show valid patterns on the hypothetical board
-				board.tile[mouseover.index.x, mouseover.index.y].underlay.ShowSprite("Mouseover"); // Override any pattern highlighting with mouseover indicator
+				board.tile[mouseover.index.x, mouseover.index.y].underlay.SetTile("Mouseover"); // Override any pattern highlighting with mouseover indicator
 			} // Else mousing over a board tile that can't be clicked
 		}
 		
@@ -199,7 +199,7 @@ public static class Core {
 			Data.playerseen["Rat"] = true;
 			codex.Recalc();
 		}
-		cursor.ShowSprite(hand);
+		cursor.SetTile(hand);
 		cursor.Fade(0.75f);
 	}
 
