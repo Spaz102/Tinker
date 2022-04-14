@@ -33,14 +33,10 @@ public class Tile : MonoBehaviour {
 			hiddenTransitionTime--;
 		}
 
-		if (tiletype != newTiletype) {
-			tiletype = newTiletype;
-			this.ShowSprite();
-		}
-
-		if (newState != state)
+		if (newState != state || newTiletype != tiletype)
 		{
 			state = newState;
+			tiletype = newTiletype;
 			switch (state)
 			{
 				case States.glowing:
