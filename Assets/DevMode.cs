@@ -66,6 +66,7 @@ public sealed class DevMode : MonoBehaviour {
 		foreach (string defkey in Data.tiledefs.Keys)
 		{
 			Data.playerseen[defkey] = false;
+			Data.playerread[defkey] = false;
 		}
 		Core.codex.Recalc();
 	}
