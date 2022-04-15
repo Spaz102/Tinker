@@ -81,9 +81,9 @@ public class Board : MonoBehaviour {
 		string readRaw = PlayerPrefs.GetString("read");
 		int index = 0; // Let's just hope tiledata is consistently ordered (It can't be iterated over numerically)
 		foreach (string key in Data.tiledefs.Keys) {
-			Data.playerseen[key] = seenRaw.ToCharArray()[index] == '1';
-			Data.playerread[key] = readRaw.ToCharArray()[index] == '1';
-			//Data.playerread[key] = Data.playerread[key] || readRaw.ToCharArray()[index] == '1';
+			PlayerData.playerseen[key] = seenRaw.ToCharArray()[index] == '1';
+			PlayerData.playerread[key] = readRaw.ToCharArray()[index] == '1';
+			//PlayerData.playerread[key] = Data.playerread[key] || readRaw.ToCharArray()[index] == '1';
 			index++;
 		}
 		Core.SetHand(PlayerPrefs.GetString("hand"));
@@ -110,8 +110,8 @@ public class Board : MonoBehaviour {
 		string seenRaw = "";
 		string readRaw = "";
 		foreach (string entry in Data.tiledefs.Keys) {
-			seenRaw += Data.playerseen[entry] ? '1' : '0';
-			readRaw += Data.playerread[entry] ? '1' : '0';
+			seenRaw += PlayerData.playerseen[entry] ? '1' : '0';
+			readRaw += PlayerData.playerread[entry] ? '1' : '0';
 		}
 		PlayerPrefs.SetString("seen", seenRaw);
 		PlayerPrefs.SetString("read", readRaw);
@@ -127,8 +127,8 @@ public class Board : MonoBehaviour {
 		if (state[target.x,target.y] == setto) { // Not strictly necessary to throw away redundant calls, but saves on redrawing
 			return;
 		}
-		if (!Data.playerseen[setto]) {
-			Data.playerseen[setto] = true;
+		if (!PlayerData.playerseen[setto]) {
+			PlayerData.playerseen[setto] = true;
 			Core.codex.Recalc();
 		}
 		

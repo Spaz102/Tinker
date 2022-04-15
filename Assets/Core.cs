@@ -35,6 +35,7 @@ public static class Core {
 	static Core () {
 		rng = new System.Random();
 		Data.Awake();
+		PlayerData.Awake();
 		CalcHandPoolSize();
 		
 		UnityEngine.Object.Destroy(GameObject.Find("Tile"));
@@ -155,12 +156,12 @@ public static class Core {
 		} else if (result != board.state[queuedClick.x,queuedClick.y]) { // A click is possible
 			Audio.PlaySound(hand);
 			if (hand == "Special") {
-				Data.playerseen["Special"] = true;
+				PlayerData.playerseen["Special"] = true;
 				SetHand(board.state[queuedClick.x,queuedClick.y]);
 				board.Set(queuedClick, "Empty");
 			} else if (hand == "Rat") {
-				Data.playerseen["NewRat"] = true;
-				Data.playerseen["Rat"] = true;
+				PlayerData.playerseen["NewRat"] = true;
+				PlayerData.playerseen["Rat"] = true;
 				SetHand("Random");
 				if (board.state[queuedClick.x,queuedClick.y] == "Empty") {
 					board.Set(queuedClick, "NewRat");
@@ -191,12 +192,12 @@ public static class Core {
 		} else {
 			hand = setto;
 		}
-		if (!Data.playerseen[hand]) {
-			Data.playerseen[hand] = true;
+		if (!PlayerData.playerseen[hand]) {
+			PlayerData.playerseen[hand] = true;
 			codex.Recalc();
 		}
-		if (hand == "NewRat" && !Data.playerseen["Rat"]) {
-			Data.playerseen["Rat"] = true;
+		if (hand == "NewRat" && !PlayerData.playerseen["Rat"]) {
+			PlayerData.playerseen["Rat"] = true;
 			codex.Recalc();
 		}
 		cursor.SetTile(hand);

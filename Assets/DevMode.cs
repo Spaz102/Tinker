@@ -53,7 +53,7 @@ public sealed class DevMode : MonoBehaviour {
 	public void SeeItems() {
 		if (!devmode) { return; }
 		foreach (string defkey in Data.tiledefs.Keys) {
-			Data.playerseen[defkey] = true;
+			PlayerData.playerseen[defkey] = true;
 		}
 		Core.codex.Recalc();
 	}
@@ -65,8 +65,8 @@ public sealed class DevMode : MonoBehaviour {
 		if (!devmode) { return; }
 		foreach (string defkey in Data.tiledefs.Keys)
 		{
-			Data.playerseen[defkey] = false;
-			Data.playerread[defkey] = false;
+			PlayerData.playerseen[defkey] = false;
+			PlayerData.playerread[defkey] = false;
 		}
 		Core.codex.Recalc();
 	}

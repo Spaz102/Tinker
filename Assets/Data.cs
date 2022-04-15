@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic; // Remember that dictionaries must be initialized manually
 
 /// <summary>
-/// Holds our constant data
+/// Holds our constant game data
 /// </summary>
 /// Ideal is that you should be able to change ONLY this to make a new level or rebalance
 public static class Data {
@@ -20,8 +20,6 @@ public static class Data {
 	public static Sprite dustsprite;
 	public static Sprite[] dustsprites;
 	public static Sprite[] storageSprites;
-	public static Dictionary<string, bool> playerseen;
-	public static Dictionary<string, bool> playerread;
 
 	static Data() {
 		FillLists();
@@ -323,13 +321,6 @@ public static class Data {
 			}
 		}
         #endregion
-
-        playerseen = new Dictionary<string, bool>();
-		playerread = new Dictionary<string, bool>();
-		foreach (string defkey in tiledefs.Keys) {
-			playerseen.Add(defkey, false);
-			playerread.Add(defkey, false);
-		}
 	}
 }
 

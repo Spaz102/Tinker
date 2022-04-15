@@ -50,7 +50,7 @@ public class BlueprintPage : MonoBehaviour {
 			return;
 		}
 			
-		if (Data.playerseen[bpTiletype]) {
+		if (PlayerData.playerseen[bpTiletype]) {
 			titleText.text = Data.tiledefs[bpTiletype].name + ":";
 			descText.text = Data.tiledefs[bpTiletype].description + "";
 		} else {
@@ -116,7 +116,7 @@ public class BlueprintPage : MonoBehaviour {
 	}
 	public void ReDisplay() {
 		for (int n = 0; n < displayTiles.Length; n++) {
-			if (Data.playerseen[displayTiletypes[n]]) { 
+			if (PlayerData.playerseen[displayTiletypes[n]]) { 
 				displayTiles[n].SetTile(displayTiletypes[n]);
 			}
 			else {
@@ -126,7 +126,7 @@ public class BlueprintPage : MonoBehaviour {
 	}
 
 	public void Click(int index) {
-		if (displayTiletypes[index] == "Panel" && !Data.playerseen["Panel"]) {
+		if (displayTiletypes[index] == "Panel" && !PlayerData.playerseen["Panel"]) {
 			return;
 		} else if (displayTiletypes[index] != "Empty") {
 			Core.codex.OpenBlueprint(displayTiletypes[index]);

@@ -27,27 +27,27 @@ public class Codex : MonoBehaviour {
 			if (butt.tiletype != butt.newTiletype) { 
 				butt.Update();
 			}
-			if (!Data.playerseen.ContainsKey(butt.tiletype))
+			if (!PlayerData.playerseen.ContainsKey(butt.tiletype))
 			{ // Doesn't exist
 				Debug.Log("Invalid blueprint button");
 			}
 			else {
-				if (Data.playerseen[butt.tiletype] && Data.playerread[butt.tiletype])
+				if (PlayerData.playerseen[butt.tiletype] && PlayerData.playerread[butt.tiletype])
 				{
 					butt.newState = Tile.States.normal;
 					butt.transform.parent.Find("Paths").gameObject.SetActive(true);
 				}
-				else if (Data.playerseen[butt.tiletype] && !Data.playerread[butt.tiletype])
+				else if (PlayerData.playerseen[butt.tiletype] && !PlayerData.playerread[butt.tiletype])
 				{
 					butt.newState = Tile.States.glowing;
 					butt.transform.parent.Find("Paths").gameObject.SetActive(true);
 				}
-				else if (!Data.playerseen[butt.tiletype] && CanMake(butt.tiletype))
+				else if (!PlayerData.playerseen[butt.tiletype] && CanMake(butt.tiletype))
 				{
 					butt.newState = Tile.States.sillhouette;
 					butt.transform.parent.Find("Paths").gameObject.SetActive(false);
 				}
-				else if (!Data.playerseen[butt.tiletype] && !CanMake(butt.tiletype))
+				else if (!PlayerData.playerseen[butt.tiletype] && !CanMake(butt.tiletype))
 				{
 					butt.newState = Tile.States.invisible;
 					butt.transform.parent.Find("Paths").gameObject.SetActive(false);
@@ -66,7 +66,7 @@ public class Codex : MonoBehaviour {
 		}
 		foreach (string required in Data.patternresults[showme].value)
 		{
-			if (required != "" && required != "Empty" && !Data.playerseen[required]) { // Contains an unseen ingredient
+			if (required != "" && required != "Empty" && !PlayerData.playerseen[required]) { // Contains an unseen ingredient
 				return false;
 			}
 		}
@@ -82,13 +82,13 @@ public class Codex : MonoBehaviour {
 	/// Given selected tiletype (through click or other script), open the appropriate bp page
 	/// </summary>
 	public void OpenBlueprint(string tiletype) { 
-		if (!CanMake(tiletype) && !Data.playerseen[tiletype])
+		if (!CanMake(tiletype) && !PlayerData.playerseen[tiletype])
 		{
 			Debug.Log("Invalid blueprint button2");
 			return;
 		}
 
-		Data.playerread[tiletype] = true;
+		PlayerData.playerread[tiletype] = true;
 		Recalc();
 		if (DevMode.devmode) {
 			if (tiletype == "Storage") { Core.SetHand("Panel"); }

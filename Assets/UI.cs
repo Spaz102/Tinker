@@ -29,6 +29,7 @@ public sealed class UI : MonoBehaviour
 	public static GameObject LightBox;
 	public static GameObject Codex;
 	public static GameObject Popup;
+	public static GameObject MainMenu;
 
 	public bool scrollopen = false;
 
@@ -39,6 +40,7 @@ public sealed class UI : MonoBehaviour
 		LightBox = GameObject.Find("LightBox");
 		Popup = GameObject.Find("Popup");
 		Codex = GameObject.Find("CodexContainer");
+		MainMenu = GameObject.Find("MainMenu");
 
 		//Objects need to be moved so that they can be visible/easy to work with in the editor
 		#region Put unity objects into place and hide as needed
@@ -71,13 +73,20 @@ public sealed class UI : MonoBehaviour
 		rtPopup.anchorMin = Vector2.zero;
 		rtPopup.anchorMax = Vector2.one;
 		rtPopup.sizeDelta = Vector2.zero;
+
+		// Resize needed to allow it to be displayed in the editor
+		MainMenu.SetActive(true);
+		RectTransform rtMainMenu = MainMenu.GetComponent<RectTransform>();
+		rtMainMenu.anchoredPosition = Vector2.zero;
+		rtMainMenu.anchorMin = Vector2.zero;
+		rtMainMenu.anchorMax = Vector2.one;
+		rtMainMenu.sizeDelta = Vector2.zero;
 		#endregion
 	}
 
 	void Update()
 	{
-		//todo: To be moved to a codex function (as part of seen())
-		if (Data.playerseen.Values.Count(v => v) > Data.playerread.Values.Count(v => v))
+		if (PlayerData.playerseen.Values.Count(v => v) > PlayerData.playerread.Values.Count(v => v))
 		{
 			ClosedScroll.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, .5f);
 		}
@@ -85,6 +94,21 @@ public sealed class UI : MonoBehaviour
 		{
 			ClosedScroll.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0);
 		}
+	}
+
+	/// <summary>
+	/// Main menu start game button
+	/// </summary>
+	public void NewGame()
+	{
+		Core.board.ResetBoard();
+		//foreach (string defkey in Data.tiledefs.Keys)
+		//{
+		//	Data.playerseen[defkey] = false;
+		//	Data.playerread[defkey] = false;
+		//}
+		//Core.codex.Recalc();
+		MainMenu.SetActive(false);
 	}
 
 	public void HideLightBox()
@@ -95,6 +119,10 @@ public sealed class UI : MonoBehaviour
 	public void HidePopup()
 	{
 		Popup.SetActive(false);
+	}
+	public void HideMainMenu()
+	{
+		MainMenu.SetActive(false);
 	}
 
 	/// <summary>

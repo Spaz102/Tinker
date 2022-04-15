@@ -4,6 +4,13 @@
 
 - Thematic Fonts
 
+bug - mouseover/clicks work through the main menu, popups
+- make toggle for devmode get item on click
+
+PlayerData
+	- move in save/load game data code
+	+ add stats (win/loss/ng)
+
 Codex
 	Paths
 		+ bug - paths should be connected to the target item (not the source)
