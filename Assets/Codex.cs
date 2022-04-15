@@ -35,22 +35,22 @@ public class Codex : MonoBehaviour {
 				if (Data.playerseen[butt.tiletype] && Data.playerread[butt.tiletype])
 				{
 					butt.newState = Tile.States.normal;
-					butt.transform.GetChild(0).gameObject.SetActive(true);
+					butt.transform.parent.Find("Paths").gameObject.SetActive(true);
 				}
 				else if (Data.playerseen[butt.tiletype] && !Data.playerread[butt.tiletype])
 				{
 					butt.newState = Tile.States.glowing;
-					butt.transform.GetChild(0).gameObject.SetActive(true);
+					butt.transform.parent.Find("Paths").gameObject.SetActive(true);
 				}
 				else if (!Data.playerseen[butt.tiletype] && CanMake(butt.tiletype))
 				{
 					butt.newState = Tile.States.sillhouette;
-					butt.transform.GetChild(0).gameObject.SetActive(false);
+					butt.transform.parent.Find("Paths").gameObject.SetActive(false);
 				}
 				else if (!Data.playerseen[butt.tiletype] && !CanMake(butt.tiletype))
 				{
 					butt.newState = Tile.States.invisible;
-					butt.transform.GetChild(0).gameObject.SetActive(false);
+					butt.transform.parent.Find("Paths").gameObject.SetActive(false);
 				}
 			}
 		}

@@ -5,7 +5,6 @@
 - Thematic Fonts
 
 Codex
-	- bug - paths breath with tiles... lol
 	Paths
 		+ bug - paths should be connected to the target item (not the source)
 		+ paths should be generated from data
