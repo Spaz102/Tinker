@@ -19,6 +19,9 @@ Codex
 	
 To singleton: Codex, Settings
 
++ Update flavour text to Tinkerer pov ("It seems that you find a rock every 4th pile of dirt.... how odd")
+			- include item name (title to be removed)
+
 UI
 	New Buttons:
 		- Stats (like in minesweeper) + Achievements
@@ -65,13 +68,11 @@ Codex/BP:
 	ClosedScroll:
 		- show/hide glow image when there's a new entry
 	OpenScroll:
-		+ Draw in arrows as items are revealed (Arrows sprites as children of tile should work) + pen scritching sound
+		+ Add pen sfx when new unread items are added to codex
 		- Mouseover to show clickable
 		- Unread tiles ('breathing' glow effect)
 	BP:
 		+ Fade out edges instead of using ragged 'page' .. we're writing on the scroll... maybe a zoom animation? blur?
-		+ Update flavour text to Tinkerer pov ("It seems that you find a rock every 4th pile of dirt.... how odd")
-			- include item name (title to be removed)
 		- beautify layouts
 
 Dust:

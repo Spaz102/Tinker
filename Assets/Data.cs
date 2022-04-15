@@ -38,38 +38,38 @@ public static class Data {
 		tiledefs = new Dictionary<string, TileDef>();
 
         #region tiledefs
-        tiledefs.Add("Empty", new TileDef("Empty", 0, "", null, 0f, 76, "Hello World", ""));
-		tiledefs.Add("NewRat", new TileDef("Temporary rat", 0, "", rawsprites[18], 1f, 0, "", "Rat")); // Correct/ideal sfx_name?
+        tiledefs.Add("Empty", new TileDef("Empty", 0, "", null, 0f, 76, "Hello World", "", new Vector2(-1, -1)));
+		tiledefs.Add("NewRat", new TileDef("Temporary rat", 0, "", rawsprites[18], 1f, 0, "", "Rat", new Vector2(-1, -1))); // Correct/ideal sfx_name?
 		
-		tiledefs.Add("Seed", new TileDef("Sapling", 96, "Empty", rawsprites[0], 1f, 5, "Why does it take three seeds to grow a single stick? Taxes.", "Click"));
-		tiledefs.Add("Stick", new TileDef("Stick", 28, "Seed", rawsprites[1], 1f, 3, "Stick with me, and we'll do great things", "Click"));
-		tiledefs.Add("Wood", new TileDef("Raw lumber", 10, "Stick", rawsprites[2], 1f, 1, "Shall I compare thee to a summer's day? Thou art more... Uh... Look, it's just some wood, ok?", "Click"));
-		tiledefs.Add("Plank", new TileDef("Wood plank", 4, "Wood", rawsprites[3], 1f, 0, "Resist the urge to imitate one", "Click"));
-		tiledefs.Add("Panel", new TileDef("Sturdy panel", 1, "Plank", rawsprites[4], 1f, 0, "It makes a decent coaster, if nothing else", "Click"));
+		tiledefs.Add("Seed", new TileDef("Sapling", 96, "Empty", rawsprites[0], 1f, 5, "Why does it take three seeds to grow a single stick? Taxes.", "Click", new Vector2(0, 0)));
+		tiledefs.Add("Stick", new TileDef("Stick", 28, "Seed", rawsprites[1], 1f, 3, "Stick with me, and we'll do great things", "Click", new Vector2(0, 1)));
+		tiledefs.Add("Wood", new TileDef("Raw lumber", 10, "Stick", rawsprites[2], 1f, 1, "Shall I compare thee to a summer's day? Thou art more... Uh... Look, it's just some wood, ok?", "Click", new Vector2(0,2)));
+		tiledefs.Add("Plank", new TileDef("Wood plank", 4, "Wood", rawsprites[3], 1f, 0, "Resist the urge to imitate one", "Click", new Vector2(0,3)));
+		tiledefs.Add("Panel", new TileDef("Sturdy panel", 1, "Plank", rawsprites[4], 1f, 0, "It makes a decent coaster, if nothing else", "Click", new Vector2(0, 4)));
 
-		tiledefs.Add("Dirt", new TileDef("Dirt", 127, "Empty", rawsprites[5], 1f, 5, "The humblest of beginnings. Clump together enough... and you'll still be disappointed", "Click"));
-		tiledefs.Add("Rock", new TileDef("Rock", 30, "Dirt", rawsprites[6], 1f, 3, "One day, I'll treat you to my conglomeration of rock puns", "Click"));
-		tiledefs.Add("Metal", new TileDef("Metal", 7, "Rock", rawsprites[7], 1f, 1, "Not included: black nail polish and pointy accessories", "Click"));
-		tiledefs.Add("Gear", new TileDef("Gear", 0, "Metal", rawsprites[8], 1f, 0, "You might be thinking this is just an ordinary gear... Correct!", "Drop Metal Thing-SoundBible.com-401640954"));
-		tiledefs.Add("Pin", new TileDef("Metal spike", 0, "Metal", rawsprites[9], 1f, 0, "This handsome stud is looking for love", "Drop Metal Thing-SoundBible.com-401640954"));
+		tiledefs.Add("Dirt", new TileDef("Dirt", 127, "Empty", rawsprites[5], 1f, 5, "The humblest of beginnings. Clump together enough... and you'll still be disappointed", "Click", new Vector2(2,0)));
+		tiledefs.Add("Rock", new TileDef("Rock", 30, "Dirt", rawsprites[6], 1f, 3, "One day, I'll treat you to my conglomeration of rock puns", "Click", new Vector2(2,1)));
+		tiledefs.Add("Metal", new TileDef("Metal", 7, "Rock", rawsprites[7], 1f, 1, "Not included: black nail polish and pointy accessories", "Click", new Vector2(2,2)));
+		tiledefs.Add("Gear", new TileDef("Gear", 0, "Metal", rawsprites[8], 1f, 0, "You might be thinking this is just an ordinary gear... Correct!", "Drop Metal Thing-SoundBible.com-401640954", new Vector2(1, 3)));
+		tiledefs.Add("Pin", new TileDef("Metal spike", 0, "Metal", rawsprites[9], 1f, 0, "This handsome stud is looking for love", "Drop Metal Thing-SoundBible.com-401640954", new Vector2(3, 3)));
 
-		tiledefs.Add("Cylinder", new TileDef("Metal cylinder", 0, "", rawsprites[10], 1f, 0, "Not a very good rolling pin", "Drop Metal Thing-SoundBible.com-401640954"));
-		tiledefs.Add("Spring", new TileDef("Coil spring", 0, "", rawsprites[11], 1f, 0, "Use #493 for springs: hilarious facial accessory", "Drop Metal Thing-SoundBible.com-401640954"));
-		tiledefs.Add("Key", new TileDef("Tiny key", 0, "Empty", rawsprites[12], 1f, 0, "What kind of key doesn't unlock anything?", "Drop Metal Thing-SoundBible.com-401640954"));
-		tiledefs.Add("Comb", new TileDef("Fine metal comb", 0, "", rawsprites[13], 1f, 0, "What are you doing, checking for lice?", "Click"));
-		tiledefs.Add("Drum", new TileDef("Spiked cylinder", 0, "", rawsprites[14], 1f, 0, "Modern art, perhaps?", "Click"));
+		tiledefs.Add("Cylinder", new TileDef("Metal cylinder", 0, "", rawsprites[10], 1f, 0, "Not a very good rolling pin", "Drop Metal Thing-SoundBible.com-401640954", new Vector2(2, 4)));
+		tiledefs.Add("Spring", new TileDef("Coil spring", 0, "", rawsprites[11], 1f, 0, "Use #493 for springs: hilarious facial accessory", "Drop Metal Thing-SoundBible.com-401640954", new Vector2(1, 4)));
+		tiledefs.Add("Key", new TileDef("Tiny key", 0, "Empty", rawsprites[12], 1f, 0, "What kind of key doesn't unlock anything?", "Drop Metal Thing-SoundBible.com-401640954", new Vector2(1, 2)));
+		tiledefs.Add("Comb", new TileDef("Fine metal comb", 0, "", rawsprites[13], 1f, 0, "What are you doing, checking for lice?", "Click", new Vector2(1.5f, 5)));
+		tiledefs.Add("Drum", new TileDef("Spiked cylinder", 0, "", rawsprites[14], 1f, 0, "Modern art, perhaps?", "Click", new Vector2(3, 5)));
 
-		tiledefs.Add("Motor", new TileDef("Spring battery", 0, "", rawsprites[15], 1f, 0, "A device for storing and distributing kinetic energy", "Click"));
-		tiledefs.Add("MusicBox", new TileDef("Mechanical box", 0, "", rawsprites[16], 1f, 0, "What kind of box needs a key, but isn't locked?", "Click"));
-		tiledefs.Add("Special", new TileDef("Lift-o-matic", 19, "", rawsprites[17], 1f, 0, "You have in your hand, a great tool for picking things up. Also, you're holding something", "Wrench"));
-		tiledefs.Add("Rat", new TileDef("Rattus norvegicus", 10, "Rat", rawsprites[18], 1f, 3, "Ugly, but also cute! Kind of like a pug, except it will eat anything and won't drool. Why do people like pugs?", "Rat"));
-		tiledefs.Add("Storage", new TileDef("Storage space", 0, "", rawsprites[19], 1f, 0, "Put things down here, and you can pick them up again! This stackable storage is pretty much a miracle", "Pew_Pew-DKnight556-1379997159"));
+		tiledefs.Add("Motor", new TileDef("Spring battery", 0, "", rawsprites[15], 1f, 0, "A device for storing and distributing kinetic energy", "Click", new Vector2(0, 5)));
+		tiledefs.Add("MusicBox", new TileDef("Mechanical box", 0, "", rawsprites[16], 1f, 0, "What kind of box needs a key, but isn't locked?", "Click", new Vector2(1.5f, 6)));
+		tiledefs.Add("Special", new TileDef("Lift-o-matic", 19, "", rawsprites[17], 1f, 0, "You have in your hand, a great tool for picking things up. Also, you're holding something", "Wrench", new Vector2(1, 0)));
+		tiledefs.Add("Rat", new TileDef("Rattus norvegicus", 10, "Rat", rawsprites[18], 1f, 3, "Ugly, but also cute! Kind of like a pug, except it will eat anything and won't drool. Why do people like pugs?", "Rat", new Vector2(3, 1)));
+		tiledefs.Add("Storage", new TileDef("Storage space", 0, "", rawsprites[19], 1f, 0, "Put things down here, and you can pick them up again! This stackable storage is pretty much a miracle", "Pew_Pew-DKnight556-1379997159", new Vector2(1, 1)));
 
-		tiledefs.Add("Junk1", new TileDef("Junk 'n stuff", 17, "", rawsprites[20], 1f, 1, "Hoarding is a disgusting habit. This is how you get rats", "Mirror Breaking-SoundBible.com-73239746"));
-		tiledefs.Add("Junk2", new TileDef("Scraps 'n stuff", 17, "", rawsprites[21], 1f, 1, "", "Glass Breaking-SoundBible.com-1765179538"));
-		tiledefs.Add("Junk3", new TileDef("Junk 'n scraps", 17, "", rawsprites[22], 1f, 1, "", "Mirror Breaking-SoundBible.com-73239746"));
-		tiledefs.Add("Highlight", new TileDef("Highlight", 0, "", rawsprites[23], 0.3f, 0, "", ""));
-		tiledefs.Add("Mouseover", new TileDef("Mouseover", 0, "", rawsprites[23], 0.1f, 0, "", ""));
+		tiledefs.Add("Junk1", new TileDef("Junk 'n stuff", 17, "", rawsprites[20], 1f, 1, "Hoarding is a disgusting habit. This is how you get rats", "Mirror Breaking-SoundBible.com-73239746", new Vector2(3, 0)));
+		tiledefs.Add("Junk2", new TileDef("Scraps 'n stuff", 17, "", rawsprites[21], 1f, 1, "", "Glass Breaking-SoundBible.com-1765179538", new Vector2(-1, -1)));
+		tiledefs.Add("Junk3", new TileDef("Junk 'n scraps", 17, "", rawsprites[22], 1f, 1, "", "Mirror Breaking-SoundBible.com-73239746", new Vector2(-1, -1)));
+		tiledefs.Add("Highlight", new TileDef("Highlight", 0, "", rawsprites[23], 0.3f, 0, "", "", new Vector2(-1,-1)));
+		tiledefs.Add("Mouseover", new TileDef("Mouseover", 0, "", rawsprites[23], 0.1f, 0, "", "", new Vector2(-1, -1)));
         #endregion
 
         patterns = new List<Pattern>(); // Warning: Patterns checked in order; be careful of conflicts
@@ -322,6 +322,14 @@ public static class Data {
 		}
         #endregion
 	}
+
+	private static void CalcPaths(TileDef tile)
+	{
+		if (tile.codexPos == new Vector2(-1, -1))
+		{
+			return;
+		}
+	}
 }
 
 public class Pattern {
@@ -373,8 +381,21 @@ public class TileDef {
 	public float opacity;
 	public int startingChance;		// The weight of this resource on the initial board state' distribution
 	public string sfx_name;			// The filename in the Audio resources folder
+	public Vector2 codexPos;     // where in the codex the tile appears
 
-	public TileDef(string name, int chanceToDraw, string edible, Sprite sprite, float opacity, int startingChance, string description, string sfx_name) {
+	/// <summary>
+	/// Tile definition
+	/// </summary>
+	/// <param name="name"></param>
+	/// <param name="chanceToDraw"></param>
+	/// <param name="edible">Can be eaten by rats</param>
+	/// <param name="sprite"></param>
+	/// <param name="opacity"></param>
+	/// <param name="startingChance"></param>
+	/// <param name="description"></param>
+	/// <param name="sfx_name"></param>
+	/// <param name="codexPos">-1,-1 means it isn't in the codex</param>
+	public TileDef(string name, int chanceToDraw, string edible, Sprite sprite, float opacity, int startingChance, string description, string sfx_name, Vector2 codexPos) {
 		this.name = name;
 		this.description = description;
 		this.chanceToDraw = chanceToDraw;
@@ -383,5 +404,6 @@ public class TileDef {
 		this.opacity = opacity;
 		this.startingChance = startingChance;
 		this.sfx_name = sfx_name;
+		this.codexPos = codexPos;
 	}
 }
