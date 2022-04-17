@@ -9,22 +9,32 @@ public class Interactive : MonoBehaviour { // Warning: Needs the GameObject to a
 	public Coord index; // Unused if not a tile
 
 	public void OnMouseUpAsButton() {
-		if (type == "Tile") {
-			Core.QueueClick(this.index);
+		if (!UI.Popup.activeInHierarchy && !UI.MainMenu.activeInHierarchy) { 
+			if (type == "Tile") {
+				Core.QueueClick(this.index);
+			}
 		}
 	}
-	public void OnMouseEnter() { // Seems to work via raytracing, so no need to worry about layers or z-fighting if it isn't happening visually
-		Core.mouseover = this;
+	public void OnMouseEnter() { 
+		if (!UI.Popup.activeInHierarchy && !UI.MainMenu.activeInHierarchy)
+		{
+			Core.mouseover = this;
 
-		Core.Mouseover();
+			Core.Mouseover();
+		}
 	}
 	public void OnMouseExit() { //TODO: Add check for if program focus lost/regained? (Add a pause screen)
-		if (type == "Tile") {
-			if (Core.mouseover == this) {
-				Core.mouseover = null;
-				Core.Mouseover();
-			}
+		if (!UI.Popup.activeInHierarchy && !UI.MainMenu.activeInHierarchy)
+		{
+			if (type == "Tile")
+			{
+				if (Core.mouseover == this)
+				{
+					Core.mouseover = null;
+					Core.Mouseover();
+				}
 
+			}
 		}
 	}
 }

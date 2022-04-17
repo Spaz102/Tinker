@@ -15,6 +15,7 @@ public static class Core {
 	public static Board board;
 	public static Codex codex;
 	public static Popup popup;
+	public static GameObject mainMenu;
 
 	// Used in random drawing to hand
 	public static int handPoolSize;
@@ -45,7 +46,8 @@ public static class Core {
 		cursor = GameObject.Find("Hand").GetComponent<Tile>();
 		codex = UI.Codex.GetComponent<Codex>();
 		popup = UI.Popup.GetComponent<Popup>();
-			
+		mainMenu = UI.MainMenu;
+
 		mouseover = null;
 		cursor.transform.localScale = new Vector3(0.75f, 0.75f, 1);
 		settings = new Settings();

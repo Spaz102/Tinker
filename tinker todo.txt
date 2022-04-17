@@ -4,7 +4,6 @@
 
 - Thematic Fonts
 
-bug - mouseover/clicks work through the main menu, popups
 - make toggle for devmode get item on click
 
 PlayerData

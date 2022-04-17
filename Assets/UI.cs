@@ -102,12 +102,6 @@ public sealed class UI : MonoBehaviour
 	public void NewGame()
 	{
 		Core.board.ResetBoard();
-		//foreach (string defkey in Data.tiledefs.Keys)
-		//{
-		//	Data.playerseen[defkey] = false;
-		//	Data.playerread[defkey] = false;
-		//}
-		//Core.codex.Recalc();
 		MainMenu.SetActive(false);
 	}
 
