@@ -90,6 +90,7 @@ public class Tile : MonoBehaviour {
 		if (Data.tiledefs.TryGetValue(tiletype, out temp)) {
 			this.GetComponent<UnityEngine.UI.Image>().sprite = temp.sprite;
 			this.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, temp.opacity);
+			this.transform.localScale = Vector3.one;
 			Fade(temp.opacity); // Makes sure hiddenTransitionTime tiles are still hiddenTransitionTime
 		} else {
 			Debug.Log("bad tiledef");

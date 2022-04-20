@@ -6,13 +6,14 @@
 
 - make toggle for devmode get item on click
 
+Bugs
+	+ constructed storage last piece placed isn't being correctly replaced anymore?
+	- breathing is incorrectly scaling due to anchor choice in gen
+	+ storage is never being detected as seen
+
 PlayerData
 	- move in save/load game data code
-	+ add stats (win/loss/ng)
-
-Codex
-	bug - breathing is incorrectly scaling due to anchor choice in gen
-	bug - no longer breathing tiles should stop at .one scale
+	+ add stats (win/loss/ng)	
 
 To singleton: Codex, Settings
 
