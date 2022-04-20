@@ -11,11 +11,9 @@ PlayerData
 	+ add stats (win/loss/ng)
 
 Codex
-	Paths
-		+ bug - paths should be connected to the target item (not the source)
-		+ paths should be generated from data
-		+ get rid of old manual paths/images
-	
+	bug - breathing is incorrectly scaling due to anchor choice in gen
+	bug - no longer breathing tiles should stop at .one scale
+
 To singleton: Codex, Settings
 
 + Update flavour text to Tinkerer pov ("It seems that you find a rock every 4th pile of dirt.... how odd")

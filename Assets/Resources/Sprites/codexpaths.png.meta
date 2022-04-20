@@ -77,6 +77,126 @@ TextureImporter:
   - first:
       213: -1304814473750698825
     second: path spritesheet_23
+  - first:
+      213: 3501898525214833115
+    second: codexpaths_0
+  - first:
+      213: -1369326123043982331
+    second: codexpaths_1
+  - first:
+      213: -6522349870174472309
+    second: codexpaths_2
+  - first:
+      213: 4942334053485244649
+    second: codexpaths_3
+  - first:
+      213: 3318455214269788391
+    second: codexpaths_4
+  - first:
+      213: 5704531475056554516
+    second: codexpaths_5
+  - first:
+      213: 3684496261176721345
+    second: codexpaths_6
+  - first:
+      213: 5234200469690787555
+    second: codexpaths_7
+  - first:
+      213: 6108839154092811538
+    second: codexpaths_8
+  - first:
+      213: -6591032213034786474
+    second: codexpaths_9
+  - first:
+      213: 990190091141721291
+    second: codexpaths_10
+  - first:
+      213: -7630252891317489409
+    second: codexpaths_11
+  - first:
+      213: 2851199313706312413
+    second: codexpaths_12
+  - first:
+      213: -6478648559373426335
+    second: codexpaths_13
+  - first:
+      213: 5617860037020212527
+    second: codexpaths_14
+  - first:
+      213: 4764213478129442527
+    second: codexpaths_20
+  - first:
+      213: 7749224089163796459
+    second: codexpaths_16
+  - first:
+      213: 8426095129186643172
+    second: codexpaths_17
+  - first:
+      213: 898144287549769047
+    second: codexpaths_18
+  - first:
+      213: 2116137645181675507
+    second: codexpaths_19
+  - first:
+      213: -6724860101342442539
+    second: codexpaths_27
+  - first:
+      213: -1073035179049625989
+    second: codexpaths_28
+  - first:
+      213: -9112231970818398853
+    second: codexpaths_22
+  - first:
+      213: -5986179785785342772
+    second: codexpaths_5
+  - first:
+      213: 8139002693435053747
+    second: codexpaths_6
+  - first:
+      213: 4278809941067039130
+    second: codexpaths_7
+  - first:
+      213: -8291043880490805431
+    second: codexpaths_8
+  - first:
+      213: 3266286523187096353
+    second: codexpaths_9
+  - first:
+      213: -6571107174454439441
+    second: codexpaths_11
+  - first:
+      213: 7762085182032340101
+    second: codexpaths_12
+  - first:
+      213: 3066510044641910089
+    second: codexpaths_15
+  - first:
+      213: -7072165153786976809
+    second: codexpaths_20
+  - first:
+      213: -1934918171226646841
+    second: codexpaths_21
+  - first:
+      213: -1079377809641040396
+    second: codexpaths_23
+  - first:
+      213: 1410185307869282373
+    second: codexpaths_24
+  - first:
+      213: -518594287104358628
+    second: codexpaths_25
+  - first:
+      213: 4105533600444063236
+    second: codexpaths_26
+  - first:
+      213: -5547705649706791263
+    second: codexpaths_27
+  - first:
+      213: -3610681609961135011
+    second: codexpaths_28
+  - first:
+      213: -2101978809789300349
+    second: codexpaths_29
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -185,505 +305,631 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: path spritesheet_0
+      name: codexpaths_0
       rect:
         serializedVersion: 2
         x: 0
         y: 2500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9d096bfb8208de10800000000000000
-      internalID: 2222529216349015454
+      spriteID: bd9f4e2a72e399030800000000000000
+      internalID: 3501898525214833115
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_1
+      name: codexpaths_1
       rect:
         serializedVersion: 2
         x: 500
         y: 2500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a4462c65fdd79270800000000000000
-      internalID: 8257312487958267041
+      spriteID: 504fc46652d2ffce0800000000000000
+      internalID: -1369326123043982331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_2
+      name: codexpaths_2
       rect:
         serializedVersion: 2
         x: 1000
         y: 2500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2d75dcc96daa0050800000000000000
-      internalID: 5767612942721056042
+      spriteID: b877f679955fb75a0800000000000000
+      internalID: -6522349870174472309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_3
+      name: codexpaths_3
       rect:
         serializedVersion: 2
         x: 1500
         y: 2500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5de3d9ba87ed6b220800000000000000
-      internalID: 2501431252907540181
+      spriteID: 9e0fd43d2a2b69440800000000000000
+      internalID: 4942334053485244649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_4
+      name: codexpaths_4
       rect:
         serializedVersion: 2
         x: 2000
         y: 2500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e9fc7a6583e78ad0800000000000000
-      internalID: -2699939289428592158
+      spriteID: 7e0f7997f658d0e20800000000000000
+      internalID: 3318455214269788391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_5
+      name: codexpaths_5
       rect:
         serializedVersion: 2
         x: 0
         y: 2000
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c7ef1551c7f062e0800000000000000
-      internalID: -2134433813644711994
+      spriteID: cc404a27331dceca0800000000000000
+      internalID: -5986179785785342772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_6
+      name: codexpaths_6
       rect:
         serializedVersion: 2
         x: 500
         y: 2000
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3567bec2b31ca6800800000000000000
-      internalID: 606509559735613011
+      spriteID: 3b6d420d3db83f070800000000000000
+      internalID: 8139002693435053747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_7
+      name: codexpaths_7
       rect:
         serializedVersion: 2
         x: 1000
         y: 2000
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2714aae7c60497880800000000000000
-      internalID: -8612781977643630222
+      spriteID: a9106b6a8f2616b30800000000000000
+      internalID: 4278809941067039130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_8
+      name: codexpaths_8
       rect:
         serializedVersion: 2
         x: 1500
         y: 2000
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9367b216656c55e00800000000000000
-      internalID: 1032949763851122233
+      spriteID: 9475b2eb48b40fc80800000000000000
+      internalID: -8291043880490805431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_9
+      name: codexpaths_9
       rect:
         serializedVersion: 2
         x: 2000
         y: 2000
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6b8b2431fdba0cd0800000000000000
-      internalID: -2591049791938262162
+      spriteID: 12b663d894e245d20800000000000000
+      internalID: 3266286523187096353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_10
+      name: codexpaths_10
       rect:
         serializedVersion: 2
         x: 0
         y: 1500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2aa1943940a50ebe0800000000000000
-      internalID: -1450060104315888990
+      spriteID: bcc2d9244acddbd00800000000000000
+      internalID: 990190091141721291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_11
+      name: codexpaths_11
       rect:
         serializedVersion: 2
         x: 500
         y: 1500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bda63777c76d6f740800000000000000
-      internalID: 5185567851032046299
+      spriteID: fe15f9d07dcbec4a0800000000000000
+      internalID: -6571107174454439441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_12
+      name: codexpaths_12
       rect:
         serializedVersion: 2
         x: 1000
         y: 1500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15974097deb2447b0800000000000000
-      internalID: -5241015767414834863
+      spriteID: 5846c57095778bb60800000000000000
+      internalID: 7762085182032340101
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_13
+      name: codexpaths_13
       rect:
         serializedVersion: 2
         x: 1500
         y: 1500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc8704b2439da9970800000000000000
-      internalID: 8762554843089893580
+      spriteID: 16163f9e5773716a0800000000000000
+      internalID: -6478648559373426335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_14
+      name: codexpaths_14
       rect:
         serializedVersion: 2
         x: 2000
         y: 1500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0f6b54a83f3afc70800000000000000
-      internalID: 9005579917388902158
+      spriteID: f2dd37060f5a6fd40800000000000000
+      internalID: 5617860037020212527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_15
+      name: codexpaths_15
       rect:
         serializedVersion: 2
         x: 0
         y: 1000
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c95452e672fcfc20800000000000000
-      internalID: 3241732424217156040
+      spriteID: 94d5c0773ae6e8a20800000000000000
+      internalID: 3066510044641910089
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_16
+      name: codexpaths_16
       rect:
         serializedVersion: 2
         x: 500
         y: 1000
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdd5d6fd436e8f150800000000000000
-      internalID: 5906724026057579999
+      spriteID: bef028f7046ca8b60800000000000000
+      internalID: 7749224089163796459
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_17
+      name: codexpaths_17
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1000
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eca1da60e08fe470800000000000000
+      internalID: 8426095129186643172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: codexpaths_18
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 1000
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75543709879d67c00800000000000000
+      internalID: 898144287549769047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: codexpaths_19
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 1000
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f7a2ecf9f70e5d10800000000000000
+      internalID: 2116137645181675507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: codexpaths_20
       rect:
         serializedVersion: 2
         x: 0
         y: 500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab02de441aad2f500800000000000000
-      internalID: 428645300734599354
+      spriteID: 7d5a1a7334f9add90800000000000000
+      internalID: -7072165153786976809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_18
+      name: codexpaths_21
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 500
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c65696cc2ac525e0800000000000000
+      internalID: -1934918171226646841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: codexpaths_22
       rect:
         serializedVersion: 2
         x: 1000
         y: 500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 420aa94521b64c9c0800000000000000
-      internalID: -3907880850177744860
+      spriteID: b75696c1d49da8180800000000000000
+      internalID: -9112231970818398853
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_19
+      name: codexpaths_23
       rect:
         serializedVersion: 2
         x: 1500
         y: 500
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23f97aa25233ebfa0800000000000000
-      internalID: -5783128636774703310
+      spriteID: 4f518e5d9974501f0800000000000000
+      internalID: -1079377809641040396
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_20
+      name: codexpaths_24
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 500
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5400607e01cf19310800000000000000
+      internalID: 1410185307869282373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: codexpaths_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1709965e359dc8f0800000000000000
+      internalID: -518594287104358628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: codexpaths_26
       rect:
         serializedVersion: 2
         x: 500
         y: 0
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8cea92beaa0fe650800000000000000
-      internalID: 6264237352132734090
+      spriteID: 40e16ebbe09c9f830800000000000000
+      internalID: 4105533600444063236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_21
+      name: codexpaths_27
       rect:
         serializedVersion: 2
         x: 1000
         y: 0
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df8d074c75b951e70800000000000000
-      internalID: 9085338624550033661
+      spriteID: 1ae8cc6ca179203b0800000000000000
+      internalID: -5547705649706791263
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_22
+      name: codexpaths_28
       rect:
         serializedVersion: 2
         x: 1500
         y: 0
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19a00c2ce30022170800000000000000
-      internalID: 8152078545049356945
+      spriteID: d542b39b43844edc0800000000000000
+      internalID: -3610681609961135011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: path spritesheet_23
+      name: codexpaths_29
       rect:
         serializedVersion: 2
         x: 2000
         y: 0
         width: 500
         height: 500
-      alignment: 1
-      pivot: {x: 0, y: 1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b42d4a362e54ede0800000000000000
-      internalID: -1304814473750698825
+      spriteID: 3814c15c86544d2e0800000000000000
+      internalID: -2101978809789300349
       vertices: []
       indices: 
       edges: []

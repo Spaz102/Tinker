@@ -12,14 +12,18 @@ public static class Data {
 	public static GameObject tiletemplate;
 	public static GameObject ghosttemplate;
 	public static GameObject storagetemplate;
+	public static GameObject codexitemtemplate;
+	public static GameObject codexpathtemplate;
 
 	public static List<Pattern> patterns;
+	public static Dictionary<string, List<Vector3>> codexpaths;
 	public static Dictionary<string, Pattern> patternresults;
 	public static Dictionary<string, TileDef> tiledefs;
 	public static Dictionary<string, AudioClip> audiofiles;
 	public static Sprite dustsprite;
 	public static Sprite[] dustsprites;
 	public static Sprite[] storageSprites;
+	public static Sprite[] pathsprites;
 
 	static Data() {
 		FillLists();
@@ -29,11 +33,14 @@ public static class Data {
 		Data.tiletemplate = (GameObject) Resources.Load("TileTemplate");
 		Data.ghosttemplate = (GameObject) Resources.Load("GhostTemplate");
 		Data.storagetemplate = (GameObject) Resources.Load("StorageTemplate");
+		Data.codexitemtemplate = (GameObject)Resources.Load("CodexItemTemplate");
+		Data.codexpathtemplate = (GameObject)Resources.Load("CodexPathTemplate");
 
 		audiofiles = new Dictionary<string, AudioClip>();
 		dustsprites = Resources.LoadAll<Sprite>("Sprites/smokesheet");
 		dustsprite = Resources.Load<Sprite>("Sprites/Dust");
 		Sprite[] rawsprites = Resources.LoadAll<Sprite>("Sprites/Tinkerer");
+		pathsprites = Resources.LoadAll<Sprite>("Sprites/codexpaths");
 		storageSprites = Resources.LoadAll<Sprite>("Sprites/storage spritesheet");
 		tiledefs = new Dictionary<string, TileDef>();
 
@@ -296,7 +303,7 @@ public static class Data {
 		Pattern temp = new Pattern(new string[] {"Junk1", "Junk2", "Junk3"}, "Set", "NewRat"); // Done to force blueprints to show rat pattern correctly
 		patterns.Add(temp);
         #endregion
-        #region rat
+        
         patternresults = new Dictionary<string, Pattern>();
 		patternresults.Add("Rat", temp);
 		foreach (Pattern pattern in patterns) {
@@ -304,6 +311,25 @@ public static class Data {
 				patternresults.Add(pattern.result, pattern);
 			}
 		}
+
+        #region Set the paths, z value is a bit flag for alternative path graphic
+        codexpaths = new Dictionary<string, List<Vector3>>();
+		codexpaths.Add("Stick", new List<Vector3>{ new Vector3(0, 1, 1)});
+		codexpaths.Add("Rock", new List<Vector3> { new Vector3(0, 1, 1) });
+		codexpaths.Add("Rat", new List<Vector3> { new Vector3(0, 1, 0) });
+		codexpaths.Add("Wood", new List<Vector3> { new Vector3(0, 1, 1) });
+		codexpaths.Add("Key", new List<Vector3> { new Vector3(1, 1, 0), new Vector3(0, -1, 0), new Vector3(-2, -1, 0) });
+		codexpaths.Add("Metal", new List<Vector3> { new Vector3(0, 1, 1) });
+		codexpaths.Add("Plank", new List<Vector3> { new Vector3(0, 1, 1) });
+		codexpaths.Add("Gear", new List<Vector3> { new Vector3(-1, 1, 0) });
+		codexpaths.Add("Pin", new List<Vector3> { new Vector3(1, 1, 0) });
+		codexpaths.Add("Panel", new List<Vector3> { new Vector3(0, 1, 0) });
+		codexpaths.Add("Spring", new List<Vector3> { new Vector3(0, 1, 0), new Vector3(-1, 2, 0) });
+		codexpaths.Add("Cylinder", new List<Vector3> { new Vector3(-1, 1, 0) });
+		codexpaths.Add("Motor", new List<Vector3> { new Vector3(0, 1, 0), new Vector3(-1, 2, 1), new Vector3(-1, 1, 0) });
+		codexpaths.Add("Comb", new List<Vector3> { new Vector3(1.5f, 1, 0), new Vector3(-.5f, 1, 0) });
+		codexpaths.Add("Drum", new List<Vector3> { new Vector3(1, 1, 0), new Vector3(0, 2, 0) });
+		codexpaths.Add("MusicBox", new List<Vector3> { new Vector3(1.5f, 1, 0), new Vector3(0, 1, 0), new Vector3(1.5f, 2, 1), new Vector3(-1.5f, 1, 0) });
         #endregion
 
         #region audio
@@ -321,14 +347,6 @@ public static class Data {
 			}
 		}
         #endregion
-	}
-
-	private static void CalcPaths(TileDef tile)
-	{
-		if (tile.codexPos == new Vector2(-1, -1))
-		{
-			return;
-		}
 	}
 }
 

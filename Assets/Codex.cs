@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 /// <summary>
 /// Handler for the blueprint ui element (loads the needed blueprint_page and hands off to it)
@@ -14,7 +15,44 @@ public class Codex : MonoBehaviour {
 
 	public Tile[] buttons;
 
+	/// <summary>
+	/// Initial setup for codex, set the layout per data, generate buttons/paths
+	/// </summary>
 	void Start () {
+
+		// create the codex tiles and lay them out per data
+		foreach (var item in Data.tiledefs)
+		{
+			if (item.Key == null || item.Key == "" || !Data.tiledefs.ContainsKey(item.Key))
+			{
+				Debug.Log(item.Key);
+				return;
+			}
+			if (item.Value.codexPos == new Vector2(-1, -1)) { continue; }
+			GameObject newentry = UnityEngine.Object.Instantiate(Data.codexitemtemplate, new Vector3(), new Quaternion(), GameObject.Find("CodexContainer").transform) as GameObject;
+
+			newentry.transform.localScale = Vector3.one;
+			newentry.GetComponent<RectTransform>().anchoredPosition = new Vector2(item.Value.codexPos.x * 220, item.Value.codexPos.y * -300);
+			newentry.GetComponentInChildren<Tile>().newTiletype = item.Key;
+			newentry.GetComponentInChildren<Button>().onClick.AddListener(CodexClick);
+
+			// Create paths to be drawn on the codex (as needed)
+			if (Data.codexpaths.ContainsKey(item.Key))
+			{
+				foreach (Vector3 path in Data.codexpaths[item.Key])
+				{
+					GameObject newpath = UnityEngine.Object.Instantiate(Data.codexpathtemplate, new Vector3(), new Quaternion(), newentry.transform.GetChild(1)) as GameObject;
+					
+					// sprite sheet only goes down/right so you need to flip the image for up/left
+					if (path.x < 0) {newpath.transform.localScale = new Vector3(-1, 1, 1);}
+					if (path.y < 0) {newpath.transform.localScale = new Vector3(newpath.transform.localScale.x, -1, 1);}
+					// get sprite number from x,y coords. 'z' coord is '0' for the default image or '1' for the alternative option.
+					newpath.GetComponent<UnityEngine.UI.Image>().sprite = Data.pathsprites[(int)(Math.Abs(path.z * 15) + Math.Abs(path.y * 5) + Math.Abs(path.x * 2))];
+					newpath.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+				}
+			}
+			
+		}
 		buttons = this.gameObject.GetComponentsInChildren<Tile>();
 		Recalc();
 	}
@@ -45,7 +83,7 @@ public class Codex : MonoBehaviour {
 				else if (!PlayerData.playerseen[butt.tiletype] && CanMake(butt.tiletype))
 				{
 					butt.newState = Tile.States.sillhouette;
-					butt.transform.parent.Find("Paths").gameObject.SetActive(false);
+					butt.transform.parent.Find("Paths").gameObject.SetActive(true);
 				}
 				else if (!PlayerData.playerseen[butt.tiletype] && !CanMake(butt.tiletype))
 				{
