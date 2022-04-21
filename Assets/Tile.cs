@@ -9,7 +9,7 @@ public class Tile : MonoBehaviour {
 	public States state;
 	public States newState;
 
-	public string newTiletype; // What type of tile (dirt, stick)
+	public string newTiletype; // What type of tile (dirt, stick). "Handled" is a special type meaning the image is being handled manually (only used for storage tiles)
 	public string tiletype;
 
 	public int hiddenTransitionTime; // # of frames before unhiding (For animations/transitions), -1 for indefinite
@@ -88,7 +88,10 @@ public class Tile : MonoBehaviour {
 	private void ShowSprite() {
 		TileDef temp;
 		if (Data.tiledefs.TryGetValue(tiletype, out temp)) {
-			this.GetComponent<UnityEngine.UI.Image>().sprite = temp.sprite;
+			if (tiletype != "Handled")
+			{
+				this.GetComponent<UnityEngine.UI.Image>().sprite = temp.sprite;
+			}
 			this.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, temp.opacity);
 			this.transform.localScale = Vector3.one;
 			Fade(temp.opacity); // Makes sure hiddenTransitionTime tiles are still hiddenTransitionTime

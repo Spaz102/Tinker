@@ -7,7 +7,6 @@
 - make toggle for devmode get item on click
 
 Bugs
-	+ constructed storage last piece placed isn't being correctly replaced anymore?
 	- breathing is incorrectly scaling due to anchor choice in gen
 	+ storage is never being detected as seen
 
@@ -39,6 +38,8 @@ Refactor:
 	Core ++
 	Interactive ? Does this need to exist?
 	Storage ?
+		- pull from board
+		- the way storage graphics work using "Handled" to override display settings is a horrible hack that will ruin my sleep
 	? Make a Dust.cs controller
 		- pull stuff from settings and core
 	+ go through all code, comment, refactor, restructure
@@ -60,7 +61,10 @@ Buttons/UI/Settings:
 Mobile Support:
 	+ Hand icon on right side 'holding' current item, no cursor
 	+ Two-click mode (on by default)
-		
+
+Data
+	? move all codex location data together
+
 Codex/BP:
 	? rewrite Blueprints to be a single unity object and put everything needed to load into /data (use popup as model?)
 	ClosedScroll:

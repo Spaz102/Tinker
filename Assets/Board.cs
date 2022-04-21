@@ -713,6 +713,7 @@ public class Board : MonoBehaviour {
 			//Debug.Log("Something went horribly wrong in determining which panel sprite to show at " + target.x + ", " + target.y + ". Good luck?");
 		}
 
+		Core.board.tile[target.x, target.y].newTiletype = "Handled";
 		Core.board.tile[target.x, target.y].GetComponent<UnityEngine.UI.Image>().sprite = Data.storageSprites[spriteIndex];
 		Core.board.tile[target.x, target.y].GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1, 1f);
 	}
