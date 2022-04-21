@@ -8,7 +8,6 @@
 
 Bugs
 	- breathing is incorrectly scaling due to anchor choice in gen
-	+ storage is never being detected as seen
 
 PlayerData
 	- move in save/load game data code

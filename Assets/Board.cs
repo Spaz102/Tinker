@@ -659,6 +659,9 @@ public class Board : MonoBehaviour {
 
 		storagelist.Add(newstorage.GetComponent<Storage>());
 
+		PlayerData.playerseen["Storage"] = true;
+		Core.codex.Recalc();
+
 		Core.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x, bottomleft.y)));
 		Core.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x+1, bottomleft.y)));
 		Core.board.dependencies.Add(new Dependency(newstorage, new Coord(bottomleft.x, bottomleft.y+1)));
