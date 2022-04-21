@@ -126,9 +126,7 @@ public class BlueprintPage : MonoBehaviour {
 	}
 
 	public void Click(int index) {
-		if (displayTiletypes[index] == "Panel" && !PlayerData.playerseen["Panel"]) {
-			return;
-		} else if (displayTiletypes[index] != "Empty") {
+		if (displayTiletypes[index] != "Empty") {
 			Core.codex.OpenBlueprint(displayTiletypes[index]);
 		}
 	}
