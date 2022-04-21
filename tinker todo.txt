@@ -4,8 +4,6 @@
 
 - Thematic Fonts
 
-- make toggle for devmode get item on click
-
 PlayerData
 	- move in save/load game data code
 	+ add stats (win/loss/ng)	

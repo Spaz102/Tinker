@@ -25,6 +25,7 @@ public sealed class DevMode : MonoBehaviour {
 	#endregion
 	
 	public static bool devmode = true;
+	public static bool codexcloning = devmode;
 
 	/// <summary>
 	/// Acts as a constructor in a seperate function to keep the singleton code in a block
@@ -71,4 +72,11 @@ public sealed class DevMode : MonoBehaviour {
 		Core.codex.Recalc();
 	}
 	
+	/// <summary>
+	/// When enabled, clicking items in codex puts them in your hand
+	/// </summary>
+	public void ToggleCodexCloning()
+	{
+		codexcloning = !codexcloning;
+	}
 }
