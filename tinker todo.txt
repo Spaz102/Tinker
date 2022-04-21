@@ -6,9 +6,6 @@
 
 - make toggle for devmode get item on click
 
-Bugs
-	- breathing is incorrectly scaling due to anchor choice in gen
-
 PlayerData
 	- move in save/load game data code
 	+ add stats (win/loss/ng)	
