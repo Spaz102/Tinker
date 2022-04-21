@@ -2,6 +2,7 @@
 + Cur
 ++++++++++++
 
+- more gfx
 - Thematic Fonts
 
 PlayerData
@@ -104,7 +105,7 @@ GFX:
 	+ Tiles: seed, stick, log, plank, storage
 		- fix perspective/lighting on: rock, pin, junk3
 		- shiny match spring/cylinder. Enforce metal progression
-		- rat has 1px border bot/right along with some other tiles/paths? Might be a unity transparency issue?
+		- spread all sprites by 2px. Unity doesn't handle spritesheets correctly.
 	+ Codex
 		- Openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
 		- Closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body
