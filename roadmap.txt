@@ -1,0 +1,94 @@
+﻿++++++++++++
++ TINKERER FEATURES ROADMAP
+++++++++++++
+
+Basics
+
+- refactoring
+- graphics completion
+- menus
+	- main menu
+	- ingame menu
+
+---------------------
+
+Min viable product
+
+- refactoring
+- popups
+	- tutorials
+	- stats
+	- credits
+	- win/loss screen revamps
+- stats
+- audio
+- tile highlight functionality
+- mobile/android support
+
+---------------------
+
+Hook.
+Game is viable but dry. 
+Needs to be snappier, more win loss
+	? boost rates of higher level tiletypes once they've been found in past
+		? or boost based on turn number
+	? increase rat rate to compensate
+	? make highest level goods inedible
+	? chance of randomly dropped item?
+	? make a simpler level, fewer steps
+	- target 25~30m
+
+Needs ______ to hold interest
+	? MODES
+		- Puzzle mode
+			- think chess puzzles. You get a preset map, a list of upcoming tiles and a goal
+				? would this be overly trivial?
+		- rat trap game ... there was a cat trap game iirc
+		- whackamouse/mole bonus level
+		- clear/fill the board as a goal
+		- bejeweled with junk -> rats
+		- tower defense?
+		- rat maze?
+		- rat race?
+	? More levels
+		- have tinker build other things.... i mean... yeah.
+		? levels have their own challenges
+			- running water/wind... everything slides down
+			- crazed rats level (start with 6, triple spawn rate) (followed or preceded by whackamole)
+			- varied mode levels (puzzle, whackamouse)
+			- one off power(s) just for the level... ie a grenade level
+			- levels can have hard requirements for unlocked powers and recs
+			- helpful rats 
+				- only wander around, do no damage, can be picked up and put down at any time
+				- upgrade the object they are placed on?
+			- rats act in real time not turn based
+	? Carryover/Between level stuff....
+		? Have stuff that you build in early levels serve as parts in later levels ... basically you meta play the level.
+		? If you make a part in a level (gear the level):
+			? you unlock a simplified recipe for gears in all other levels
+			? you put a gear on your desk that you can use once in other levels
+		? unlockable powers through level completion
+			- final level 
+	? complexity
+		- secret off codex items (get added to the codex once found)
+		? more multitile constructs (think factorio)
+			- 2x2 smelter ... upgrade 1 stoneline object every 5 turns
+			- 2x2 woodshop ... upgrade 1 wood line object every 5 turns
+			- trashcan
+			- robot arm, freely move any thing within 2 tiles of it forever
+		? single tile active use
+			- collapses like a normal recipe but has some active use just being there (
+				- robot arm could work this way. 3x3 construct collapses into a 1x1 and can be used
+					- upgrade for more range
+			- makes upgrades more functional since they could be used in recipes still
+			- acts as a power....
+		? powers
+			- build a storage unit and get one permanently on your table
+			- trash can ... throw something out once in a while
+			- grabber... occasional use
+			- smelter... put a rock in it and it changes to a metal
+			- grenade 2x2 poof dmg
+			- map size change
+			- spyglass - see a turn in advance what you'll get
+			- lucky clover - put an item on it to boost its drop rate
+			- rat whistle - turn rats 'helpful' pacifying them and allowing them to be moved freely
