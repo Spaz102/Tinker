@@ -5,14 +5,16 @@
 - more gfx
 - Thematic Fonts
 
+Bugs
+	+ grabber/storage seen buildable is wrong
+		- grabber should not show up until seen
+		+ storage should not show up until you have panels
+
 PlayerData
 	- move in save/load game data code
 	+ add stats (win/loss/ng)	
 
 To singleton: Codex, Settings
-
-+ Update flavour text to Tinkerer pov ("It seems that you find a rock every 4th pile of dirt.... how odd")
-			- include item name (title to be removed)
 
 UI
 	New Buttons:
@@ -26,6 +28,8 @@ UI
 ++++++++++++
 + Main/Code
 ++++++++++++
+
+- build out a more indepth endpoint plan
 
 Refactor:
 	Board ++
@@ -92,8 +96,6 @@ Audio:
 Bugs:
 	+ cannot support wide devices like ipads
 		- slide the scroll up across page to ensure enough height?
-	- rat breathing a bit .... not centered on rat? using wrong metric to center breathe anim?
-	+ storage bin graphic jank after merging ... only in top 2 rows
 	? when filled storage is destroyed (rat/tool) the contents are deleted, is this good behavior?
 
 ++++++++++++
