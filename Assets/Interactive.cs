@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Basic interaction handling for generated objects (tiles)
@@ -9,32 +10,24 @@ public class Interactive : MonoBehaviour { // Warning: Needs the GameObject to a
 	public Coord index; // Unused if not a tile
 
 	public void OnMouseUpAsButton() {
-		if (!UI.Popup.activeInHierarchy && !UI.MainMenu.activeInHierarchy) { 
-			if (type == "Tile") {
-				Core.QueueClick(this.index);
-			}
+		if (type == "Tile") {
+			Core.QueueClick(this.index);
 		}
 	}
+
 	public void OnMouseEnter() { 
-		if (!UI.Popup.activeInHierarchy && !UI.MainMenu.activeInHierarchy)
-		{
 			Core.mouseover = this;
-
 			Core.Mouseover();
-		}
 	}
-	public void OnMouseExit() { //TODO: Add check for if program focus lost/regained? (Add a pause screen)
-		if (!UI.Popup.activeInHierarchy && !UI.MainMenu.activeInHierarchy)
-		{
-			if (type == "Tile")
-			{
-				if (Core.mouseover == this)
-				{
-					Core.mouseover = null;
-					Core.Mouseover();
-				}
 
+	public void OnMouseExit() { //TODO: Add check for if program focus lost/regained? (Add a pause screen)
+		if (type == "Tile")
+		{
+			if (Core.mouseover == this)
+			{
+				Core.mouseover = null;
+				Core.Mouseover();
 			}
-		}
+		}	
 	}
 }

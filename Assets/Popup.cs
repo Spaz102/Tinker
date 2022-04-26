@@ -32,7 +32,7 @@ public class Popup: MonoBehaviour {
 				break;
 		}
 
-		this.gameObject.SetActive(true);
+		Core.ui.OpenPopup();
 	}
 
 }

@@ -103,6 +103,7 @@ public sealed class UI : MonoBehaviour
 	{
 		Core.board.ResetBoard();
 		MainMenu.SetActive(false);
+		SetTileCollider(true);
 	}
 
 	public void HideLightBox()
@@ -113,10 +114,20 @@ public sealed class UI : MonoBehaviour
 	public void HidePopup()
 	{
 		Popup.SetActive(false);
+		SetTileCollider(true);
 	}
-	public void HideMainMenu()
+
+	public void OpenPopup()
 	{
-		MainMenu.SetActive(false);
+		Popup.SetActive(true);
+		SetTileCollider(false);
+	}
+
+	public void SetTileCollider(bool setting)
+	{
+		foreach (Tile tile in Core.board.tile) {
+			tile.gameObject.GetComponent<BoxCollider2D>().enabled = setting;
+		}
 	}
 
 	/// <summary>

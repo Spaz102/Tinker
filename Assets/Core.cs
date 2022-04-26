@@ -16,6 +16,7 @@ public static class Core {
 	public static Codex codex;
 	public static Popup popup;
 	public static GameObject mainMenu;
+	public static UI ui;
 
 	// Used in random drawing to hand
 	public static int handPoolSize;
@@ -47,6 +48,7 @@ public static class Core {
 		codex = UI.Codex.GetComponent<Codex>();
 		popup = UI.Popup.GetComponent<Popup>();
 		mainMenu = UI.MainMenu;
+		ui = new UI();
 
 		mouseover = null;
 		cursor.transform.localScale = new Vector3(0.75f, 0.75f, 1);
