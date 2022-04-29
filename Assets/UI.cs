@@ -32,6 +32,7 @@ public sealed class UI : MonoBehaviour
 	public static GameObject MainMenu;
 
 	public bool scrollopen = false;
+	public bool mainmenuopen = true;
 
 	void FirstStart()
 	{
@@ -102,10 +103,15 @@ public sealed class UI : MonoBehaviour
 	public void NewGame()
 	{
 		Core.board.ResetBoard();
-		MainMenu.SetActive(false);
-		SetTileCollider(true);
+		ToggleMainMenu();
 	}
 
+	public void ToggleMainMenu()
+	{
+		mainmenuopen = !mainmenuopen;
+		MainMenu.SetActive(mainmenuopen);
+		SetTileCollider(!mainmenuopen);
+	}
 	public void HideLightBox()
 	{
 		LightBox.SetActive(false);

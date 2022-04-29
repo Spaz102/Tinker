@@ -32,11 +32,7 @@ public sealed class DevMode : MonoBehaviour {
 	/// </summary>
 	private void FirstStart()
 	{
-		if (!devmode)
-		{
-			GameObject.Find("Dev Buttons").SetActive(false);
-
-		}
+		GameObject.Find("DevButtonContainer").SetActive(devmode);
 	}
 
 	/// <summary>
@@ -77,6 +73,7 @@ public sealed class DevMode : MonoBehaviour {
 	/// </summary>
 	public void ToggleCodexCloning()
 	{
+		if (!devmode) { return; }
 		codexcloning = !codexcloning;
 	}
 }
