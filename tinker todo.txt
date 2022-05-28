@@ -17,12 +17,6 @@ PlayerData
 To singleton: Codex, Settings
 
 UI
-	New Buttons:
-		- Stats (like in minesweeper) + Achievements
-		+ Restart/Newgame
-		+ credits
-		+ Help? (replay tutorials)
-		- Rate game button
 	- change all ui buttons away from direct unity style 'onclick' events so that it is all viewable from code (settings) and we can add sounds/w/e
 
 ++++++++++++
@@ -47,16 +41,26 @@ Refactor:
 	- reduce scope of public variables (most shouldn't need to be public)
 
 New Features:
-	? Pregame 'main menu' screen? (New/Continue/stats/credits/)
 	+ Save/load settings, tutorials seen
 	- credits, player stats
-	- new game
 	- tutorials
 	- intro/startup
 
 Buttons/UI/Settings:
 	- get rid of ui.update (make see() a function in codex)
-	- move ingame menu to the desk (off scroll)
+
+Menu:
+	+ fancy animation
+		+ whole main menu is a larger page that just gets shoved off screen, except for a small bit in the corner, that gets used as the 'go to to main menu' button
+		- other menus are different sheets (do they need graphics?)
+	New Game
+		+ popup warning if game exists
+		+ tutorial if first game
+	Cont
+		- should be hidden/deactivated if no game exists
+	+ About
+	+ Stats/Achievements
+	- Rate on Android
 
 Mobile Support:
 	+ Hand icon on right side 'holding' current item, no cursor
