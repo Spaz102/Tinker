@@ -30,6 +30,7 @@ public sealed class UI : MonoBehaviour
 	public static GameObject Codex;
 	public static GameObject Popup;
 	public static GameObject MainMenu;
+	static RectTransform rtMainMenu;
 
 	public bool scrollopen = false;
 	public bool mainmenuopen = true;
@@ -77,7 +78,7 @@ public sealed class UI : MonoBehaviour
 
 		// Resize needed to allow it to be displayed in the editor
 		MainMenu.SetActive(true);
-		RectTransform rtMainMenu = MainMenu.GetComponent<RectTransform>();
+		rtMainMenu = MainMenu.GetComponent<RectTransform>();
 		rtMainMenu.anchoredPosition = Vector2.zero;
 		rtMainMenu.anchorMin = Vector2.zero;
 		rtMainMenu.anchorMax = Vector2.one;
@@ -95,6 +96,29 @@ public sealed class UI : MonoBehaviour
 		{
 			ClosedScroll.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0);
 		}
+
+		// Handle menu animations
+		float mmXclosed = -rtMainMenu.rect.width + 250;
+		float mmXopen = 0;
+		float mmYclosed = -rtMainMenu.rect.height + 50;
+		float mmYopen = 0; 
+		
+		float menuspeed = 2;
+		float mmXspeed = (mmXopen - mmXclosed) * .01f;
+		float mmYspeed = (mmYopen - mmYclosed) * .01f;
+		
+		float rot = .05f;
+
+		if (mainmenuopen && rtMainMenu.anchoredPosition.x < mmXopen)
+		{
+			rtMainMenu.anchoredPosition = new Vector2(rtMainMenu.anchoredPosition.x + (mmXspeed * menuspeed), rtMainMenu.anchoredPosition.y + (mmYspeed * menuspeed));
+			rtMainMenu.eulerAngles = new Vector3(0f,0f, rtMainMenu.eulerAngles.z - (rot * menuspeed));
+		}
+		else if (!mainmenuopen && rtMainMenu.anchoredPosition.x > mmXclosed)
+		{
+			rtMainMenu.anchoredPosition = new Vector2(rtMainMenu.anchoredPosition.x - (mmXspeed * menuspeed), rtMainMenu.anchoredPosition.y - (mmYspeed * menuspeed));
+			rtMainMenu.eulerAngles = new Vector3(0f, 0f, rtMainMenu.eulerAngles.z + (rot * menuspeed));
+		}
 	}
 
 	/// <summary>
@@ -109,9 +133,10 @@ public sealed class UI : MonoBehaviour
 	public void ToggleMainMenu()
 	{
 		mainmenuopen = !mainmenuopen;
-		MainMenu.SetActive(mainmenuopen);
-		SetTileCollider(!mainmenuopen);
+		//MainMenu.SetActive(mainmenuopen);
+		//SetTileCollider(!mainmenuopen);
 	}
+
 	public void HideLightBox()
 	{
 		LightBox.SetActive(false);
