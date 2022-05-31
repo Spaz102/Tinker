@@ -98,12 +98,12 @@ public sealed class UI : MonoBehaviour
 		}
 
 		// Handle menu animations
-		float mmXclosed = -rtMainMenu.rect.width + 250;
+		float mmXclosed = -rtMainMenu.rect.width + 300;
 		float mmXopen = 0;
-		float mmYclosed = -rtMainMenu.rect.height + 50;
+		float mmYclosed = -rtMainMenu.rect.height + 40;
 		float mmYopen = 0; 
 		
-		float menuspeed = 2;
+		float menuspeed = 3;
 		float mmXspeed = (mmXopen - mmXclosed) * .01f;
 		float mmYspeed = (mmYopen - mmYclosed) * .01f;
 		
