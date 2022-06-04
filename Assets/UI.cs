@@ -135,7 +135,7 @@ public sealed class UI : MonoBehaviour
 	{
 		mainmenuopen = !mainmenuopen;
 		//MainMenu.SetActive(mainmenuopen);
-		//SetTileCollider(!mainmenuopen);
+		SetTileCollider(!mainmenuopen);
 	}
 
 	public void HideLightBox()
