@@ -88,13 +88,14 @@ public sealed class UI : MonoBehaviour
 
 	void Update()
 	{
+		// Highlight the scroll if there are new unseen items
 		if (PlayerData.playerseen.Values.Count(v => v) > PlayerData.playerread.Values.Count(v => v))
 		{
-			ClosedScroll.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, .5f);
+			ClosedScroll.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, .75f);
 		}
 		else
 		{
-			ClosedScroll.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0);
+			ClosedScroll.GetComponent<UnityEngine.UI.Image>().color = new Color(1, 1, 1);
 		}
 
 		// Handle menu animations

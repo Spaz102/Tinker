@@ -5,7 +5,13 @@
 - more gfx
 - Thematic Fonts
 
+- scroll closed tassel
+- open scroll textures
+
+- add recent photoshop procedures to guide
+
 Bugs
+	- hand stopped working??
 	+ grabber/storage seen buildable is wrong
 		- grabber should not show up until seen
 		+ storage should not show up until you have panels
