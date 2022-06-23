@@ -30,7 +30,9 @@ UI/Scaling
 		Unity size:
 	Sizes
 		Tile
-
+	Text
+		Titles - Matura MT (Capitals) -----------> Zanzabar (its just better but same vibes)
+		Small font - Blessed EID
 Tiles
 	- 64x64px
 	View angle: top-down, tilted back ~15°

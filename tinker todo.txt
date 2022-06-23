@@ -3,7 +3,6 @@
 ++++++++++++
 
 - more gfx
-- Thematic Fonts
 
 - paper sfxs
 
