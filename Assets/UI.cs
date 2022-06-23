@@ -65,8 +65,8 @@ public sealed class UI : MonoBehaviour
 		rtOpenedScroll.anchorMin = Vector2.zero;
 		rtOpenedScroll.anchorMax = Vector2.one;
 		rtOpenedScroll.sizeDelta = Vector2.zero;
-		rtOpenedScroll.offsetMax = new Vector2(-75, -25);
-		rtOpenedScroll.offsetMin = new Vector2(75, 0);
+		rtOpenedScroll.offsetMax = new Vector2(-25, -25);
+		rtOpenedScroll.offsetMin = new Vector2(25, 0);
 
 		// Resize needed to allow it to be displayed in the editor
 		Popup.SetActive(false);

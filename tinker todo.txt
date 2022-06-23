@@ -5,8 +5,7 @@
 - more gfx
 - Thematic Fonts
 
-- scroll closed tassel
-- open scroll textures
+- paper sfxs
 
 - add recent photoshop procedures to guide
 
@@ -114,17 +113,13 @@ Bugs:
 
 GFX:
 	- closed music box (use it closed in game, show it open and function on victory screen)
-	- codex arrows -> spritesheet
 	+ Tiles: seed, stick, log, plank, storage
 		- fix perspective/lighting on: rock, pin, junk3
 		- shiny match spring/cylinder. Enforce metal progression
 		- spread all sprites by 2px. Unity doesn't handle spritesheets correctly.
 	+ Codex
-		- Openscroll - use ragged edge parchment as base, make taller, darker towards bottom, ruffled/flared out near scroll body
-		- Closed scroll - ragged edge parchment w/ a toggle. pulled tighter to body
-			- Somehow match the texture of the scroll surface
-			- Mousehover shows it slightly pulled down.
-		- Scroll ends - ↑↓ ui hints (Only if a really good graphic is found?)
+		- Change the new item highlight/notification (jiggle?), it currently does nothing when open... ok?
+		- Closed scroll - Mousehover shows it slightly pulled down.
 	- Option buttons
 		- Mute, credits, player stats, dust toggle, new/reset game
 	- 'rotateable' icon? (Could sneak this into a tutorial, by showing it done the "wrong" way) (as per image in scraps)
